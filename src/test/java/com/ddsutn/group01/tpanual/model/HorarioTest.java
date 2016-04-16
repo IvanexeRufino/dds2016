@@ -22,15 +22,14 @@ public class HorarioTest {
     public void estaCerrado() throws HorarioInvalidoException {
     	Assert.assertFalse(horario.estaDisponible(DateTime.now()));
     }
-    
+
     @Test
     public void estaAbierto() throws HorarioInvalidoException {
     	Assert.assertTrue(horario.estaDisponible(new DateTime(2016, 4, 11, 10, 00)));
     }
-    
+
     @Test
     public void estaCerrado2() throws HorarioInvalidoException {
     	Assert.assertFalse(horario.estaDisponible(new DateTime(2016, 4, 11, 23, 00)));
     }
-
 }
