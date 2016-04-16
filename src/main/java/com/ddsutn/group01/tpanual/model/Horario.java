@@ -6,6 +6,7 @@ import org.joda.time.*;
 import com.ddsutn.group01.tpanual.exceptions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Horario {
@@ -13,9 +14,9 @@ public class Horario {
 	public enum Dia {
 	    LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO
 	}
-	
-	private ArrayList<Triplet<Dia,LocalTime,LocalTime>> horarios;
-		
+
+	private List<Triplet<Dia,LocalTime,LocalTime>> horarios;
+
 	public Horario() {
 		this.horarios = new ArrayList<Triplet<Dia,LocalTime,LocalTime>>();
 	}
