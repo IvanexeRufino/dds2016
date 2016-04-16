@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual.model.pois;
+package com.ddsutn.group01.tpanual.models.pois;
 
 public abstract class PointOfInterest {
     private String name;

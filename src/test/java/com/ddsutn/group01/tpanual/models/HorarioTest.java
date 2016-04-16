@@ -1,7 +1,7 @@
-package com.ddsutn.group01.tpanual.model;
+package com.ddsutn.group01.tpanual.models;
 
 import com.ddsutn.group01.tpanual.exceptions.*;
-import com.ddsutn.group01.tpanual.model.Horario.Dia;
+import com.ddsutn.group01.tpanual.models.Horario.Dia;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

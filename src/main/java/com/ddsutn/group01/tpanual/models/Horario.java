@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual.model;
+package com.ddsutn.group01.tpanual.models;
 
 import com.ddsutn.group01.tpanual.exceptions.HorarioInvalidoException;
 import org.javatuples.Triplet;
