@@ -1,6 +1,23 @@
-## Contexto
+# Trabajo Práctico - Diseño de Sistemas - 2016
 
-  
+## Grupo: 1
+
+Development status: [![Build Status](https://travis-ci.com/dds-utn/2016-jm-group-01.svg?token=EaTqdb9dSHiWJuznnW6B&branch=development)](https://travis-ci.com/dds-utn/2016-jm-group-01)
+
+Master status: [![Build Status](https://travis-ci.com/dds-utn/2016-jm-group-01.svg?token=EaTqdb9dSHiWJuznnW6B&branch=master)](https://travis-ci.com/dds-utn/2016-jm-group-01)
+
+#### Integrantes: 
+- Daiana Espinoza
+- Ivan Rufino
+- Natasha Alik Torokian
+- Lucas Giuliano Lercari
+- Matías Caricato
+
+#### Ayudante:
+- Federico Cano
+
+# Enunciado
+## Contexto
 
 El gobierno de la ciudad, con el objetivo descentralizar el acceso a la información y disminuir la congestión en centros de Gestión y Participación (CGPs), quiere llevar a cabo un proyecto ambicioso: contar con dispositivo táctiles en múltiples esquinas de la ciudad, conectados a internet, que permitan realizar trámites y obtener información. 
 
