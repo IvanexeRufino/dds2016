@@ -1,14 +1,14 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
-import java.awt.geom.Point2D;
+import org.uqbar.geodds.Point;
 
 public class ParadaColectivo extends PointOfInterest {
-	
-    public ParadaColectivo(String name, Object direccion, Point2D coordenada) {
-        super(name, direccion, coordenada);
+    public ParadaColectivo(String name, Point point) {
+        super(name, point);
     }
+
     @Override
-    public Boolean cercanoA (Point2D posicion) {
-    	return this.coordenada.distance(posicion) <100; 	
+    public Boolean estaCercaDe(Point anotherPoint) {
+        return point.distance(anotherPoint) < 0.1;
     }
 }

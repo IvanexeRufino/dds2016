@@ -1,9 +1,9 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
-import java.awt.geom.Point2D;
+import org.uqbar.geodds.Point;
 
 public class SucursalBanco extends PointOfInterest {
-    public SucursalBanco(String name, Object direccion, Point2D coordenada) {
-        super(name, direccion, coordenada);
+    public SucursalBanco(String name, Point point) {
+        super(name, point);
     }
 }

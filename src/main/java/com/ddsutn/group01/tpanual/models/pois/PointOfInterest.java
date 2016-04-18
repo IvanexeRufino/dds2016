@@ -1,23 +1,17 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
-import java.awt.geom.Point2D;
+import org.uqbar.geodds.Point;
 
 public abstract class PointOfInterest {
     private String name;
-    private Object direccion;
-    protected Point2D coordenada;
+    protected Point point;
 
-    public PointOfInterest(String name, Object direccion, Point2D coordenada) {
+    public PointOfInterest(String name, Point point) {
         this.name = name;
-        this.direccion = direccion;
-        this.coordenada = coordenada;
+        this.point = point;
     }
-    public Boolean cercanoA(Point2D posicion)
-    {
-    	return this.coordenada.distance(posicion)<500;
+
+    public Boolean estaCercaDe(Point anotherPoint) {
+        return point.distance(anotherPoint) < 0.5;
     }
-    public Boolean esValido() {
-        return false;
-    }   
-  
 }

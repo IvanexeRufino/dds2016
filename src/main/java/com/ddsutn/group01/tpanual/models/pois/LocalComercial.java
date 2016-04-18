@@ -1,17 +1,18 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
-import java.awt.geom.Point2D;
+import com.ddsutn.group01.tpanual.models.Rubro;
+import org.uqbar.geodds.Point;
 
 public class LocalComercial extends PointOfInterest {
-	
-	private int radioDeCercania;
-	
-    public LocalComercial(String name, Object direccion,int radioDeCercania, Point2D coordenada) {
-        super(name, direccion, coordenada);
-        this.radioDeCercania = radioDeCercania;
+    private Rubro rubro;
+
+    public LocalComercial(String name, Point point, Rubro rubro) {
+        super(name, point);
+        this.rubro = rubro;
     }
+
     @Override
-    public Boolean cercanoA (Point2D posicion) {
-    	return this.coordenada.distance(posicion) <= this.radioDeCercania;
+    public Boolean estaCercaDe(Point anotherPoint) {
+        return point.distance(anotherPoint) < rubro.getRadioDeCercania();
     }
 }

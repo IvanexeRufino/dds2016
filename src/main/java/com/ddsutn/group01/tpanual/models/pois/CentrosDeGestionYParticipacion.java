@@ -1,16 +1,18 @@
 package com.ddsutn.group01.tpanual.models.pois;
-import com.ddsutn.group01.tpanual.models.Comuna;
-import java.awt.geom.Point2D;
+
+import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 
 public class CentrosDeGestionYParticipacion extends PointOfInterest {
-	private Comuna comuna;
-    public CentrosDeGestionYParticipacion(String name, Object direccion, Point2D coordenada,Comuna comuna) {
-        super(name, direccion, coordenada);
-        this.comuna=comuna;
+    private Polygon zonaDelimitada;
+
+    public CentrosDeGestionYParticipacion(String name, Point point, Polygon zonaDelimitada) {
+        super(name, point);
+        this.zonaDelimitada = zonaDelimitada;
     }
+
     @Override
-    public Boolean cercanoA(Point2D posicion)
-    {
-    	return this.comuna.estaDentroDeZona(posicion);
+    public Boolean estaCercaDe(Point point) {
+        return zonaDelimitada.isInside(point);
     }
 }
