@@ -5,21 +5,21 @@ import org.javatuples.Triplet;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Horario {
 
-	public enum Dia {
-	    LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO
-	}
-
-	private List<Triplet<Dia,LocalTime,LocalTime>> horarios;
+	private List<Triplet<DayOfWeek,LocalTime,LocalTime>> horarios;
 
 	public Horario() {
-		horarios = new ArrayList<Triplet<Dia,LocalTime,LocalTime>>();
+		horarios = new ArrayList<Triplet<DayOfWeek,LocalTime,LocalTime>>();
 	}
+	
 
 	/**
 	 * Método para agregar un horario de atención. Por ej,
@@ -31,11 +31,11 @@ public class Horario {
 	 * @param fin           Horario de cierre en formato LocalTime de Joda Time
 	 * @throws HorarioInvalidoException
 	 */
-	public void agregarHorario( Dia diaDeLaSemana, LocalTime inicio,  LocalTime fin) throws HorarioInvalidoException {
+	public void agregarHorario( DayOfWeek dia, LocalTime inicio,  LocalTime fin) throws HorarioInvalidoException {
 		if(fin.isBefore(inicio))
 			throw new HorarioInvalidoException("La hora de fin no puede ser mayor a la hora de cierre!!!!");
 
-		Triplet<Dia, LocalTime, LocalTime> tripleta = Triplet.with(diaDeLaSemana,inicio, fin);
+		Triplet<DayOfWeek, LocalTime, LocalTime> tripleta = Triplet.with(dia,inicio, fin);
 		horarios.add(tripleta);
 	}
 
@@ -43,36 +43,18 @@ public class Horario {
 	 * Se fija si en la coleccion de horarios en que esta disponible,
 	 * se encuentra el momento que le estoy pasando por parametro.
 	 *
-	 * @param ciertoMomento En formato DateTime de Joda, (new DateTime(2015, 03, 20, 15, 00))
+	 * @param c
+	 * iertoMomento En formato DateTime de Joda, (new DateTime(2015, 03, 20, 15, 00))
 	 * @return
 	 * @throws HorarioInvalidoException
 	 */
-	public Boolean estaDisponible(DateTime ciertoMomento) throws HorarioInvalidoException {
-		int dia = ciertoMomento.getDayOfWeek();
-		Dia diaDeLaSemana;
-		LocalTime horaDeCiertoMomento = new LocalTime(ciertoMomento);
-
-		switch (dia) {
-			case 1: diaDeLaSemana = Dia.LUNES;
-				break;
-			case 2: diaDeLaSemana = Dia.MARTES;
-				break;
-			case 3: diaDeLaSemana = Dia.MIERCOLES;
-				break;
-			case 4: diaDeLaSemana = Dia.JUEVES;
-				break;
-			case 5: diaDeLaSemana = Dia.VIERNES;
-				break;
-			case 6: diaDeLaSemana = Dia.SABADO;
-				break;
-			case 7: diaDeLaSemana = Dia.DOMINGO;
-				break;
-			default: throw new HorarioInvalidoException("Error con el horario");
-		}
-
-		return horarios.stream()
+	public Boolean estaDisponible(LocalDateTime ciertoMomento) throws HorarioInvalidoException {
+		return horarios.stream()	
                 .anyMatch(horario -> horario.getValue0().equals(diaDeLaSemana)
-                && horario.getValue1().isBefore(horaDeCiertoMomento)
-                && horario.getValue2().isAfter(horaDeCiertoMomento));
+                && (0 < ciertoMomento.getMinute() < 59);
 	}
-}
+                
+                
+                
+	}
+
