@@ -1,6 +1,5 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
-import java.awt.Point;
 import java.awt.geom.Point2D;
 
 public abstract class PointOfInterest {
@@ -13,8 +12,10 @@ public abstract class PointOfInterest {
         this.direccion = direccion;
         this.coordenada = coordenada;
     }
-  
-    // TODO
+    public Boolean cercanoA(Usuario usuario)
+    {
+    	return this.coordenada.distance(usuario.posicion)<500;
+    }
     public Boolean esValido() {
         return false;
     }   

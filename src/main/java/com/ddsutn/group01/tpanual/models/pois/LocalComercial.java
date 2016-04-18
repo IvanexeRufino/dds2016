@@ -10,10 +10,8 @@ public class LocalComercial extends PointOfInterest {
         super(name, direccion, coordenada);
         this.radioDeCercania = radioDeCercania;
     }
-    
+    @Override
     public Boolean cercanoA (Usuario usuario) {
-    	double resultado = Point2D.distance(this.coordenada.getX(), this.coordenada.getY(), usuario.posicion.getX(),usuario.posicion.getY());
-    	return resultado <= this.radioDeCercania;
-    	
+    	return this.coordenada.distance(usuario.posicion) <= this.radioDeCercania;
     }
 }
