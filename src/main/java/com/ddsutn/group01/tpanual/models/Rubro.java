@@ -1,7 +1,7 @@
 package com.ddsutn.group01.tpanual.models;
 
 public enum Rubro {
-    libreriasEscolares(0.5), kiosco(0.2);
+    libreriaEscolar(0.5), kiosco(0.2);
 
     private double radioDeCercania;
 

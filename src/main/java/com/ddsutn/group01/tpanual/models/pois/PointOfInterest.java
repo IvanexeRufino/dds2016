@@ -14,4 +14,8 @@ public abstract class PointOfInterest {
     public Boolean estaCercaDe(Point anotherPoint) {
         return point.distance(anotherPoint) < 0.5;
     }
+
+    public String getName() {
+        return name;
+    }
 }
