@@ -8,7 +8,7 @@ public class ParadaColectivo extends PointOfInterest {
         super(name, direccion, coordenada);
     }
     @Override
-    public Boolean cercanoA (Usuario usuario) {
-    	return this.coordenada.distance(usuario.posicion) <100; 	
+    public Boolean cercanoA (Point2D posicion) {
+    	return this.coordenada.distance(posicion) <100; 	
     }
 }

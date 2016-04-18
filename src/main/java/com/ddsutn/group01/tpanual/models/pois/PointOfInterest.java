@@ -12,9 +12,9 @@ public abstract class PointOfInterest {
         this.direccion = direccion;
         this.coordenada = coordenada;
     }
-    public Boolean cercanoA(Usuario usuario)
+    public Boolean cercanoA(Point2D posicion)
     {
-    	return this.coordenada.distance(usuario.posicion)<500;
+    	return this.coordenada.distance(posicion)<500;
     }
     public Boolean esValido() {
         return false;

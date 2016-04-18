@@ -9,8 +9,8 @@ public class CentrosDeGestionYParticipacion extends PointOfInterest {
         this.comuna=comuna;
     }
     @Override
-    public Boolean cercanoA(Usuario usuario)
+    public Boolean cercanoA(Point2D posicion)
     {
-    	return this.comuna.estaDentroDeZona(usuario.posicion);
+    	return this.comuna.estaDentroDeZona(posicion);
     }
 }

@@ -11,7 +11,7 @@ public class LocalComercial extends PointOfInterest {
         this.radioDeCercania = radioDeCercania;
     }
     @Override
-    public Boolean cercanoA (Usuario usuario) {
-    	return this.coordenada.distance(usuario.posicion) <= this.radioDeCercania;
+    public Boolean cercanoA (Point2D posicion) {
+    	return this.coordenada.distance(posicion) <= this.radioDeCercania;
     }
 }

@@ -11,7 +11,7 @@ public class Usuario {
 }
 	
 	public Boolean estaCercaDe (PointOfInterest unPunto){
-		return unPunto.cercanoA(this);
+		return unPunto.cercanoA(this.posicion);
 	}
 }
 
