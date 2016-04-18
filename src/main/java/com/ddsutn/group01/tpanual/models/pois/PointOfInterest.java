@@ -18,4 +18,5 @@ public abstract class PointOfInterest {
     public String getName() {
         return name;
     }
+    public abstract Boolean estaDisponible();
 }

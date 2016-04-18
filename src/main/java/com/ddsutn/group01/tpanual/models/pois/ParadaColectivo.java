@@ -11,4 +11,8 @@ public class ParadaColectivo extends PointOfInterest {
     public Boolean estaCercaDe(Point anotherPoint) {
         return point.distance(anotherPoint) < 0.1;
     }
+    public Boolean estaDisponible()
+    {
+    	return true;
+    }
 }

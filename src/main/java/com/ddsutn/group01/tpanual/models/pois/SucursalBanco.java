@@ -6,4 +6,8 @@ public class SucursalBanco extends PointOfInterest {
     public SucursalBanco(String name, Point point) {
         super(name, point);
     }
+public Boolean estaDisponible()
+{
+	return true;
+}
 }

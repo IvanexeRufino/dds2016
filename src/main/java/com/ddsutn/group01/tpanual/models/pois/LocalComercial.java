@@ -15,4 +15,8 @@ public class LocalComercial extends PointOfInterest {
     public Boolean estaCercaDe(Point anotherPoint) {
         return point.distance(anotherPoint) < rubro.getRadioDeCercania();
     }
+    public Boolean estaDisponible()
+    {
+    	return true;
+    }
 }
