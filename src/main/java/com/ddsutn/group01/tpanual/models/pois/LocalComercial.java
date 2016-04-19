@@ -21,9 +21,8 @@ public class LocalComercial extends PointOfInterest {
     public Boolean estaCercaDe(Point anotherPoint) {
         return point.distance(anotherPoint) < rubro.getRadioDeCercania();
     }
-    public Boolean estaDisponible()
+    public Boolean estaDisponible(LocalDateTime unHorario)
     {
-    	LocalDateTime ciertoMomento= LocalDateTime.now();
-    	return horario.estaDisponible(ciertoMomento);
+    	return horario.estaDisponible(unHorario);
     }
 }

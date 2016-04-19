@@ -26,17 +26,15 @@ public class CentrosDeGestionYParticipacion extends PointOfInterest {
         return zonaDelimitada.isInside(point);
     }
     
-    public Boolean estaDisponible(String unServicio)
+    public Boolean estaDisponible(String unServicio, LocalDateTime unHorario)
     {
-    LocalDateTime unMomento = LocalDateTime.now();
     Servicio servicioBuscado = servicios.stream().filter(Servicio->Servicio.getNombre().contains(unServicio))
     .findFirst()
     .get();
-    return servicioBuscado.estaDisponible(unMomento);
+    return servicioBuscado.estaDisponible(unHorario);
     }
-    public Boolean estaDisponible()
+    public Boolean estaDisponible(LocalDateTime unHorario)
     {
-    	LocalDateTime unMomento =LocalDateTime.now();
-    	return servicios.stream().anyMatch(Servicio->Servicio.estaDisponible(unMomento));
+    	return servicios.stream().anyMatch(Servicio->Servicio.estaDisponible(unHorario));
     }
 }

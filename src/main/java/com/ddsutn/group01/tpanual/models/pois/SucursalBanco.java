@@ -29,17 +29,15 @@ public class SucursalBanco extends PointOfInterest {
     	Servicio servicio = new Servicio(unServicio,horarioBancario);
     	servicios.add(servicio);
     }
-    public Boolean estaDisponible(String unServicio)
+    public Boolean estaDisponible(String unServicio,LocalDateTime unHorario)
     {
-    LocalDateTime unMomento = LocalDateTime.now();
     Servicio servicioBuscado = servicios.stream().filter(Servicio->Servicio.getNombre().equals(unServicio))
     .findFirst()
     .get();
-    return servicioBuscado.estaDisponible(unMomento);
+    return servicioBuscado.estaDisponible(unHorario);
     }
-    public Boolean estaDisponible()
+    public Boolean estaDisponible(LocalDateTime unHorario)
     {
-    	LocalDateTime unMomento =LocalDateTime.now();
-    	return servicios.stream().anyMatch(Servicio->Servicio.estaDisponible(unMomento));
+    	return servicios.stream().anyMatch(Servicio->Servicio.estaDisponible(unHorario));
     }
 }
