@@ -1,8 +1,7 @@
 package com.ddsutn.group01.tpanual.models;
 
-import com.ddsutn.group01.tpanual.exceptions.HorarioInvalidoException;
 import org.javatuples.Triplet;
-import org.joda.time.LocalTime;
+import java.time.LocalTime;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -18,13 +17,13 @@ public class Horario {
 		horarios = new ArrayList<Triplet<DayOfWeek,LocalTime,LocalTime>>();
 	}
 
-	public void agregarHorario( DayOfWeek dia, LocalTime inicio,  LocalTime fin) throws HorarioInvalidoException {
+	public void agregarHorario( DayOfWeek dia,LocalTime horarioDeEntrada,LocalTime horarioDeSalida) {
 
-		Triplet<DayOfWeek, LocalTime, LocalTime> tripleta = Triplet.with(dia,inicio, fin);
+		Triplet<DayOfWeek, LocalTime, LocalTime> tripleta = Triplet.with(dia,horarioDeEntrada, horarioDeSalida);
 		horarios.add(tripleta);
 	}
 	public Boolean estaDisponible(LocalDateTime ciertoMomento){
-		LocalTime unInstante = LocalTime.now();
+		LocalTime unInstante = LocalTime.of(ciertoMomento.getHour(),ciertoMomento.getMinute());
 		return horarios.stream()	
                 .anyMatch(horario -> horario.getValue0().equals(ciertoMomento.getDayOfWeek())
                 && horario.getValue1().isBefore(unInstante)
