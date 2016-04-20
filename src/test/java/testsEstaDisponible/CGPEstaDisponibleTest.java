@@ -52,4 +52,22 @@ public class CGPEstaDisponibleTest {
 		LocalDateTime horario = LocalDateTime.of(2016, 4,18,10,0);
 		Assert.assertFalse(CGP.estaDisponible("asesoramientoLegal",horario));
 	}
+	@Test
+	public void rRHHEstaDisponibleElLunesALas10()
+	{
+		LocalDateTime horario = LocalDateTime.of(2016, 4,18,10,0);
+		Assert.assertTrue(CGP.estaDisponible("RRHH",horario));
+	}
+	@Test
+	public void hayAlmenosUnServicioDisponibleElMartesALas17()
+	{
+		LocalDateTime horario = LocalDateTime.of(2016, 4,19,17,0);
+		Assert.assertTrue(CGP.estaDisponible(horario));
+	}
+	@Test
+	public void noHayNingunServicioDisponibleElMiercolesALas12()
+	{
+		LocalDateTime horario = LocalDateTime.of(2016,4,20,12,0);
+		Assert.assertFalse(CGP.estaDisponible(horario));
+	}
 }
