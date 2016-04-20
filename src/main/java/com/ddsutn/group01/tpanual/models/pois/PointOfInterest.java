@@ -1,7 +1,6 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
-import java.time.LocalDateTime;
-
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public abstract class PointOfInterest {
@@ -9,7 +8,7 @@ public abstract class PointOfInterest {
     protected Point point;
 
     public PointOfInterest(String name, Point point) {
-        this.name = name;
+        this.name  = name;
         this.point = point;
     }
 
@@ -20,5 +19,6 @@ public abstract class PointOfInterest {
     public String getName() {
         return name;
     }
-    public abstract Boolean estaDisponible(LocalDateTime unHorario);
+
+    public abstract Boolean estaDisponible(DateTime unHorario);
 }
