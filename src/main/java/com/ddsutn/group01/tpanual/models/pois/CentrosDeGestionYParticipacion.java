@@ -37,4 +37,9 @@ public class CentrosDeGestionYParticipacion extends PointOfInterest {
 
         return servicioBuscado.estaDisponible(unHorario);
     }
+    public Boolean palabraEsta(String unaPalabra)
+    {
+    	return (servicios.stream().anyMatch(Servicio->Servicio.getNombre().contains(unaPalabra))
+    			|| super.palabraEsta(unaPalabra));
+    }
 }

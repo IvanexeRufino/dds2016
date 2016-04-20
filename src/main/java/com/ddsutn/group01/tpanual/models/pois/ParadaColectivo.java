@@ -17,4 +17,8 @@ public class ParadaColectivo extends PointOfInterest {
     public Boolean estaDisponible(DateTime unHorario) {
     	return true;
     }
+    public Boolean palabraEsta(String unaPalabra)
+    {
+    	return (this.name.contains(unaPalabra)||super.palabraEsta(unaPalabra));
+    }
 }

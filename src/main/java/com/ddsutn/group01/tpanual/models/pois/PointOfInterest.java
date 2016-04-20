@@ -3,30 +3,32 @@ package com.ddsutn.group01.tpanual.models.pois;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-import com.ddsutn.group01.tpanual.models.Descripcion;
+import com.ddsutn.group01.tpanual.models.PalabrasClaves;
 
 
-public abstract class PointOfInterest extends PoiMaster {
+public abstract class PointOfInterest {
 	
-    private String name;
+	
+    protected String name;
     protected Point point;
-    protected Descripcion descripcion;
+    protected PalabrasClaves palabrasClaves;
     
     public PointOfInterest(String name, Point point) {
        
     	this.name  = name;
         this.point = point;
-        this.descripcion = new Descripcion();
+        this.palabrasClaves = new PalabrasClaves();
  
     }
     
-    public void agregarDescripcion (String unaPalabra){
-    	descripcion.agregarDescripcion(unaPalabra); 
+    public void agregarPalabraClave (String unaPalabra){
+    	palabrasClaves.agregarPalabraClave(unaPalabra); 
     }
     
-    public  boolean palabraEsta (String unaPalabra){
-		return descripcion.buscarPalabra(unaPalabra);
-    }	
+    public Boolean palabraEsta (String unaPalabra){
+    	return palabrasClaves.buscarPalabra(unaPalabra);
+    }
+    
     
     public Boolean estaCercaDe(Point anotherPoint) {
         return point.distance(anotherPoint) < 0.5;

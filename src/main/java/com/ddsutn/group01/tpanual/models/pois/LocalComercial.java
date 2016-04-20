@@ -24,4 +24,7 @@ public class LocalComercial extends PointOfInterest {
     public Boolean estaDisponible(DateTime unHorario) {
     	return horarioDeAtencion.estaDisponible(unHorario);
     }
+    public Boolean palabraEsta(String unaPalabra){
+    	return (rubro.getNombre().equals(unaPalabra)||super.palabraEsta(unaPalabra));
+    }
 }

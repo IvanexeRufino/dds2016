@@ -1,9 +1,13 @@
 package com.ddsutn.group01.tpanual.models;
 
-public enum Rubro {
-    libreriaEscolar(0.5), kiosco(0.2);
-
+public class Rubro {
     private double radioDeCercania;
+    private String nombre;
+    
+    public Rubro(String unNombre, double unRadio){
+    	this.nombre=unNombre;
+    	this.radioDeCercania=unRadio;
+    }
 
     Rubro(double radioDeCercania) {
         this.radioDeCercania = radioDeCercania;
@@ -11,5 +15,9 @@ public enum Rubro {
 
     public double getRadioDeCercania() {
         return radioDeCercania;
+    }
+    public String getNombre()
+    {
+    	return nombre;
     }
 }
