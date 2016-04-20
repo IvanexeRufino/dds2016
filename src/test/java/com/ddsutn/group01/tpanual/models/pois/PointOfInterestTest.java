@@ -1,5 +1,6 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,9 @@ public class PointOfInterestTest {
     @Before
     public void init() {
         Point point = new Point(-34.603689, -58.381652); // https://goo.gl/maps/NquccBrGJsz
-        poi = Mockito.spy(new PointOfInterest("foo", point) {});
+        poi = Mockito.spy(new PointOfInterest("foo", point) {
+            public Boolean estaDisponible(DateTime unHorario) { return null; }
+        });
     }
 
     @Test

@@ -1,39 +1,31 @@
 package testsEstaDisponible;
-import java.time.LocalDateTime;
-
+import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
-
 public class SucursalBancoEstaDisponibleTest {
-	
+
     private Point point;
-    SucursalBanco santander; 
-    
+    private SucursalBanco bancoSantander;
+
     @Before
     public void init() {
         point = new Point(-34.603689, -58.381652); // https://goo.gl/maps/NquccBrGJsz
-        santander = new SucursalBanco("santander",point);   
-        santander.agregarUnServicio("atencion al cliente");
-    }	 
+        bancoSantander = new SucursalBanco("santander", point);
+    }
 
 	@Test
 	public void BancoEstaDiponibleTest() {
-		LocalDateTime unaFecha = LocalDateTime.of(2016, 4, 20, 12, 00, 00);
-		Assert.assertTrue (santander.estaDisponible("atencion al cliente", unaFecha));
-		
+		DateTime horario = new DateTime(2016, 4, 20, 12, 00);
+		Assert.assertTrue(bancoSantander.estaDisponible("atencion al cliente", horario));
 	}
-	
+
 	@Test
 	public void BancoNoEstaDiponibleTest() {
-		LocalDateTime unaFecha = LocalDateTime.of(2016, 4, 20, 23, 00, 00);
-		Assert.assertFalse (santander.estaDisponible("atencion al cliente", unaFecha));
-		
+		DateTime horario = new DateTime(2016, 4, 20, 23, 00);
+		Assert.assertFalse(bancoSantander.estaDisponible("atencion al cliente", horario));
 	}
-	
-	
-
 }

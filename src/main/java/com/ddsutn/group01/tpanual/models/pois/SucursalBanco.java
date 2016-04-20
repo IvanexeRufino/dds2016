@@ -24,14 +24,14 @@ public class SucursalBanco extends PointOfInterest {
         return servicios.stream().anyMatch(Servicio->Servicio.estaDisponible(unHorario));
     }
 
-    public void agregarUnServicio(Servicio unServicio) {
-        servicios.add(unServicio);
-    }
-
     public Boolean estaDisponible(String unServicio, DateTime unHorario) {
         Servicio servicioBuscado = servicios.stream().filter(Servicio->Servicio.getNombre().equals(unServicio))
         .findFirst().get();
         return servicioBuscado.estaDisponible(unHorario);
+    }
+
+    public void agregarUnServicio(Servicio unServicio) {
+        servicios.add(unServicio);
     }
 
     private Servicio servicioDeAtencionAlCliente() {
