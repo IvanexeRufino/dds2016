@@ -4,11 +4,11 @@ import org.joda.time.DateTime;
 
 public class Servicio {
 	private String nombre;
-	private HorariosDeAtencion horarioDeAtencion;
+	private HorariosDeAtencion horariosDeAtencion;
 
-	public Servicio(String nombre, HorariosDeAtencion horarioDeAtencion) {
+	public Servicio(String nombre, HorariosDeAtencion horariosDeAtencion) {
 		this.nombre = nombre;
-		this.horarioDeAtencion = horarioDeAtencion;
+		this.horariosDeAtencion = horariosDeAtencion;
 	}
 
 	public String getNombre() {
@@ -16,6 +16,6 @@ public class Servicio {
 	}
 
 	public Boolean estaDisponible(DateTime unHorario) {
-        return horarioDeAtencion.estaDisponible(unHorario);
+        return horariosDeAtencion.estaDisponible(unHorario);
 	}
 }

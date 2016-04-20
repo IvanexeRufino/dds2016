@@ -36,13 +36,14 @@ public class SucursalBanco extends PointOfInterest {
 
     private Servicio servicioDeAtencionAlCliente() {
         HorariosDeAtencion horarioBancario = new HorariosDeAtencion();
-        LocalTime horarioDeEntrada= new LocalTime(10, 00);
-        LocalTime horarioDeSalida= new LocalTime(15, 00);
-        horarioBancario.agregarHorario(DayOfWeek.MONDAY, horarioDeEntrada, horarioDeSalida);
-        horarioBancario.agregarHorario(DayOfWeek.TUESDAY, horarioDeEntrada, horarioDeSalida);
-        horarioBancario.agregarHorario(DayOfWeek.WEDNESDAY, horarioDeEntrada, horarioDeSalida);
-        horarioBancario.agregarHorario(DayOfWeek.THURSDAY, horarioDeEntrada, horarioDeSalida);
-        horarioBancario.agregarHorario(DayOfWeek.FRIDAY, horarioDeEntrada, horarioDeSalida);
+        LocalTime horaDeApertura= new LocalTime(10, 00);
+        LocalTime horaDeCierre= new LocalTime(15, 00);
+
+        horarioBancario.agregarHorario(DayOfWeek.MONDAY, horaDeApertura, horaDeCierre);
+        horarioBancario.agregarHorario(DayOfWeek.TUESDAY, horaDeApertura, horaDeCierre);
+        horarioBancario.agregarHorario(DayOfWeek.WEDNESDAY, horaDeApertura, horaDeCierre);
+        horarioBancario.agregarHorario(DayOfWeek.THURSDAY, horaDeApertura, horaDeCierre);
+        horarioBancario.agregarHorario(DayOfWeek.FRIDAY, horaDeApertura, horaDeCierre);
 
         return new Servicio("atencion al cliente", horarioBancario);
     }
