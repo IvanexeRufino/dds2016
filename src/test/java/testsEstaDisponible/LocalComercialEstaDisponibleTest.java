@@ -23,9 +23,9 @@ public class LocalComercialEstaDisponibleTest {
 		HorariosDeAtencion horariosDeAtencion = new HorariosDeAtencion();
 
 		horariosDeAtencion.agregarHorario(DayOfWeek.TUESDAY, horaDeApertura, horaDeCierre);
-
+		Rubro kiosco = new Rubro ("kiosco",0.2);
 		Point point = new Point(0, 0);
-		muebleriaDePepa = new LocalComercial("muebleria de Pepa", point, Rubro.kiosco, horariosDeAtencion);
+		muebleriaDePepa = new LocalComercial("muebleria de Pepa", point, kiosco, horariosDeAtencion);
 	}
 	@Test
 	public void muebleriaDePepaAbiertoElMartesALas10() {

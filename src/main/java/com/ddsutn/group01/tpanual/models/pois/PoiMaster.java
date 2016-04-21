@@ -2,7 +2,7 @@ package com.ddsutn.group01.tpanual.models.pois;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 
 public class PoiMaster {
@@ -21,12 +21,12 @@ public class PoiMaster {
 		todosLosPoi.add(unPoi);
 	}
 	
-	public   Stream<PointOfInterest> busquedaPoi (String unaPalabra){
+	public List<PointOfInterest> busquedaPoi (String unaPalabra){
 		
-		Stream<PointOfInterest> poisQueCumplen = todosLosPoi.stream()
-				.filter(poi -> poi.palabraEsta(unaPalabra));
-		
-		return poisQueCumplen;
+		List<PointOfInterest> poisQueCumplen = todosLosPoi.stream()
+				.filter(poi -> poi.palabraEsta(unaPalabra))
+				.collect(Collectors.toList());
+				return poisQueCumplen;
 		
 		
 	}
