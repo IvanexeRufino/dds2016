@@ -10,14 +10,13 @@ import org.uqbar.geodds.Point;
 
 import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
 import com.ddsutn.group01.tpanual.models.pois.PoiMaster;
-import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 
 public class ParadaDeColectivoBusquedaTest {
-	private PointOfInterest poi;
-	private PointOfInterest poi2;
+	private ParadaColectivo poi;
+	private ParadaColectivo poi2;
 	private PoiMaster grupoDePois;
-	private List<PointOfInterest> lista;
+	private List<ParadaColectivo> lista;
 	
 	 @Before
 	    public void init() {
