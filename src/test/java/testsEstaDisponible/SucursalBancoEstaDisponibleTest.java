@@ -7,13 +7,11 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 public class SucursalBancoEstaDisponibleTest {
-
-    private Point point;
     private SucursalBanco bancoSantander;
 
     @Before
     public void init() {
-        point = new Point(-34.603689, -58.381652); // https://goo.gl/maps/NquccBrGJsz
+		Point point = new Point(-34.603689, -58.381652); // https://goo.gl/maps/NquccBrGJsz
         bancoSantander = new SucursalBanco("santander", point);
     }
 

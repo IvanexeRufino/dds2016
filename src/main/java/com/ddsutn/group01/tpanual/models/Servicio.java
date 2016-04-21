@@ -12,7 +12,7 @@ public class Servicio {
 	}
 
 	public String getNombre() {
-        return this.nombre;
+        return nombre;
 	}
 
 	public Boolean estaDisponible(DateTime unHorario) {

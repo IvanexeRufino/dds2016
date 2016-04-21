@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 public class SucursalBancoEstaCercaDeTest {
-
     private Point point;
     private SucursalBanco santander;
     private Point anotherPoint;

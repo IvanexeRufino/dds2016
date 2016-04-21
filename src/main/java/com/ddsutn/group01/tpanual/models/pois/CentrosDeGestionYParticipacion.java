@@ -6,15 +6,16 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CentrosDeGestionYParticipacion extends PointOfInterest {
     private Polygon zonaDelimitada;
-    private ArrayList<Servicio> servicios;
+    private List<Servicio> servicios;
 
     public CentrosDeGestionYParticipacion(String name, Polygon zonaDelimitada) {
         super(name, null);
         this.zonaDelimitada = zonaDelimitada;
-        this.servicios = new ArrayList<Servicio>();
+        servicios = new ArrayList<>();
     }
 
     @Override
@@ -32,14 +33,15 @@ public class CentrosDeGestionYParticipacion extends PointOfInterest {
     }
 
     public Boolean estaDisponible(String unServicio, DateTime unHorario) {
-        Servicio servicioBuscado = servicios.stream().filter(servicio -> servicio.getNombre().contains(unServicio))
-        .findFirst().get();
+        Servicio servicioBuscado = servicios.stream().
+                filter(servicio -> servicio.getNombre().contains(unServicio))
+                .findFirst().get();
 
         return servicioBuscado.estaDisponible(unHorario);
     }
-    public Boolean palabraEsta(String unaPalabra)
-    {
-    	return (servicios.stream().anyMatch(Servicio->Servicio.getNombre().contains(unaPalabra))
-    			|| super.palabraEsta(unaPalabra));
+
+    public Boolean palabraEsta(String unaPalabra) {
+    	return servicios.stream().anyMatch(Servicio -> Servicio.getNombre().contains(unaPalabra)
+                || super.palabraEsta(unaPalabra));
     }
 }

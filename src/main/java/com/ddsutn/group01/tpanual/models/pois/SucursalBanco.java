@@ -27,6 +27,7 @@ public class SucursalBanco extends PointOfInterest {
     public Boolean estaDisponible(String unServicio, DateTime unHorario) {
         Servicio servicioBuscado = servicios.stream().filter(Servicio->Servicio.getNombre().equals(unServicio))
         .findFirst().get();
+
         return servicioBuscado.estaDisponible(unHorario);
     }
 
