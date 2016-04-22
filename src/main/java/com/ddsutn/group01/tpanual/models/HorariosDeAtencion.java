@@ -19,9 +19,6 @@ public class HorariosDeAtencion {
     }
 
     public Boolean estaDisponible(DateTime ciertoMomento){
-        return horarios.stream()
-                .anyMatch(horario -> horario.getDia().getValue() == ciertoMomento.getDayOfWeek()
-                        && horario.getHoraDeApretura().isBefore(ciertoMomento.toLocalTime())
-                        && horario.getHoraDeCierre().isAfter(ciertoMomento.toLocalTime()));
+        return horarios.stream().anyMatch(horario -> horario.estaDisponible(ciertoMomento));
     }
 }

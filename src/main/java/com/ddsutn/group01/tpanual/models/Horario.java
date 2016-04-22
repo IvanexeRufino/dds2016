@@ -1,30 +1,30 @@
 package com.ddsutn.group01.tpanual.models;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 import java.time.DayOfWeek;
 
 
 public class Horario {
     private DayOfWeek dia;
-    private LocalTime horaDeApretura;
+    private LocalTime horaDeApertura;
     private LocalTime horaDeCierre;
 
-    public Horario(DayOfWeek dia, LocalTime horaDeApretura, LocalTime horaDeCierre) {
+    public Horario(DayOfWeek dia, LocalTime horaDeApertura, LocalTime horaDeCierre) {
         this.dia = dia;
-        this.horaDeApretura = horaDeApretura;
+        this.horaDeApertura = horaDeApertura;
         this.horaDeCierre = horaDeCierre;
     }
-
-    public DayOfWeek getDia() {
-        return dia;
+    public Boolean estaDisponible(DateTime ciertoMomento){
+        return this.estaEnElDia(ciertoMomento.getDayOfWeek()) 
+                && this.estaEntreHorarios(ciertoMomento.toLocalTime());
     }
 
-    public LocalTime getHoraDeApretura() {
-        return horaDeApretura;
+    private Boolean estaEnElDia(int unDia){
+        return dia.getValue() == unDia;
     }
-
-    public LocalTime getHoraDeCierre() {
-        return horaDeCierre;
+    private Boolean estaEntreHorarios(LocalTime ciertoMomento){
+    return horaDeApertura.isBefore(ciertoMomento) && horaDeCierre.isAfter(ciertoMomento);    
     }
 }
 
