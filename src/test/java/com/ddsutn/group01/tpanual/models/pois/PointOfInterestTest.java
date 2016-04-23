@@ -8,20 +8,29 @@ import org.mockito.Mockito;
 
 import org.uqbar.geodds.Point;
 
+import static org.mockito.Matchers.*;
+
 public class PointOfInterestTest {
+    private Point mockedPoint;
     private PointOfInterest poi;
 
     @Before
     public void init() {
-        Point point = new Point(-34.603689, -58.381652); // https://goo.gl/maps/NquccBrGJsz
-        poi = Mockito.spy(new PointOfInterest("foo", point) {
+        mockedPoint = Mockito.mock(Point.class);
+        poi = Mockito.spy(new PointOfInterest("foo", mockedPoint) {
             public Boolean estaDisponible(DateTime unHorario) { return null; }
         });
     }
 
     @Test
-    public void testEstaCercaDe() {
-        Point anotherPoint = new Point(-34.601400, -58.381726); // https://goo.gl/maps/ejnwoTqr7D62
-        Assert.assertTrue(poi.estaCercaDe(anotherPoint));
+    public void poiEstaCercaDe() {
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.49);
+        Assert.assertTrue(poi.estaCercaDe(any(Point.class)));
+    }
+
+    @Test
+    public void poiNoEstaCercaDe() {
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.5);
+        Assert.assertFalse(poi.estaCercaDe(any(Point.class)));
     }
 }

@@ -3,29 +3,30 @@ package com.ddsutn.group01.tpanual.models.pois;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
 
+import static org.mockito.Matchers.any;
+
 public class SucursalBancoEstaCercaDeTest {
-    private Point point;
-    private SucursalBanco santander;
-    private Point anotherPoint;
-    private Point anotherAnotherPoint;
+    private Point mockedPoint;
+    private PointOfInterest poi;
 
     @Before
     public void init() {
-    	point = new Point(-34.603689, -58.381652); // https://goo.gl/maps/NquccBrGJsz
-    	anotherPoint = new Point(-34.601921, -58.381701); // https://goo.gl/maps/P9bmo5D2P8r
-    	anotherAnotherPoint = new Point (-34.6039217, -58.399196);
-        santander = new SucursalBanco("santander", point);
+        mockedPoint = Mockito.mock(Point.class);
+        poi = new SucursalBanco("santander", mockedPoint);
     }
 
     @Test
-    public void BancoEstaCercaDe() {
-        Assert.assertTrue(santander.estaCercaDe(anotherPoint));
+    public void poiEstaCercaDe() {
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.49);
+        Assert.assertTrue(poi.estaCercaDe(any(Point.class)));
     }
 
     @Test
-    public void BancoNoEstaCercaDe() {
-    	 Assert.assertFalse(santander.estaCercaDe(anotherAnotherPoint));
+    public void poiNoEstaCercaDe() {
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.5);
+        Assert.assertFalse(poi.estaCercaDe(any(Point.class)));
     }
 }

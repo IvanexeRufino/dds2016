@@ -9,16 +9,16 @@ public class ParadaColectivo extends PointOfInterest {
     }
 
     @Override
-    public Boolean estaCercaDe(Point anotherPoint) {
-        return point.distance(anotherPoint) < 0.1;
-    }
-
-    @Override
     public Boolean estaDisponible(DateTime unHorario) {
     	return true;
     }
 
     public Boolean palabraEsta(String unaPalabra) {
     	return name.contains(unaPalabra) || super.palabraEsta(unaPalabra);
+    }
+
+    @Override
+    protected Double criterioDeCercania() {
+        return 0.1;
     }
 }

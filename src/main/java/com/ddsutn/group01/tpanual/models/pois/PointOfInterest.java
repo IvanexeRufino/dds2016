@@ -26,7 +26,7 @@ public abstract class PointOfInterest {
     }
 
     public Boolean estaCercaDe(Point anotherPoint) {
-        return point.distance(anotherPoint) < 0.5;
+        return point.distance(anotherPoint) < criterioDeCercania();
     }
 
     public String getName() {
@@ -34,4 +34,8 @@ public abstract class PointOfInterest {
     }
 
     public abstract Boolean estaDisponible(DateTime unHorario);
+
+    protected Double criterioDeCercania() {
+        return 0.5;
+    }
 }

@@ -4,20 +4,31 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.mockito.*;
 import org.uqbar.geodds.Point;
 
+import static org.mockito.Matchers.*;
+
 public class ParadaColectivoTest {
+    private Point mockedPoint;
     private PointOfInterest poi;
 
     @Before
     public void init() {
-        Point point = new Point(-34.603689, -58.381652); // https://goo.gl/maps/NquccBrGJsz
-        poi = new ParadaColectivo("114", point);
+        mockedPoint = Mockito.mock(Point.class);
+        poi = new ParadaColectivo("114", mockedPoint);
     }
 
     @Test
-    public void testEstaCercaDe() {
-        Point anotherPoint = new Point(-34.602795, -58.381586); // https://goo.gl/maps/oq8Wz2qUGq52
-        Assert.assertTrue(poi.estaCercaDe(anotherPoint));
+    public void ParadaColectivoEstaCercaDe() {
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.09);
+        Assert.assertTrue(poi.estaCercaDe(any(Point.class)));
     }
+
+    @Test
+    public void ParadaColectivoNoEstaCercaDe() throws Exception {
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.1);
+        Assert.assertFalse(poi.estaCercaDe(any(Point.class)));
+    }
+
 }

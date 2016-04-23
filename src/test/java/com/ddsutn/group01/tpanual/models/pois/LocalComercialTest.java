@@ -5,44 +5,65 @@ import com.ddsutn.group01.tpanual.models.Rubro;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
 
+import static org.mockito.Matchers.*;
+
 public class LocalComercialTest {
-    private LocalComercial elDiariero;
-    private LocalComercial libreriaLapiz;
+    private LocalComercial unKiosco;
+    private LocalComercial unaLibreriaEscolar;
+    private LocalComercial unaMuebleria;
+    private Point mockedPoint;
 
     @Before
     public void init() {
-        Point point = new Point(-34.603689, -58.381652); // https://goo.gl/maps/NquccBrGJsz
-        HorariosDeAtencion horarioDeAtencion = new HorariosDeAtencion();
-        Rubro kioscoDeDiario = Rubro.kiosco;
+        mockedPoint =  Mockito.mock(Point.class);
+        HorariosDeAtencion horarioDeAtencion = Mockito.mock(HorariosDeAtencion.class);
+        Rubro kisco = Rubro.kiosco;
         Rubro libreria = Rubro.libreriaEscolar;
-        elDiariero = new LocalComercial ("elDiariero", point, kioscoDeDiario, horarioDeAtencion);
-        libreriaLapiz = new LocalComercial ("libreriaLapiz",point,libreria,horarioDeAtencion);
+        Rubro muebleria = Rubro.muebleria;
+
+        unKiosco = new LocalComercial("kiosco", mockedPoint, kisco, horarioDeAtencion);
+        unaLibreriaEscolar = new LocalComercial("libreriaEscolar", mockedPoint, libreria, horarioDeAtencion);
+        unaMuebleria = new LocalComercial("muebleria", mockedPoint, muebleria, horarioDeAtencion);
+
     }
 
     @Test
     public void rubroKioscoEstaCercaDe() {
-        Point anotherPoint = new Point(-34.601921, -58.381701); // https://goo.gl/maps/P9bmo5D2P8r
-        Assert.assertTrue(elDiariero.estaCercaDe(anotherPoint));
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.19);
+        Assert.assertTrue(unKiosco.estaCercaDe(any(Point.class)));
     }
 
     @Test
     public void rubroKioscoNoEstaCercaDe() {
-        Point anotherPoint = new Point(-34.601921, -59.381701);
-        Assert.assertFalse(elDiariero.estaCercaDe(anotherPoint));
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.2);
+        Assert.assertFalse(unKiosco.estaCercaDe(any(Point.class)));
     }
 
     @Test
     public void rubroLibreriaEstaCercaDe() {
-        Point anotherPoint = new Point(-34.601400, -58.381726); // https://goo.gl/maps/ejnwoTqr7D62
-        Assert.assertTrue(libreriaLapiz.estaCercaDe(anotherPoint));
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.49);
+        Assert.assertTrue(unaLibreriaEscolar.estaCercaDe(any(Point.class)));
     }
 
     @Test
     public void rubroLibreriaNoEstaCercaDe() {
-        Point anotherPoint = new Point(-34.601400, -59.381726);
-        Assert.assertFalse(libreriaLapiz.estaCercaDe(anotherPoint));
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.5);
+        Assert.assertFalse(unaLibreriaEscolar.estaCercaDe(any(Point.class)));
+    }
+
+    @Test
+    public void rubroMuebleriaEstaCercaDe() {
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.39);
+        Assert.assertTrue(unaMuebleria.estaCercaDe(any(Point.class)));
+    }
+
+    @Test
+    public void rubroMuebleriaNoEstaCercaDe() {
+        Mockito.when(mockedPoint.distance(any(Point.class))).thenReturn(0.4);
+        Assert.assertFalse(unaMuebleria.estaCercaDe(any(Point.class)));
     }
 
 }

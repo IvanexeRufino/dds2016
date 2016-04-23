@@ -16,16 +16,16 @@ public class LocalComercial extends PointOfInterest {
     }
 
     @Override
-    public Boolean estaCercaDe(Point anotherPoint) {
-        return point.distance(anotherPoint) < rubro.getRadioDeCercania();
-    }
-
-    @Override
     public Boolean estaDisponible(DateTime unHorario) {
     	return horarioDeAtencion.estaDisponible(unHorario);
     }
 
     public Boolean palabraEsta(String unaPalabra){
     	return rubro.getNombre().equals(unaPalabra) || super.palabraEsta(unaPalabra);
+    }
+
+    @Override
+    protected Double criterioDeCercania() {
+        return rubro.getRadioDeCercania();
     }
 }
