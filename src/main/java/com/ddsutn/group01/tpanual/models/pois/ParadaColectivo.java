@@ -12,9 +12,9 @@ public class ParadaColectivo extends PointOfInterest {
     public Boolean estaDisponible(DateTime unHorario) {
     	return true;
     }
-
-    public Boolean palabraEsta(String unaPalabra) {
-    	return name.contains(unaPalabra) || super.palabraEsta(unaPalabra);
+    @Override
+    public Boolean cumpleCondicion(String unaPalabra) {
+    	return name.contains(unaPalabra);
     }
 
     @Override

@@ -20,8 +20,8 @@ public class LocalComercial extends PointOfInterest {
     	return horarioDeAtencion.estaDisponible(unHorario);
     }
 
-    public Boolean palabraEsta(String unaPalabra){
-    	return rubro.getNombre().equals(unaPalabra) || super.palabraEsta(unaPalabra);
+    public Boolean cumpleCondicion(String unaPalabra){
+    	return rubro.getNombre().equals(unaPalabra);
     }
 
     @Override

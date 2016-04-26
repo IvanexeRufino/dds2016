@@ -24,10 +24,14 @@ public abstract class PointOfInterest {
     }
 
     public Boolean palabraEsta(String unaPalabra){
-    	return palabrasClaves.contains(unaPalabra);
+    	return palabrasClaves.contains(unaPalabra) || cumpleCondicion(unaPalabra);
     }
 
-    public Boolean estaCercaDe(Point anotherPoint) {
+    public Boolean cumpleCondicion(String unaPalabra) {
+		return false;
+	}
+
+	public Boolean estaCercaDe(Point anotherPoint) {
         return point.distance(anotherPoint) < criterioDeCercania();
     }
 
