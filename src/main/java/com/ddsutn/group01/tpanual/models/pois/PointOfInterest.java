@@ -1,28 +1,30 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-import com.ddsutn.group01.tpanual.models.PalabrasClaves;
 
 
 public abstract class PointOfInterest {
     protected String name;
     protected Point point;
-    protected PalabrasClaves palabrasClaves;
+    protected List<String> palabrasClaves;
 
     public PointOfInterest(String name, Point point) {
     	this.name  = name;
         this.point = point;
-        this.palabrasClaves = new PalabrasClaves();
+        palabrasClaves = new ArrayList<>();
     }
 
     public void agregarPalabraClave(String unaPalabra){
-    	palabrasClaves.agregarPalabraClave(unaPalabra);
+    	palabrasClaves.add(unaPalabra);
     }
 
     public Boolean palabraEsta(String unaPalabra){
-    	return palabrasClaves.buscarPalabra(unaPalabra);
+    	return palabrasClaves.contains(unaPalabra);
     }
 
     public Boolean estaCercaDe(Point anotherPoint) {
