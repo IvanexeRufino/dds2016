@@ -7,6 +7,7 @@ import org.uqbar.geodds.Polygon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CentrosDeGestionYParticipacion extends PointOfInterest {
     private Polygon zonaDelimitada;
@@ -33,11 +34,16 @@ public class CentrosDeGestionYParticipacion extends PointOfInterest {
     }
 
     public Boolean estaDisponible(String unServicio, DateTime unHorario) {
-        Servicio servicioBuscado = servicios.stream().
-                filter(servicio -> servicio.getNombre().contains(unServicio))
-                .findFirst().get();
-
-        return servicioBuscado.estaDisponible(unHorario);
+    	 Optional<Servicio> servicioBuscado = servicios.stream().filter(Servicio->Servicio.getNombre().equals(unServicio))
+    		        .findFirst();
+    		        
+    	 Boolean result;
+    	 if (servicioBuscado.isPresent())
+    	 		{Servicio elServicioBuscado= servicioBuscado.get();
+    		     result = elServicioBuscado.estaDisponible(unHorario);}
+    	 else {result = false;}    
+    		        
+    	 return result;
     }
 
     public Boolean cumpleCondicion(String unaPalabra) {

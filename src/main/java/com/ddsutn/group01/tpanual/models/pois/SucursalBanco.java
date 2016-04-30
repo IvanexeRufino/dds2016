@@ -9,6 +9,7 @@ import org.uqbar.geodds.Point;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class SucursalBanco extends PointOfInterest {
     private List<Servicio> servicios;
@@ -25,12 +26,18 @@ public class SucursalBanco extends PointOfInterest {
     }
 
     public Boolean estaDisponible(String unServicio, DateTime unHorario) {
-        Servicio servicioBuscado = servicios.stream().filter(Servicio->Servicio.getNombre().equals(unServicio))
-        .findFirst().get();
-
-        return servicioBuscado.estaDisponible(unHorario);
+        Optional<Servicio> servicioBuscado = servicios.stream().filter(Servicio->Servicio.getNombre().equals(unServicio))
+        .findFirst();
+        
+        Boolean result;
+		if (servicioBuscado.isPresent())
+        {Servicio elServicioBuscado= servicioBuscado.get();
+        result = elServicioBuscado.estaDisponible(unHorario);}
+        else {result = false;}    
+        
+        return result;
     }
-
+       
     public void agregarUnServicio(Servicio unServicio) {
         servicios.add(unServicio);
     }
