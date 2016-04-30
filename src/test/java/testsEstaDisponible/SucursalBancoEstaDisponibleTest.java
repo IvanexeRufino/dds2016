@@ -26,4 +26,10 @@ public class SucursalBancoEstaDisponibleTest {
 		DateTime horario = new DateTime(2016, 4, 20, 23, 00);
 		Assert.assertFalse(bancoSantander.estaDisponible("atencion al cliente", horario));
 	}
+	
+	@Test
+	public void BancoConServicioQueNoTieneNoDeberiaEstarDisponibleTest() {
+		DateTime horario = new DateTime(2016, 4, 20, 23, 00);
+		Assert.assertFalse(bancoSantander.estaDisponible("cobros", horario));
+	}
 }

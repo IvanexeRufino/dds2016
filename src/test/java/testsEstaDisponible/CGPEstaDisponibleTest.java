@@ -52,6 +52,13 @@ public class CGPEstaDisponibleTest {
 		DateTime horario = new DateTime(2016, 4, 18, 10, 00);
 		Assert.assertTrue(CGP.estaDisponible("RRHH",horario));
 	}
+	
+	@Test
+	public void CGPConServicioQueNoTieneNoDeberiaEstarDisponibleTest() {
+		DateTime horario = new DateTime(2016, 4, 18, 10, 00);
+		Assert.assertFalse(CGP.estaDisponible("banelco",horario));
+	}
+		
 
 	@Test
 	public void hayAlmenosUnServicioDisponibleElMartesALas17() {
@@ -64,4 +71,6 @@ public class CGPEstaDisponibleTest {
 		DateTime horario = new DateTime(2016, 4, 20, 12, 00);
 		Assert.assertFalse(CGP.estaDisponible(horario));
 	}
+	
+	
 }
