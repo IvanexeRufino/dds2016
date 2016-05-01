@@ -4,6 +4,8 @@ import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Rubro;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.*;
+import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
+import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

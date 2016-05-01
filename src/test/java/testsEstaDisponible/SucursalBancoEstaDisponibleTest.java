@@ -18,18 +18,18 @@ public class SucursalBancoEstaDisponibleTest {
 	@Test
 	public void BancoEstaDiponibleTest() {
 		DateTime horario = new DateTime(2016, 4, 20, 12, 00);
-		Assert.assertTrue(bancoSantander.estaDisponible("atencion al cliente", horario));
+		Assert.assertTrue(bancoSantander.estaDisponible(horario, "atencion al cliente"));
 	}
 
 	@Test
 	public void BancoNoEstaDiponibleTest() {
 		DateTime horario = new DateTime(2016, 4, 20, 23, 00);
-		Assert.assertFalse(bancoSantander.estaDisponible("atencion al cliente", horario));
+		Assert.assertFalse(bancoSantander.estaDisponible(horario, "atencion al cliente"));
 	}
-	
+
 	@Test
 	public void BancoConServicioQueNoTieneNoDeberiaEstarDisponibleTest() {
 		DateTime horario = new DateTime(2016, 4, 20, 23, 00);
-		Assert.assertFalse(bancoSantander.estaDisponible("cobros", horario));
+		Assert.assertFalse(bancoSantander.estaDisponible(horario, "cobros"));
 	}
 }

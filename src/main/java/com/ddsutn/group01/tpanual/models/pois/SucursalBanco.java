@@ -1,58 +1,36 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
+import com.ddsutn.group01.tpanual.models.Horario;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Servicio;
-import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 import org.uqbar.geodds.Point;
 
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.Arrays;
 
-public class SucursalBanco extends PointOfInterest {
-    private List<Servicio> servicios;
+public class SucursalBanco extends PoiConServicios {
 
     public SucursalBanco(String name, Point point) {
         super(name, point);
-        servicios = new ArrayList<>();
         agregarUnServicio(servicioDeAtencionAlCliente());
-    }
-
-    @Override
-    public Boolean estaDisponible(DateTime unHorario) {
-        return servicios.stream().anyMatch(Servicio->Servicio.estaDisponible(unHorario));
-    }
-
-    public Boolean estaDisponible(String unServicio, DateTime unHorario) {
-        Optional<Servicio> servicioBuscado = servicios.stream().filter(Servicio->Servicio.getNombre().equals(unServicio))
-        .findFirst();
-        
-        Boolean result;
-		if (servicioBuscado.isPresent())
-        {Servicio elServicioBuscado= servicioBuscado.get();
-        result = elServicioBuscado.estaDisponible(unHorario);}
-        else {result = false;}    
-        
-        return result;
-    }
-       
-    public void agregarUnServicio(Servicio unServicio) {
-        servicios.add(unServicio);
     }
 
     private Servicio servicioDeAtencionAlCliente() {
         HorariosDeAtencion horarioBancario = new HorariosDeAtencion();
-        LocalTime horaDeApertura= new LocalTime(10, 00);
-        LocalTime horaDeCierre= new LocalTime(15, 00);
+        LocalTime horaDeApertura = new LocalTime(10, 0);
+        LocalTime horaDeCierre = new LocalTime(15, 0);
 
-        horarioBancario.agregarHorario(DayOfWeek.MONDAY, horaDeApertura, horaDeCierre);
-        horarioBancario.agregarHorario(DayOfWeek.TUESDAY, horaDeApertura, horaDeCierre);
-        horarioBancario.agregarHorario(DayOfWeek.WEDNESDAY, horaDeApertura, horaDeCierre);
-        horarioBancario.agregarHorario(DayOfWeek.THURSDAY, horaDeApertura, horaDeCierre);
-        horarioBancario.agregarHorario(DayOfWeek.FRIDAY, horaDeApertura, horaDeCierre);
+        Arrays.stream(DayOfWeek.values()).filter(this::esDiaDeSemana).forEach(day -> {
+            Horario horario = new Horario(day, horaDeApertura, horaDeCierre);
+            horarioBancario.agregarHorario(horario);
+        });
 
         return new Servicio("atencion al cliente", horarioBancario);
     }
+
+    private Boolean esDiaDeSemana(DayOfWeek day) {
+        return (day.getValue() >= DayOfWeek.MONDAY.getValue()) && (day.getValue() <= DayOfWeek.FRIDAY.getValue());
+    }
+
 }

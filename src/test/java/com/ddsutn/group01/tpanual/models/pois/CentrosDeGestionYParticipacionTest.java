@@ -11,23 +11,23 @@ import static org.mockito.Matchers.any;
 
 public class CentrosDeGestionYParticipacionTest {
     private Polygon mockedPolygon;
-    private PointOfInterest poi;
+    private PointOfInterest cgp;
 
     @Before
     public void init() {
         mockedPolygon = Mockito.mock(Polygon.class);
-        poi = new CentrosDeGestionYParticipacion("foo", mockedPolygon);
+        cgp = new CentrosDeGestionYParticipacion("foo", mockedPolygon);
     }
 
     @Test
-    public void CgpEstaCercaDe() {
+    public void estaCercaDe() {
         Mockito.when(mockedPolygon.isInside(any(Point.class))).thenReturn(true);
-        Assert.assertTrue(poi.estaCercaDe(any(Point.class)));
+        Assert.assertTrue(cgp.estaCercaDe(any(Point.class)));
     }
 
     @Test
-    public void CgpNoEstaCercaDe() {
+    public void noEstaCercaDe() {
         Mockito.when(mockedPolygon.isInside(any(Point.class))).thenReturn(false);
-        Assert.assertFalse(poi.estaCercaDe(any(Point.class)));
+        Assert.assertFalse(cgp.estaCercaDe(any(Point.class)));
     }
 }
