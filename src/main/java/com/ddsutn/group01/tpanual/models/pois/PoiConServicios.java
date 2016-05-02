@@ -6,7 +6,6 @@ import org.uqbar.geodds.Point;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public abstract class PoiConServicios extends PointOfInterest {
     private List<Servicio> servicios;
@@ -22,10 +21,11 @@ public abstract class PoiConServicios extends PointOfInterest {
     }
 
     public Boolean estaDisponible(DateTime unHorario, String nombreServicio) {
-        Optional<Servicio> servicioBuscado = servicios.stream()
-                .filter(servicio -> servicio.getNombre().equals(nombreServicio)).findFirst();
-
-        return servicioBuscado.isPresent() ? servicioBuscado.get().estaDisponible(unHorario) : false;
+        return servicios.stream()
+                .filter(servicio -> servicio.getNombre().equals(nombreServicio))
+                .map(servicio -> servicio.estaDisponible(unHorario))
+                .findFirst()
+                .orElse(false);
     }
 
     @Override
