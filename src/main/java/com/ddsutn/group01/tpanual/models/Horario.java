@@ -16,15 +16,16 @@ public class Horario {
         this.horaDeCierre = horaDeCierre;
     }
     public Boolean estaDisponible(DateTime ciertoMomento){
-        return this.estaEnElDia(ciertoMomento.getDayOfWeek()) 
+        return this.mismoDia(ciertoMomento.getDayOfWeek())
                 && this.estaEntreHorarios(ciertoMomento.toLocalTime());
     }
 
-    private Boolean estaEnElDia(int unDia){
+    private Boolean mismoDia(int unDia){
         return dia.getValue() == unDia;
     }
+
     private Boolean estaEntreHorarios(LocalTime ciertoMomento){
-    return horaDeApertura.isBefore(ciertoMomento) && horaDeCierre.isAfter(ciertoMomento);    
+        return horaDeApertura.isBefore(ciertoMomento) && horaDeCierre.isAfter(ciertoMomento);
     }
 }
 

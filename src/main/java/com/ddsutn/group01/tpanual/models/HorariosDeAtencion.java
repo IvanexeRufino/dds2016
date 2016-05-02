@@ -1,8 +1,7 @@
 package com.ddsutn.group01.tpanual.models;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalTime;
-import java.time.DayOfWeek;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +12,7 @@ public class HorariosDeAtencion {
         horarios = new ArrayList<>();
     }
 
-    public void agregarHorario(DayOfWeek dia,LocalTime horaDeApertura,LocalTime horaDeCierre) {
-        Horario horario = new Horario(dia, horaDeApertura, horaDeCierre);
+    public void agregarHorario(Horario horario) {
         horarios.add(horario);
     }
 

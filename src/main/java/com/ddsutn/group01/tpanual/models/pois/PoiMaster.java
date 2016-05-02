@@ -6,21 +6,21 @@ import java.util.stream.Collectors;
 
 
 public class PoiMaster {
-	private List<PointOfInterest> todosLosPoi;
+	private List<PointOfInterest> pois;
 
     public PoiMaster() {
-        todosLosPoi = new ArrayList<>();
+        pois = new ArrayList<>();
     }
 
-	public List<PointOfInterest> getTodosLosPoi() {
-		return todosLosPoi;
-	}
+    public PoiMaster(ArrayList<PointOfInterest> pois) {
+        this.pois = pois;
+    }
 
 	public void agregarPoi(PointOfInterest unPoi) {
-		todosLosPoi.add(unPoi);
+		pois.add(unPoi);
 	}
 
-	public List<PointOfInterest> busquedaPoi(String unaPalabra){
-		return todosLosPoi.stream().filter(poi -> poi.palabraEsta(unaPalabra)).collect(Collectors.toList());
+	public List<PointOfInterest> buscarPoi(String unaPalabra){
+		return pois.stream().filter(poi -> poi.palabraEsta(unaPalabra)).collect(Collectors.toList());
 	}
 }

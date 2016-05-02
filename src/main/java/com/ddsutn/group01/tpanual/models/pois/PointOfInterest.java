@@ -11,17 +11,21 @@ public abstract class PointOfInterest {
     protected Point point;
     protected List<String> palabrasClaves;
 
+    public String getName() {
+        return name;
+    }
+
     public PointOfInterest(String name, Point point) {
     	this.name  = name;
         this.point = point;
         palabrasClaves = new ArrayList<>();
     }
 
-    public final void agregarPalabraClave(String unaPalabra){
+    public final void agregarPalabraClave(String unaPalabra) {
     	palabrasClaves.add(unaPalabra);
     }
 
-    public final Boolean palabraEsta(String unaPalabra){
+    public final Boolean palabraEsta(String unaPalabra) {
     	return palabrasClaves.contains(unaPalabra) || cumpleCondicion(unaPalabra);
     }
 

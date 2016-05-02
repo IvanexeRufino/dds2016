@@ -28,24 +28,24 @@ public class PoiConServiciosTest {
     }
 
     @Test
-    public void testEstaDisponible() {
+    public void estaDisponible() {
         Mockito.when(mockedServicio.estaDisponible(any(DateTime.class))).thenReturn(true);
         Assert.assertTrue(poi.estaDisponible(unHorario));
     }
 
     @Test
-    public void testNoEstaDisponible() {
+    public void noEstaDisponible() {
         Mockito.when(mockedServicio.estaDisponible(any(DateTime.class))).thenReturn(false);
         Assert.assertFalse(poi.estaDisponible(unHorario));
     }
 
     @Test
-    public void testCumpleCondicion() {
+    public void PalabraEsta() {
         Assert.assertTrue(poi.palabraEsta("foo"));
     }
 
     @Test
-    public void testNoCumpleCondicion() {
+    public void PalabraNoEsta() {
         Assert.assertFalse(poi.palabraEsta("bleh"));
     }
 }
