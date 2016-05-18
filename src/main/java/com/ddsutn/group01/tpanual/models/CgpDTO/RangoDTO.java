@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual.CgpDTO;
+package com.ddsutn.group01.tpanual.models.CgpDTO;
 
 import java.util.ArrayList;
 
