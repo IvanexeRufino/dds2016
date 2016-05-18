@@ -2,27 +2,26 @@ package com.ddsutn.group01.tpanual.models.origenes;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class OrigenLocal implements OrigenDatos {
-    @Override
+    
+    ArrayList<PointOfInterest> repositorioDePOIs = new ArrayList<PointOfInterest>();
+    
     public void crear(PointOfInterest poi) {
-        // crear poi
+        repositorioDePOIs.add(poi);
     }
 
-    @Override
     public void editar(PointOfInterest poi) {
         // editar poi
     }
 
-    @Override
     public void eliminar(PointOfInterest poi) {
-        // eliminar poi
+        repositorioDePOIs.remove(poi);
     }
-
-    @Override
-    public List<PointOfInterest> buscar(String unaPalabra) {
-        // buscar poi
-        return null;
+    
+    public ArrayList<PointOfInterest> buscar(String unaPalabra) {
+        repositorioDePOIs.stream().filter(POI->POI.palabraEsta(unaPalabra));
+        return repositorioDePOIs;
     }
 }

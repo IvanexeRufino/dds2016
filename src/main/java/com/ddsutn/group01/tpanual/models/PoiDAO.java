@@ -6,18 +6,20 @@ import com.ddsutn.group01.tpanual.models.origenes.OrigenLocal;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PoiDAO {
     private static PoiDAO instancia = null;
-    private List<OrigenDatos> origenes;
+    private ArrayList<OrigenDatos> origenesExternos;
+    private OrigenLocal origenLocal;
 
 
 	private PoiDAO() {
-		origenes = new ArrayList<>();
-        origenes.add(new OrigenLocal());
-        origenes.add(new OrigenExterno());
-        origenes.add(new OrigenExterno());
+		origenesExternos = new ArrayList<>();
+        origenLocal = new OrigenLocal();
+	}
+	
+	public void agregarOrigenExterno(OrigenExterno unOrigen){
+	    origenesExternos.add(unOrigen);
 	}
 
     public static PoiDAO getInstance() {
@@ -29,19 +31,21 @@ public class PoiDAO {
     }
 
     public void crear(PointOfInterest poi) {
-    	origenes.stream().forEach((origen) -> origen.crear(poi));
+    	origenLocal.crear(poi);
     }
 
     public void editar(PointOfInterest poi) {
-        origenes.stream().forEach((origen) -> origen.editar(poi));
+        origenLocal.editar(poi);
     }
 
     public void eliminar(PointOfInterest poi){
-        origenes.stream().forEach((origen) -> origen.eliminar(poi));
+        origenLocal.eliminar(poi);
     }
 
-    public List<PointOfInterest> buscar(String criterio){
-        //  origenes.stream().map((origen) -> origen.buscar(criterio)).collect(Collectors.toList());
-        return null;
+    public ArrayList<PointOfInterest> buscar(String criterio){
+        ArrayList<PointOfInterest> listaDePuntos = new ArrayList<PointOfInterest>();
+        listaDePuntos.addAll(origenLocal.buscar(criterio));
+        //agregar la busqueda de origenes externos
+        return listaDePuntos;
     }
 }
