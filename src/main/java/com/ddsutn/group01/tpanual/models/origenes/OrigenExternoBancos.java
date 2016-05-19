@@ -13,7 +13,7 @@ public class OrigenExternoBancos extends OrigenExterno {
         this.dataSource = dataSoruce;
         parser = new ParserBancos();
     }
-    
+
     @Override
     public ArrayList<PointOfInterest> buscar(String unaPalabra) {
         ArrayList<String> json = dataSource.buscar(unaPalabra);
