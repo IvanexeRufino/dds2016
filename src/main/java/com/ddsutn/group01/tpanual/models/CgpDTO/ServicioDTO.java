@@ -11,7 +11,6 @@ public class ServicioDTO {
 		private ArrayList<DiasDeServicio> listaDeDias = new ArrayList<DiasDeServicio>();
 		
 		public ServicioDTO(String nombre, ArrayList<DiasDeServicio> listaDeDias) {
-			super();
 			this.nombre = nombre;
 			this.listaDeDias = listaDeDias;
 		}
