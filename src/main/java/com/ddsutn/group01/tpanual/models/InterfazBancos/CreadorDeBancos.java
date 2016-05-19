@@ -48,64 +48,43 @@ public class CreadorDeBancos {
         return y;
     }
 
-
-
     public void setY(Double y) {
         this.y = y;
     }
-
-
 
     public String getSucursal() {
         return sucursal;
     }
 
-
-
     public void setSucursal(String sucursal) {
         this.sucursal = sucursal;
     }
-
-
 
     public String getGerente() {
         return gerente;
     }
 
-
-
     public void setGerente(String gerente) {
         this.gerente = gerente;
     }
-
-
 
     public ArrayList<String> getServicios() {
         return servicios;
     }
 
-
-
     public void setServicios(ArrayList<String> servicios) {
         this.servicios = servicios;
     }
-
-
 
     public Servicio getServicio() {
         return servicio;
     }
 
-
-
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
     }
 
-
-
-    public SucursalBanco modelarBanco()
-    {
+    public SucursalBanco modelarBanco() {
         ArrayList<Servicio> serviciosReales = new ArrayList<Servicio>();
         Point punto = new Point(x,y);
         SucursalBanco sucursal = new SucursalBanco(id, banco, punto);

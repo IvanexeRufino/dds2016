@@ -1,8 +1,10 @@
 package com.ddsutn.group01.tpanual.models.origenes;
-import java.util.ArrayList;
+
 import com.ddsutn.group01.tpanual.models.CgpDTO.CentroDTO;
 import com.ddsutn.group01.tpanual.models.CgpDTO.CgpAdapter;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
+
+import java.util.ArrayList;
 
 public class OrigenExternoCGP extends OrigenExterno{
     private DataSourceCGP dataSource;
@@ -12,7 +14,7 @@ public class OrigenExternoCGP extends OrigenExterno{
         this.dataSource = dataSoruce;
         parser = new CgpAdapter();
     }
-    
+
     @Override
     public ArrayList<PointOfInterest> buscar(String unaPalabra) {
         ArrayList<CentroDTO> centros = dataSource.buscar(unaPalabra);

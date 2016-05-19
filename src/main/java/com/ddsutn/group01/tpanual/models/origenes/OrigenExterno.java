@@ -5,7 +5,7 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import java.util.List;
 
 public abstract class OrigenExterno implements OrigenDatos {
-    
+
     @Override
     public void agregar(PointOfInterest poi) { }
 

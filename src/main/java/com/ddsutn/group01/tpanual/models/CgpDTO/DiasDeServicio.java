@@ -6,7 +6,7 @@ import org.joda.time.LocalTime;
 import com.ddsutn.group01.tpanual.models.Horario;
 
 public class DiasDeServicio {
-	
+
 	private int numeroDeDia;
 	private int horaDesde;
 	private int minutoDesde;
@@ -20,4 +20,3 @@ public class DiasDeServicio {
 	   return horario;
 	    }
 }
-

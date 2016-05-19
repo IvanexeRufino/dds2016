@@ -6,10 +6,10 @@ import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Servicio;
 
 public class ServicioDTO {
-	
+
 	    private String nombre;
 		private ArrayList<DiasDeServicio> listaDeDias = new ArrayList<DiasDeServicio>();
-		
+
 		public ServicioDTO(String nombre, ArrayList<DiasDeServicio> listaDeDias) {
 			this.nombre = nombre;
 			this.listaDeDias = listaDeDias;
@@ -22,4 +22,3 @@ public class ServicioDTO {
 		    return unServicio;
 		}
 }
-
