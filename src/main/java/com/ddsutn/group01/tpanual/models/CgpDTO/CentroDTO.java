@@ -17,7 +17,6 @@ public class CentroDTO {
 	
 	public CentroDTO(int nroDeComuna, ArrayList<String> zonasIncluidas, String nombreDirector, String domicilio,
 			String telefono, ArrayList <ServicioDTO> servicios) {
-		super();
 		this.nroDeComuna = nroDeComuna;
 		this.zonasIncluidas = zonasIncluidas;
 		this.nombreDirector = nombreDirector;
@@ -60,6 +59,3 @@ public class CentroDTO {
 	    return centro;
 	}
 }
-
-
-	
