@@ -9,8 +9,8 @@ public class LocalComercial extends PointOfInterest {
     private Rubro rubro;
     private HorariosDeAtencion horarioDeAtencion;
 
-    public LocalComercial(String name, Point point, Rubro rubro, HorariosDeAtencion horarioDeAtencion) {
-        super(name, point);
+    public LocalComercial(Integer id, String name, Point point, Rubro rubro, HorariosDeAtencion horarioDeAtencion) {
+        super(id, name, point);
         this.rubro = rubro;
         this.horarioDeAtencion = horarioDeAtencion;
     }

@@ -18,7 +18,7 @@ public class ParadaColectivoTest {
     public void init() {
         mockedPoint = Mockito.mock(Point.class);
         numeroColectivo = "114";
-        parada = new ParadaColectivo(numeroColectivo, mockedPoint);
+        parada = new ParadaColectivo(1, numeroColectivo, mockedPoint);
     }
 
     @Test

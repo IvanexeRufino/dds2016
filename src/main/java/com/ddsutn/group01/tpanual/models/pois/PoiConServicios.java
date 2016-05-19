@@ -10,8 +10,8 @@ import java.util.List;
 public abstract class PoiConServicios extends PointOfInterest {
     private List<Servicio> servicios;
 
-    public PoiConServicios(String name, Point point) {
-        super(name, point);
+    public PoiConServicios(Integer id, String name, Point point) {
+        super(id, name, point);
         servicios = new ArrayList<>();
     }
 
@@ -36,7 +36,7 @@ public abstract class PoiConServicios extends PointOfInterest {
     public void agregarUnServicio(Servicio servicio) {
         servicios.add(servicio);
     }
-    
+
     public void setServicios(ArrayList<Servicio> unosServicios){
         servicios=unosServicios;
     }

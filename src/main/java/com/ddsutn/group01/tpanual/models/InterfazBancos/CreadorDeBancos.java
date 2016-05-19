@@ -8,6 +8,7 @@ import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 
 public class CreadorDeBancos {
+    private Integer id;
     private String banco;
     private Double x;
     private Double y;
@@ -15,9 +16,18 @@ public class CreadorDeBancos {
     private String gerente;
     private ArrayList<String> servicios;
     private Servicio servicio;
-    
+
     //Creo que el jackson necesita todos los getters y setters, por eso los genere
-    
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getBanco() {
         return banco;
     }
@@ -98,7 +108,7 @@ public class CreadorDeBancos {
     {
         ArrayList<Servicio> serviciosReales = new ArrayList<Servicio>();
         Point punto = new Point(x,y);
-        SucursalBanco sucursal = new SucursalBanco(banco, punto);
+        SucursalBanco sucursal = new SucursalBanco(id, banco, punto);
         servicios.stream().forEach(nombre->serviciosReales.add(servicio = new Servicio(nombre,null)));
         sucursal.setServicios(serviciosReales);
         return sucursal;

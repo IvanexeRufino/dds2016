@@ -6,7 +6,7 @@ import java.util.List;
 
 public class OrigenExterno implements OrigenDatos {
     @Override
-    public void crear(PointOfInterest poi) { }
+    public void agregar(PointOfInterest poi) { }
 
     @Override
     public void editar(PointOfInterest poi) { }

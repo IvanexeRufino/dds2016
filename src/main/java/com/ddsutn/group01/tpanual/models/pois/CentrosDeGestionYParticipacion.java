@@ -6,8 +6,8 @@ import org.uqbar.geodds.Polygon;
 public class CentrosDeGestionYParticipacion extends PoiConServicios {
     private Polygon zonaDelimitada;
 
-    public CentrosDeGestionYParticipacion(String name, Polygon zonaDelimitada) {
-        super(name, null);
+    public CentrosDeGestionYParticipacion(Integer id, String name, Polygon zonaDelimitada) {
+        super(id, name, null);
         this.zonaDelimitada = zonaDelimitada;
     }
 

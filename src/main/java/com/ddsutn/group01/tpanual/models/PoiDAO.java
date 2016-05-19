@@ -29,7 +29,7 @@ public class PoiDAO {
     }
 
     public void crear(PointOfInterest poi) {
-    	origenes.stream().forEach((origen) -> origen.crear(poi));
+    	origenes.stream().forEach((origen) -> origen.agregar(poi));
     }
 
     public void editar(PointOfInterest poi) {
