@@ -19,10 +19,4 @@ public class OrigenExterno implements OrigenDatos {
         // buscar poi
         return null;
     }
-
-    @Override
-    public List<PointOfInterest> getTodos() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

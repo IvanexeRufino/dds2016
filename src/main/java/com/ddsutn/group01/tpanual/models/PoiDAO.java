@@ -41,6 +41,9 @@ public class PoiDAO {
     }
 
     public List<PointOfInterest> buscar(String criterio){
-        return origenes.stream().map((origen) -> origen.buscar(criterio)).collect(Collectors.);
+        return origenes.stream().
+            map(origen -> origen.buscar(criterio)).
+            flatMap(List::stream).
+            collect(Collectors.toList());
     }
 }
