@@ -5,8 +5,6 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import java.util.List;
 
 public interface OrigenDatos {
-    List<PointOfInterest> getTodos();
-
     void agregar(PointOfInterest poi);
 
     void editar(PointOfInterest poi);

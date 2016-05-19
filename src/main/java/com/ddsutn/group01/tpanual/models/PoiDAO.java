@@ -1,23 +1,23 @@
 package com.ddsutn.group01.tpanual.models;
 
 import com.ddsutn.group01.tpanual.models.origenes.OrigenDatos;
-import com.ddsutn.group01.tpanual.models.origenes.OrigenExterno;
+import com.ddsutn.group01.tpanual.models.origenes.OrigenExternoBancos;
 import com.ddsutn.group01.tpanual.models.origenes.OrigenLocal;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PoiDAO {
     private static PoiDAO instancia = null;
     private List<OrigenDatos> origenes;
 
-
 	private PoiDAO() {
 		origenes = new ArrayList<>();
         origenes.add(new OrigenLocal());
-        origenes.add(new OrigenExterno());
-        origenes.add(new OrigenExterno());
+        origenes.add(new OrigenExternoBancos());
+        origenes.add(new OrigenExternoBancos());
 	}
 
     public static PoiDAO getInstance() {
@@ -41,7 +41,6 @@ public class PoiDAO {
     }
 
     public List<PointOfInterest> buscar(String criterio){
-        //  origenes.stream().map((origen) -> origen.buscar(criterio)).collect(Collectors.toList());
-        return null;
+        return origenes.stream().map((origen) -> origen.buscar(criterio)).collect(Collectors.);
     }
 }

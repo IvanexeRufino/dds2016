@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.ddsutn.group01.tpanual.models.InterfazBancos.AdaptadorBancos;
+import com.ddsutn.group01.tpanual.models.InterfazBancos.ParserBancos;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 public class TestAdapterBanco {
-    
-    private AdaptadorBancos adaptador = new AdaptadorBancos();
-    
+
+    private ParserBancos adaptador = new ParserBancos();
+
     @Test
     public void testAdaptarElArrayConStringsJSONEnObjetosSucursalBanco(){
         ArrayList<String> unaLista = new ArrayList<String>();
@@ -19,7 +19,7 @@ public class TestAdapterBanco {
         String objetoJSON2 = "{\"x\":-36,\"y\":73,\"servicios\":[\"depositos\",\"extracciones\"],\"banco\":\"Banco de la plaza\",\"sucursal\":\"Avellaneda\",\"gerente\":\"Juancito\"}";
         unaLista.add(objetoJSON);
         unaLista.add(objetoJSON2);
-        ArrayList<PointOfInterest> listaReal = adaptador.adaptar(unaLista);
+        ArrayList<PointOfInterest> listaReal = adaptador.parsear(unaLista);
         Assert.assertTrue(listaReal.size()==2);
     }
 }
