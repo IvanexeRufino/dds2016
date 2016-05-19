@@ -4,7 +4,8 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 import java.util.List;
 
-public class OrigenExterno implements OrigenDatos {
+public abstract class OrigenExterno implements OrigenDatos {
+    
     @Override
     public void agregar(PointOfInterest poi) { }
 
@@ -14,9 +15,5 @@ public class OrigenExterno implements OrigenDatos {
     @Override
     public void eliminar(PointOfInterest poi) { }
 
-    @Override
-    public List<PointOfInterest> buscar(String unaPalabra) {
-        // buscar poi
-        return null;
-    }
+    public abstract List<PointOfInterest> buscar(String unaPalabra);
 }

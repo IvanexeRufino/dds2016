@@ -9,7 +9,7 @@ import com.ddsutn.group01.tpanual.models.CgpDTO.CentroDTO;
 import com.ddsutn.group01.tpanual.models.CgpDTO.CgpAdapter;
 import com.ddsutn.group01.tpanual.models.CgpDTO.DiasDeServicio;
 import com.ddsutn.group01.tpanual.models.CgpDTO.ServicioDTO;
-import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
+import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 public class TestAdapterCgp {
 
@@ -38,7 +38,7 @@ public class TestAdapterCgp {
 		unaListaDeCentrosDTO.add(unCentroDTO);
 		unaListaDeCentrosDTO.add(otroCentroDTO);
 
-		ArrayList<CentrosDeGestionYParticipacion> listaReal = adapter.adaptar(unaListaDeCentrosDTO);
+		ArrayList<PointOfInterest> listaReal = adapter.parsear(unaListaDeCentrosDTO);
 
 		Assert.assertTrue(listaReal.size()==2);
 	}
