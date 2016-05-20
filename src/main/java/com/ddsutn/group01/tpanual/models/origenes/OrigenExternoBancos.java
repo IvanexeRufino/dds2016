@@ -1,17 +1,17 @@
 package com.ddsutn.group01.tpanual.models.origenes;
 
-import com.ddsutn.group01.tpanual.models.InterfazBancos.ParserBancos;
+import com.ddsutn.group01.tpanual.models.InterfazBancos.BancoAdapter;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 import java.util.ArrayList;
 
 public class OrigenExternoBancos extends OrigenExterno {
     private DataSourceBancos dataSource;
-    private ParserBancos parser;
+    private BancoAdapter parser;
 
     public void setDataSource(DataSourceBancos dataSoruce) {
         this.dataSource = dataSoruce;
-        parser = new ParserBancos();
+        parser = new BancoAdapter();
     }
 
     @Override

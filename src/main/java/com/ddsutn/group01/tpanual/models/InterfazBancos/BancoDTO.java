@@ -7,7 +7,7 @@ import org.uqbar.geodds.Point;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 
-public class CreadorDeBancos {
+public class BancoDTO {
     private Integer id;
     private String banco;
     private Double x;
@@ -16,10 +16,7 @@ public class CreadorDeBancos {
     private String gerente;
     private ArrayList<String> servicios;
     private Servicio servicio;
-
-    //Creo que el jackson necesita todos los getters y setters, por eso los genere
-
-
+    
     public Integer getId() {
         return id;
     }

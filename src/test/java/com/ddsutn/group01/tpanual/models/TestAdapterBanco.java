@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.ddsutn.group01.tpanual.models.InterfazBancos.ParserBancos;
+import com.ddsutn.group01.tpanual.models.InterfazBancos.BancoAdapter;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 public class TestAdapterBanco {
 
-    private ParserBancos adaptador = new ParserBancos();
+    private BancoAdapter adaptador = new BancoAdapter();
 
     @Test
     public void testAdaptarElArrayConStringsJSONEnObjetosSucursalBanco(){

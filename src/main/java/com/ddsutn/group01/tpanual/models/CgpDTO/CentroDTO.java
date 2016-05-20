@@ -2,11 +2,6 @@ package com.ddsutn.group01.tpanual.models.CgpDTO;
 
 import java.util.ArrayList;
 
-import org.uqbar.geodds.Polygon;
-
-import com.ddsutn.group01.tpanual.models.Servicio;
-import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
-
 public class CentroDTO {
 	private int nroDeComuna;
 	private ArrayList <String> zonasIncluidas;
@@ -45,17 +40,7 @@ public class CentroDTO {
 		return telefono;
 	}
 
-	public ArrayList<ServicioDTO> getServicio() {
+	public ArrayList<ServicioDTO> getServicios() {
 		return servicios;
-	}
-
-	public CentrosDeGestionYParticipacion modelar(){
-	    //como obtengo el poligono?
-	    ArrayList<Servicio> listaDeServicios = new ArrayList<Servicio>();
-	    Polygon poligono = new Polygon();
-	    CentrosDeGestionYParticipacion centro = new CentrosDeGestionYParticipacion(nroDeComuna, "centroTransformado", poligono);
-	    servicios.forEach(unServicioDTO->listaDeServicios.add(unServicioDTO.modelar()));
-	    centro.setServicios(listaDeServicios);
-	    return centro;
 	}
 }
