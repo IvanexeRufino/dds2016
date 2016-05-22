@@ -1,13 +1,12 @@
-package com.ddsutn.group01.tpanual.models.InterfazBancos;
-
-import java.util.ArrayList;
-
-import org.uqbar.geodds.Point;
+package com.ddsutn.group01.tpanual.adapters.Banco;
 
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
+import org.uqbar.geodds.Point;
 
-public class BancoDTO {
+import java.util.ArrayList;
+
+class CreadorDeBancos {
     private Integer id;
     private String banco;
     private Double x;
@@ -16,7 +15,10 @@ public class BancoDTO {
     private String gerente;
     private ArrayList<String> servicios;
     private Servicio servicio;
-    
+
+    //Creo que el jackson necesita todos los getters y setters, por eso los genere
+
+
     public Integer getId() {
         return id;
     }
@@ -81,11 +83,11 @@ public class BancoDTO {
         this.servicio = servicio;
     }
 
-    public SucursalBanco modelarBanco() {
+    SucursalBanco modelarBanco() {
         ArrayList<Servicio> serviciosReales = new ArrayList<Servicio>();
-        Point punto = new Point(x,y);
+        Point punto = new Point(x, y);
         SucursalBanco sucursal = new SucursalBanco(id, banco, punto);
-        servicios.stream().forEach(nombre->serviciosReales.add(servicio = new Servicio(nombre,null)));
+        servicios.stream().forEach(nombre -> serviciosReales.add(servicio = new Servicio(nombre, null)));
         sucursal.setServicios(serviciosReales);
         return sucursal;
     }

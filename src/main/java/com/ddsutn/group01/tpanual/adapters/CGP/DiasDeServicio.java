@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual.models.CgpDTO;
+package com.ddsutn.group01.tpanual.adapters.CGP;
 
 public class DiasDeServicio {
 	private int numeroDeDia;
