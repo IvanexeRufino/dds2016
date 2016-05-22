@@ -14,27 +14,27 @@ import java.util.ArrayList;
 public class CGPAdapter {
     static public ArrayList<PointOfInterest> adapt(ArrayList<CentroDTO> listaCentroDTO) {
         ArrayList<PointOfInterest> listaCgp = new ArrayList<>();
-        listaCentroDTO.forEach(centro->listaCgp.add(modelarCGP(centro)));
+        listaCentroDTO.forEach(centro -> listaCgp.add(modelarCGP(centro)));
         return listaCgp;
     }
 
-    static private CentrosDeGestionYParticipacion modelarCGP(CentroDTO unCentro){
+    static private CentrosDeGestionYParticipacion modelarCGP(CentroDTO unCentro) {
         //como obtengo el poligono?
         ArrayList<Servicio> listaDeServicios = new ArrayList<>();
         Polygon poligono = new Polygon();
         CentrosDeGestionYParticipacion centro = new CentrosDeGestionYParticipacion(unCentro.getNroDeComuna(), "centroTransformado", poligono);
-        unCentro.getServicios().forEach(unServicioDTO->listaDeServicios.add(modelarServicio(unServicioDTO)));
+        unCentro.getServicios().forEach(unServicioDTO -> listaDeServicios.add(modelarServicio(unServicioDTO)));
         centro.setServicios(listaDeServicios);
         return centro;
     }
 
-    static private Servicio modelarServicio(ServicioDTO unServicioDTO){
+    static private Servicio modelarServicio(ServicioDTO unServicioDTO) {
         HorariosDeAtencion unosHorarios = new HorariosDeAtencion();
-        unServicioDTO.getListaDeDias().forEach(unHorario->unosHorarios.agregarHorario(modelarHorario(unHorario)));
+        unServicioDTO.getListaDeDias().forEach(unHorario -> unosHorarios.agregarHorario(modelarHorario(unHorario)));
         return new Servicio(unServicioDTO.getNombre(), unosHorarios);
     }
 
-    static private Horario modelarHorario(DiasDeServicio unDia){
+    static private Horario modelarHorario(DiasDeServicio unDia) {
         LocalTime horarioDeEntrada = new LocalTime(unDia.getHoraDesde(), unDia.getMinutoDesde());
         LocalTime horarioDeSalida = new LocalTime(unDia.getHoraHasta(), unDia.getMinutoHasta());
         return new Horario(DayOfWeek.of(unDia.getNumeroDeDia()), horarioDeEntrada, horarioDeSalida);

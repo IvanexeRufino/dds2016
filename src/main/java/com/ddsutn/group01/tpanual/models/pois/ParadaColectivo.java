@@ -10,11 +10,12 @@ public class ParadaColectivo extends PointOfInterest {
 
     @Override
     public Boolean estaDisponible(DateTime unHorario) {
-    	return true;
+        return true;
     }
+
     @Override
     public Boolean cumpleCondicion(String unaPalabra) {
-    	return name.contains(unaPalabra);
+        return name.contains(unaPalabra);
     }
 
     @Override

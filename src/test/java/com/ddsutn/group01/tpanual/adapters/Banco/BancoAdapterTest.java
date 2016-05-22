@@ -16,6 +16,6 @@ public class BancoAdapterTest {
         unaLista.add(JSON1);
         unaLista.add(JSON2);
         ArrayList<PointOfInterest> listaReal = BancoAdapter.adapt(unaLista);
-        Assert.assertTrue(listaReal.size()==2);
+        Assert.assertTrue(listaReal.size() == 2);
     }
 }

@@ -14,7 +14,7 @@ public abstract class PointOfInterest {
 
     public PointOfInterest(Integer id, String name, Point point) {
         this.id = id;
-        this.name  = name;
+        this.name = name;
         this.point = point;
         palabrasClaves = new ArrayList<>();
     }
@@ -28,14 +28,14 @@ public abstract class PointOfInterest {
     }
 
     public final void agregarPalabraClave(String unaPalabra) {
-    	palabrasClaves.add(unaPalabra);
+        palabrasClaves.add(unaPalabra);
     }
 
     public final Boolean palabraEsta(String unaPalabra) {
-    	return palabrasClaves.contains(unaPalabra) || cumpleCondicion(unaPalabra);
+        return palabrasClaves.contains(unaPalabra) || cumpleCondicion(unaPalabra);
     }
 
-	public Boolean estaCercaDe(Point anotherPoint) {
+    public Boolean estaCercaDe(Point anotherPoint) {
         return point.distance(anotherPoint) < criterioDeCercania();
     }
 

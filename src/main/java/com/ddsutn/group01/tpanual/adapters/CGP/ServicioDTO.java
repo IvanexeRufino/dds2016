@@ -6,12 +6,12 @@ public class ServicioDTO {
     private String nombre;
     private ArrayList<DiasDeServicio> listaDeDias = new ArrayList<DiasDeServicio>();
 
-	public ServicioDTO(String nombre, ArrayList<DiasDeServicio> listaDeDias) {
-		this.nombre = nombre;
-		this.listaDeDias = listaDeDias;
-	}
+    public ServicioDTO(String nombre, ArrayList<DiasDeServicio> listaDeDias) {
+        this.nombre = nombre;
+        this.listaDeDias = listaDeDias;
+    }
 
-	public String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 

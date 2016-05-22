@@ -16,7 +16,7 @@ public class HorariosDeAtencion {
         horarios.add(horario);
     }
 
-    public Boolean estaDisponible(DateTime ciertoMomento){
+    public Boolean estaDisponible(DateTime ciertoMomento) {
         return horarios.stream().anyMatch(horario -> horario.estaDisponible(ciertoMomento));
     }
 }

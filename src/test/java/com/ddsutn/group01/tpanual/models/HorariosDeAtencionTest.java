@@ -1,8 +1,8 @@
 package com.ddsutn.group01.tpanual.models;
 
-import org.junit.Assert;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

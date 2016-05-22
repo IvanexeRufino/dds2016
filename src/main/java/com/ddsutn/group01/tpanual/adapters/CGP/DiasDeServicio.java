@@ -1,13 +1,13 @@
 package com.ddsutn.group01.tpanual.adapters.CGP;
 
 public class DiasDeServicio {
-	private int numeroDeDia;
-	private int horaDesde;
-	private int minutoDesde;
-	private int horaHasta;
-	private int minutoHasta;
+    private int numeroDeDia;
+    private int horaDesde;
+    private int minutoDesde;
+    private int horaHasta;
+    private int minutoHasta;
 
-	public int getNumeroDeDia() {
+    public int getNumeroDeDia() {
         return numeroDeDia;
     }
 

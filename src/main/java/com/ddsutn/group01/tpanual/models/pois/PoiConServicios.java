@@ -22,10 +22,10 @@ public abstract class PoiConServicios extends PointOfInterest {
 
     public Boolean estaDisponible(DateTime unHorario, String nombreServicio) {
         return servicios.stream()
-                .filter(servicio -> servicio.getNombre().equals(nombreServicio))
-                .map(servicio -> servicio.estaDisponible(unHorario))
-                .findFirst()
-                .orElse(false);
+            .filter(servicio -> servicio.getNombre().equals(nombreServicio))
+            .map(servicio -> servicio.estaDisponible(unHorario))
+            .findFirst()
+            .orElse(false);
     }
 
     @Override
@@ -37,7 +37,7 @@ public abstract class PoiConServicios extends PointOfInterest {
         servicios.add(servicio);
     }
 
-    public void setServicios(ArrayList<Servicio> unosServicios){
-        servicios=unosServicios;
+    public void setServicios(ArrayList<Servicio> unosServicios) {
+        servicios = unosServicios;
     }
 }

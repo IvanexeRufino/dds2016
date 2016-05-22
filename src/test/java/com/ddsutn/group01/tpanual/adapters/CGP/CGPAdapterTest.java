@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 public class CGPAdapterTest {
     @Test
     public void adapt() throws Exception {
@@ -19,22 +17,22 @@ public class CGPAdapterTest {
 
         ArrayList<DiasDeServicio> unosDias = new ArrayList<>();
 
-        ServicioDTO pagos = new ServicioDTO ("pagos", unosDias);
-        ServicioDTO cobros = new ServicioDTO ("cobros", unosDias);
+        ServicioDTO pagos = new ServicioDTO("pagos", unosDias);
+        ServicioDTO cobros = new ServicioDTO("cobros", unosDias);
 
-        ArrayList <ServicioDTO> servicios = new ArrayList <>();
+        ArrayList<ServicioDTO> servicios = new ArrayList<>();
         servicios.add(cobros);
         servicios.add(pagos);
 
-        CentroDTO unCentroDTO = new CentroDTO (4, zonasIncluidas, "pepito", "junin 45", "45698541", servicios);
-        CentroDTO otroCentroDTO = new CentroDTO (1, zonasIncluidas, "juana","rosario 27", "89652145", servicios);
+        CentroDTO unCentroDTO = new CentroDTO(4, zonasIncluidas, "pepito", "junin 45", "45698541", servicios);
+        CentroDTO otroCentroDTO = new CentroDTO(1, zonasIncluidas, "juana", "rosario 27", "89652145", servicios);
 
         unaListaDeCentrosDTO.add(unCentroDTO);
         unaListaDeCentrosDTO.add(otroCentroDTO);
 
         ArrayList<PointOfInterest> listaReal = CGPAdapter.adapt(unaListaDeCentrosDTO);
 
-        Assert.assertTrue(listaReal.size()==2);
+        Assert.assertTrue(listaReal.size() == 2);
     }
 
 }

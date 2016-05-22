@@ -1,7 +1,7 @@
 package com.ddsutn.group01.tpanual.repositories;
 
-import com.ddsutn.group01.tpanual.origins.Origin;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
+import com.ddsutn.group01.tpanual.origins.Origin;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,10 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import org.uqbar.geodds.Point;
 
-import static org.mockito.Matchers.*;
+import static org.mockito.Matchers.any;
 
 public class PointOfInterestTest {
     private Point mockedPoint;
@@ -20,10 +19,14 @@ public class PointOfInterestTest {
         mockedPoint = Mockito.mock(Point.class);
         poi = Mockito.spy(new PointOfInterest(1, "foo", mockedPoint) {
             @Override
-            public Boolean estaDisponible(DateTime unHorario) { return false; }
+            public Boolean estaDisponible(DateTime unHorario) {
+                return false;
+            }
 
             @Override
-            protected Boolean cumpleCondicion(String unaPalabra) { return false; }
+            protected Boolean cumpleCondicion(String unaPalabra) {
+                return false;
+            }
         });
 
         palabraClave = "foo";
