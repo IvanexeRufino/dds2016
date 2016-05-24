@@ -37,7 +37,7 @@ public abstract class PoiConServicios extends PointOfInterest {
         servicios.add(servicio);
     }
 
-    public void setServicios(ArrayList<Servicio> unosServicios) {
+    public void setServicios(List<Servicio> unosServicios) {
         servicios = unosServicios;
     }
 }

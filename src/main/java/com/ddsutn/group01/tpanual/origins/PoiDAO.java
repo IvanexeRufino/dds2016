@@ -8,7 +8,7 @@ class PoiDAO {
     private ArrayList<PointOfInterest> pois;
 
     PoiDAO() {
-        this.pois = new ArrayList();
+        this.pois = new ArrayList<PointOfInterest>();
     }
 
     void create(PointOfInterest poi) {

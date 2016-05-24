@@ -10,27 +10,27 @@ import org.uqbar.geodds.Polygon;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CGPAdapter {
-    static public ArrayList<PointOfInterest> adapt(ArrayList<CentroDTO> listaCentroDTO) {
-        ArrayList<PointOfInterest> listaCgp = new ArrayList<>();
-        listaCentroDTO.forEach(centro -> listaCgp.add(modelarCGP(centro)));
-        return listaCgp;
+    static public List<PointOfInterest> adapt(ArrayList<CentroDTO> listaCentroDTO) {
+        return listaCentroDTO.stream().map(centro->modelarCGP(centro))
+                              .collect(Collectors.toList());
     }
 
     static private CentrosDeGestionYParticipacion modelarCGP(CentroDTO unCentro) {
-        //como obtengo el poligono?
-        ArrayList<Servicio> listaDeServicios = new ArrayList<>();
         Polygon poligono = new Polygon();
         CentrosDeGestionYParticipacion centro = new CentrosDeGestionYParticipacion(unCentro.getNroDeComuna(), "centroTransformado", poligono);
-        unCentro.getServicios().forEach(unServicioDTO -> listaDeServicios.add(modelarServicio(unServicioDTO)));
-        centro.setServicios(listaDeServicios);
+        centro.setServicios(unCentro.getServicios().stream().map(unServicioDTO->modelarServicio(unServicioDTO))
+                                                            .collect(Collectors.toList()));
         return centro;
     }
 
     static private Servicio modelarServicio(ServicioDTO unServicioDTO) {
         HorariosDeAtencion unosHorarios = new HorariosDeAtencion();
-        unServicioDTO.getListaDeDias().forEach(unHorario -> unosHorarios.agregarHorario(modelarHorario(unHorario)));
+        unosHorarios.setHorarios(unServicioDTO.getListaDeDias().stream().map(unHorario->modelarHorario(unHorario))
+                                               .collect(Collectors.toList()));
         return new Servicio(unServicioDTO.getNombre(), unosHorarios);
     }
 

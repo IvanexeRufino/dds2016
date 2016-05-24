@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CGPAdapterTest {
     @Test
@@ -30,7 +31,7 @@ public class CGPAdapterTest {
         unaListaDeCentrosDTO.add(unCentroDTO);
         unaListaDeCentrosDTO.add(otroCentroDTO);
 
-        ArrayList<PointOfInterest> listaReal = CGPAdapter.adapt(unaListaDeCentrosDTO);
+        List<PointOfInterest> listaReal = CGPAdapter.adapt(unaListaDeCentrosDTO);
 
         Assert.assertTrue(listaReal.size() == 2);
     }

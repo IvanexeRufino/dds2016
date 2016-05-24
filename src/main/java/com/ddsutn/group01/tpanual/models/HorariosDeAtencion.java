@@ -15,6 +15,10 @@ public class HorariosDeAtencion {
     public void agregarHorario(Horario horario) {
         horarios.add(horario);
     }
+    
+    public void setHorarios(List<Horario> unosHorarios) {
+        this.horarios = unosHorarios;
+    }
 
     public Boolean estaDisponible(DateTime ciertoMomento) {
         return horarios.stream().anyMatch(horario -> horario.estaDisponible(ciertoMomento));
