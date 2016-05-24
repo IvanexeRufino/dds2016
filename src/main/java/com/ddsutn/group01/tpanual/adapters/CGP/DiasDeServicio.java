@@ -6,6 +6,14 @@ public class DiasDeServicio {
     private int minutoDesde;
     private int horaHasta;
     private int minutoHasta;
+    
+    public DiasDeServicio(int unNumero, int unaHoraDesde, int unMinutoDesde, int unaHoraHasta, int unMinutoHasta) {
+        this.numeroDeDia = unNumero;
+        this.horaDesde = unaHoraDesde;
+        this.minutoDesde = unMinutoDesde;
+        this.horaHasta = unaHoraHasta;
+        this.minutoHasta = unMinutoHasta;
+    }
 
     public int getNumeroDeDia() {
         return numeroDeDia;
