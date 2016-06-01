@@ -1,6 +1,8 @@
 package com.ddsutn.group01.tpanual.adapters.Banco;
 
+import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
+import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,9 +10,11 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BancoAdapterTest {
-    private ArrayList<PointOfInterest> listaReal;
+    private List<PointOfInterest> listaReal;
+    private SucursalBanco sucursalPosta;
     
     @Before
     public void init() {
@@ -23,15 +27,18 @@ public class BancoAdapterTest {
     }
 
     @Test
-    public void adaptarJSON1estaCercaDelPunto() {
-        Point unPunto = new Point(-35,72.005);
-        PointOfInterest unaSucursal = listaReal.get(0);
-        Assert.assertTrue(unaSucursal.estaCercaDe(unPunto));
-    }
-    
-    @Test
-    public void adaptarJSON2PalabraEstaDepositos() {
-        PointOfInterest unaSucursal = listaReal.get(1);
-        Assert.assertTrue(unaSucursal.palabraEsta("depositos"));
-    }
+    public void adaptarJSON1esIgualAUnaSucursalDeBancoDeNuestroDominio() {
+      SucursalBanco unaSucursal = (SucursalBanco) listaReal.get(0);
+      Point punto = new Point(30,50);
+      sucursalPosta = new SucursalBanco(1, "Banco de la Plaza",  new Point(-35, 72));
+      Servicio depositos = new Servicio("depositos",null);
+      Servicio extracciones = new Servicio("extracciones",null);
+      sucursalPosta.agregarUnServicio(depositos);
+      sucursalPosta.agregarUnServicio(extracciones);
+      
+      Assert.assertEquals(unaSucursal.getName(), sucursalPosta.getName());
+      Assert.assertTrue(unaSucursal.getPoint().distance(punto) == sucursalPosta.getPoint().distance(punto));
+      Assert.assertEquals(unaSucursal.getServicios().get(1).getNombre(), sucursalPosta.getServicios().get(1).getNombre());
+      Assert.assertEquals(unaSucursal.getServicios().get(2).getNombre(), sucursalPosta.getServicios().get(2).getNombre());
+      }
 }

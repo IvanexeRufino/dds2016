@@ -18,6 +18,10 @@ public abstract class PointOfInterest {
         this.point = point;
         palabrasClaves = new ArrayList<>();
     }
+    
+    public Point getPoint() {
+        return point;
+    }
 
     public Integer getId() {
         return id;

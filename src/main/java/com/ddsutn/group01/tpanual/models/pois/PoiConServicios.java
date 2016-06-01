@@ -10,6 +10,10 @@ import java.util.List;
 public abstract class PoiConServicios extends PointOfInterest {
     private List<Servicio> servicios;
 
+    public List<Servicio> getServicios() {
+        return servicios;
+    }
+
     public PoiConServicios(Integer id, String name, Point point) {
         super(id, name, point);
         servicios = new ArrayList<>();
