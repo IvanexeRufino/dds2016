@@ -14,6 +14,10 @@ public class Servicio {
     public String getNombre() {
         return nombre;
     }
+    
+    public HorariosDeAtencion getHorariosDeAtencion() {
+        return horariosDeAtencion;
+    }
 
     public Boolean estaDisponible(DateTime unHorario) {
         return horariosDeAtencion.estaDisponible(unHorario);

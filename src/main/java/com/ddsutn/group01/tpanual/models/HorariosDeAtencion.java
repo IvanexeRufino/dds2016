@@ -11,16 +11,20 @@ public class HorariosDeAtencion {
     public HorariosDeAtencion() {
         horarios = new ArrayList<>();
     }
+    
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
 
     public void agregarHorario(Horario horario) {
         horarios.add(horario);
     }
-    
-    public void setHorarios(List<Horario> unosHorarios) {
-        this.horarios = unosHorarios;
-    }
 
     public Boolean estaDisponible(DateTime ciertoMomento) {
         return horarios.stream().anyMatch(horario -> horario.estaDisponible(ciertoMomento));
+    }
+
+    public void setHorarios(List<Horario> unosHorarios) {
+        horarios = unosHorarios;       
     }
 }

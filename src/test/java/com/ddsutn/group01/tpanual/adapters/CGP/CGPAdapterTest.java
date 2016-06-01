@@ -1,17 +1,24 @@
 package com.ddsutn.group01.tpanual.adapters.CGP;
 
+import com.ddsutn.group01.tpanual.models.Horario;
+import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
+import com.ddsutn.group01.tpanual.models.Servicio;
+import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Polygon;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CGPAdapterTest {
     private List<PointOfInterest> listaReal;
+    private CentrosDeGestionYParticipacion centroPosta;
     
     @Before
     public void init() {
@@ -43,21 +50,27 @@ public class CGPAdapterTest {
     
     @Test
     public void cGP1EstaDisponibleElLunesALas12() {
-        PointOfInterest cgp1 = listaReal.get(0);
-        DateTime lunesMedioDia = new DateTime(2016, 5, 23, 12, 0);
-        Assert.assertTrue(cgp1.estaDisponible(lunesMedioDia));
-    }
-    
-    @Test
-    public void cGP1NoEstaDisponibleElLunesALas18() {
-        PointOfInterest cgp1 = listaReal.get(0);
-        DateTime lunesMedioDia = new DateTime(2016, 5, 23, 18, 0);
-        Assert.assertFalse(cgp1.estaDisponible(lunesMedioDia));
-    }
-    
-    @Test
-    public void cGP2PalabraEstaPagos() {
-        PointOfInterest cgp2 = listaReal.get(1);
-        Assert.assertTrue(cgp2.palabraEsta("pagos"));
-    }
+        Polygon poligono = new Polygon();
+        CentrosDeGestionYParticipacion unCentro = (CentrosDeGestionYParticipacion) listaReal.get(0);
+        centroPosta = new CentrosDeGestionYParticipacion(4,"centroTransformado", poligono);
+        LocalTime horaDeApertura = new LocalTime(8, 0);
+        LocalTime horaDeCierre = new LocalTime(16, 0);
+        Horario horaAtencionLunes = new Horario(DayOfWeek.MONDAY, horaDeApertura, horaDeCierre);
+        HorariosDeAtencion horariosDeAtencion = new HorariosDeAtencion();
+        horariosDeAtencion.agregarHorario(horaAtencionLunes);
+        Servicio pagos = new Servicio("pagos",horariosDeAtencion);
+        Servicio cobros = new Servicio("cobros",horariosDeAtencion);
+        centroPosta.agregarUnServicio(cobros);
+        centroPosta.agregarUnServicio(pagos);
+        
+        Assert.assertEquals(unCentro.getName(), centroPosta.getName());
+        Assert.assertEquals(unCentro.getServicios().get(0).getNombre(), centroPosta.getServicios().get(0).getNombre());
+        Assert.assertEquals(unCentro.getServicios().get(1).getNombre(), centroPosta.getServicios().get(1).getNombre());
+        Assert.assertEquals(unCentro.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getDia(),
+                            centroPosta.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getDia());
+        Assert.assertEquals(unCentro.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeApertura(),
+                            centroPosta.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeApertura());
+        Assert.assertEquals(unCentro.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeCierre(),
+                            centroPosta.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeCierre());   
+   }
 }

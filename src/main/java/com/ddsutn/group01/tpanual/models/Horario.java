@@ -17,6 +17,18 @@ public class Horario {
         this.horaDeCierre = horaDeCierre;
     }
 
+    public DayOfWeek getDia() {
+        return dia;
+    }
+
+    public LocalTime getHoraDeApertura() {
+        return horaDeApertura;
+    }
+
+    public LocalTime getHoraDeCierre() {
+        return horaDeCierre;
+    }
+
     public Boolean estaDisponible(DateTime ciertoMomento) {
         return this.mismoDia(ciertoMomento.getDayOfWeek())
             && this.estaEntreHorarios(ciertoMomento.toLocalTime());
