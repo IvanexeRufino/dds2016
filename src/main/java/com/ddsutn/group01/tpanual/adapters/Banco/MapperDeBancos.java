@@ -7,10 +7,11 @@ class MapperDeBancos {
     static ObjectMapper mapper = new ObjectMapper();
     
     static BancoDTO mappear(String unString) {
-        BancoDTO unDTO = new BancoDTO();
+        BancoDTO unDTO;
         try {
           unDTO = mapper.readValue(unString, BancoDTO.class);
         } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return unDTO;
     }   
