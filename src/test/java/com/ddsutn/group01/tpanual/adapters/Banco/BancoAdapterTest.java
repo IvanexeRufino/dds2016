@@ -57,4 +57,12 @@ public class BancoAdapterTest {
         Assert.assertEquals(unaSucursal.getServicios().get(1).getNombre(), sucursalPosta.getServicios().get(1).getNombre());
         Assert.assertEquals(unaSucursal.getServicios().get(2).getNombre(), sucursalPosta.getServicios().get(2).getNombre());
     }
+    
+    @Test (expected = RuntimeException.class)
+    public void adaptarLanzaExcepcionSiEstaMalFormadoElString() {
+        ArrayList<String> unaLista = new ArrayList<>();
+        String JSONerror = "hola como te va";
+        unaLista.add(JSONerror);
+        BancoAdapter.adapt(unaLista);
+    }
 }
