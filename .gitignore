@@ -18,3 +18,5 @@ out/
 *.iws
 *.ipr
 *.iml
+.idea/*
+
