@@ -16,18 +16,6 @@ public class CGPsOrigin implements Origin {
     }
 
     @Override
-    public void add(PointOfInterest poi) {
-    }
-
-    @Override
-    public void edit(PointOfInterest poi) {
-    }
-
-    @Override
-    public void remove(PointOfInterest poi) {
-    }
-
-    @Override
     public List<PointOfInterest> find(String criteria) {
         ArrayList<CentroDTO> result = api.search(criteria);
         return CGPAdapter.adapt(result);

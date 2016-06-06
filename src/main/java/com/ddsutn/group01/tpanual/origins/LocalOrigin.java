@@ -6,24 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class LocalOrigin implements Origin {
+public class LocalOrigin implements Origin {
     private PoiDAO dao;
 
-    LocalOrigin() {
+    public LocalOrigin() {
         this.dao = new PoiDAO();
     }
 
-    @Override
     public void add(PointOfInterest poi) {
         dao.create(poi);
     }
 
-    @Override
     public void edit(PointOfInterest poi) {
         dao.update(poi);
     }
 
-    @Override
     public void remove(PointOfInterest poi) {
         dao.delete(poi);
     }

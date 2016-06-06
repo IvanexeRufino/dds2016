@@ -13,19 +13,7 @@ public class BancosOrigin implements Origin {
     public BancosOrigin(ExternalSourceBanco api) {
         this.api = api;
     }
-
-    @Override
-    public void add(PointOfInterest poi) {
-    }
-
-    @Override
-    public void edit(PointOfInterest poi) {
-    }
-
-    @Override
-    public void remove(PointOfInterest poi) {
-    }
-
+    
     @Override
     public List<PointOfInterest> find(String criteria) {
         ArrayList<String> result = api.search(criteria);
