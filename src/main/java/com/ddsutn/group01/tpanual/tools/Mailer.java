@@ -20,7 +20,8 @@ public abstract class Mailer {
         formData.add("text", content);
         ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
                 post(ClientResponse.class, formData);
-        if(response.getStatus() != 200) {
+        if((response.getStatus() < 200) || (response.getStatus()>=300)) {
+            // Un codigo http de tipo 2XX indica que pudo enviar
             throw new Exception("Problemas al enviar el mail");
         }
     }
