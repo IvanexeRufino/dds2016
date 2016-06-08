@@ -8,20 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PoiRepository {
+public class PoiRepository implements Repository {
     private static PoiRepository instance = null;
     private List<Origin> origins;
-    private LocalOrigin origenLocal;
+    private LocalOrigin localOrigin;
 
     private PoiRepository() {
-        origenLocal = new LocalOrigin();
+        localOrigin = new LocalOrigin();
         origins = new ArrayList<>();
     }
 
-    public Origin getOrigenLocal(){
-        return origins.get(0);
-    }
-    
     public static PoiRepository getInstance() {
         if (instance == null) {
             instance = new PoiRepository();
@@ -34,24 +30,30 @@ public class PoiRepository {
         origins.add(origin);
     }
 
+    @Override
     public void add(PointOfInterest poi) {
-        origenLocal.add(poi);
+        localOrigin.add(poi);
     }
 
+    @Override
     public void edit(PointOfInterest poi) {
-        origenLocal.edit(poi);
+        localOrigin.edit(poi);
     }
 
+    @Override
     public void remove(PointOfInterest poi) {
-        origenLocal.remove(poi);
+        localOrigin.remove(poi);
     }
 
+    @Override
     public List<PointOfInterest> find(String criteria) {
-        List<PointOfInterest> lista = origenLocal.find(criteria);
-        lista.addAll(origins.stream().
-                     map(origin -> origin.find(criteria)).
-                     flatMap(List::stream).
-                     collect(Collectors.toList()));
+        List<PointOfInterest> lista = localOrigin.find(criteria);
+
+        lista.addAll(origins.stream()
+            .map(origin -> origin.find(criteria))
+            .flatMap(List::stream)
+            .collect(Collectors.toList()));
+
         return lista;
     }
 }
