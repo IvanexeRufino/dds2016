@@ -1,8 +1,6 @@
-package com.ddsutn.group01.tpanual.repositories.WithActions;
+package com.ddsutn.group01.tpanual.tools;
 
 import java.util.ArrayList;
-
-import org.joda.time.DateTime;
 
 public class Reporter {
     
@@ -19,9 +17,8 @@ public class Reporter {
     }
 
     public void almacenarResultados(String criteria, int cantidadDeResultados, long tiempo) {
-        DateTime fecha = DateTime.now();
-        informacion = new InfoAlmacenada(criteria,cantidadDeResultados,tiempo,fecha);
-        listado.add(informacion);
+        informacion = new InfoAlmacenada(criteria,cantidadDeResultados,tiempo);
+        listado.add(informacion);      
     }
     
 }

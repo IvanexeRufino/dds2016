@@ -1,14 +1,11 @@
-package com.ddsutn.group01.tpanual.repositories.WithActions;
-
-import org.joda.time.DateTime;
+package com.ddsutn.group01.tpanual.tools;
 
 public class InfoAlmacenada {
     private String criteria;
     private int cantidadDeResultados;
     private float tiempo;
-    private DateTime fecha;
     
-    public InfoAlmacenada(String unaPalabra, int unaCantidad, long unTiempo, DateTime fecha) {
+    public InfoAlmacenada(String unaPalabra, int unaCantidad, long unTiempo) {
         criteria = unaPalabra;
         cantidadDeResultados = unaCantidad;
         tiempo = unTiempo;
@@ -37,12 +34,5 @@ public class InfoAlmacenada {
     public void setTiempo(float tiempo) {
         this.tiempo = tiempo;
     }
-    
-    public DateTime getFecha() {
-        return fecha;
-    }
 
-    public void setFecha(DateTime fecha) {
-        this.fecha = fecha;
-    }
 }
