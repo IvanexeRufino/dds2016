@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.origins;
 
-import com.ddsutn.group01.tpanual.models.mocks.ExternalSourceBancoMock;
+import com.ddsutn.group01.tpanual.models.mocks.DataSourceBancoMock;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ public class BancosOriginTest {
 
     @Before
     public void setUp() throws Exception {
-        ExternalSourceBancoMock externalSource = new ExternalSourceBancoMock();
+        DataSourceBancoMock externalSource = new DataSourceBancoMock();
         origin = new BancosOrigin(externalSource);
     }
 

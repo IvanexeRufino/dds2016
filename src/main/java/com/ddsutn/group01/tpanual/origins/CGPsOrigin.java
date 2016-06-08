@@ -2,22 +2,22 @@ package com.ddsutn.group01.tpanual.origins;
 
 import com.ddsutn.group01.tpanual.adapters.CGP.CGPAdapter;
 import com.ddsutn.group01.tpanual.adapters.CGP.CentroDTO;
-import com.ddsutn.group01.tpanual.externalSources.ExternalSourceCGP;
+import com.ddsutn.group01.tpanual.dataSources.DataSourceCGP;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CGPsOrigin implements Origin {
-    private ExternalSourceCGP api;
+class CGPsOrigin implements Origin {
+    private DataSourceCGP dataSource;
 
-    public CGPsOrigin(ExternalSourceCGP externalComponent) {
-        this.api = externalComponent;
+    CGPsOrigin(DataSourceCGP dataSource) {
+        this.dataSource = dataSource;
     }
 
     @Override
     public List<PointOfInterest> find(String criteria) {
-        ArrayList<CentroDTO> result = api.search(criteria);
+        ArrayList<CentroDTO> result = dataSource.search(criteria);
         return CGPAdapter.adapt(result);
     }
 }

@@ -1,10 +1,10 @@
 package com.ddsutn.group01.tpanual.models.mocks;
 
-import com.ddsutn.group01.tpanual.externalSources.ExternalSourceBanco;
+import com.ddsutn.group01.tpanual.dataSources.DataSourceBanco;
 
 import java.util.ArrayList;
 
-public class ExternalSourceBancoMock implements ExternalSourceBanco {
+public class DataSourceBancoMock implements DataSourceBanco {
     @Override
     public ArrayList<String> search(String criterio) {
         ArrayList<String> resultados = new ArrayList<String>();
