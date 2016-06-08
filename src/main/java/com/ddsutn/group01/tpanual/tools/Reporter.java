@@ -2,6 +2,8 @@ package com.ddsutn.group01.tpanual.tools;
 
 import java.util.ArrayList;
 
+import org.joda.time.LocalDate;
+
 public class Reporter {
     
     private static Reporter instance = null;
@@ -17,7 +19,8 @@ public class Reporter {
     }
 
     public void almacenarResultados(String criteria, int cantidadDeResultados, long tiempo) {
-        informacion = new InfoAlmacenada(criteria,cantidadDeResultados,tiempo);
+        org.joda.time.LocalDate fecha = LocalDate.now();
+        informacion = new InfoAlmacenada(criteria,cantidadDeResultados,tiempo,fecha);
         listado.add(informacion);      
     }
     
