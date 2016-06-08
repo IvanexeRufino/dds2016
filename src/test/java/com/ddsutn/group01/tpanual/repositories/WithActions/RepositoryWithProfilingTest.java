@@ -9,8 +9,8 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
-public class RepositoryProfilingTest {
-    private RepositoryProfiling repoProfiling;
+public class RepositoryWithProfilingTest {
+    private RepositoryWithProfiling repoProfiling;
     private Observer mockedObserver;
 
     @Before
@@ -22,7 +22,7 @@ public class RepositoryProfilingTest {
 
         Repository poiRepo = PoiRepository.getInstance();
 
-        repoProfiling = new RepositoryProfiling(poiRepo);
+        repoProfiling = new RepositoryWithProfiling(poiRepo);
         repoProfiling.addObserver(mockedObserver);
     }
 

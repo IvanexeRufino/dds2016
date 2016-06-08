@@ -4,15 +4,17 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Repository;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
-public class RepositoryMetrics extends RepositoryWithActions {
-//    private Reporter reporter;
+public class RepositoryWithMetrics extends RepositoryWithActions {
+//    private Metrics metrics;
 
-    public RepositoryMetrics(Repository repository) {
+    public RepositoryWithMetrics(Repository repository) {
         super(repository);
-//      metrics = new Reporter;
     }
+
+//    public void setMetricsSource(Metrics metrics) {
+//        this.metrics = metrics;
+//    }
 
     @Override
     public List<PointOfInterest> find(String criteria) {
@@ -20,8 +22,12 @@ public class RepositoryMetrics extends RepositoryWithActions {
         List<PointOfInterest> result = repository.find(criteria);
         long estimatedTime = System.nanoTime() - startTime;
 
-//        Metrics.report_stat(criteria, result.size(), estimatedTime);
+        report_metric(criteria, result.size(), estimatedTime);
 
         return result;
+    }
+
+    public void report_metric(String criteria, int resultsCount, long timeLapsed) {
+//        metrics.report_stat(criteria, result.size(), estimatedTime);
     }
 }

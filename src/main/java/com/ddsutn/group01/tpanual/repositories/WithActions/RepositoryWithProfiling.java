@@ -7,11 +7,11 @@ import com.ddsutn.group01.tpanual.repositories.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositoryProfiling extends RepositoryWithActions {
+public class RepositoryWithProfiling extends RepositoryWithActions {
     private int secondsBeforeNotify = 1;
     private List<Observer> observers;
 
-    public RepositoryProfiling(Repository repository) {
+    public RepositoryWithProfiling(Repository repository) {
         super(repository);
         observers = new ArrayList<>();
     }
