@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositoryProfiling extends RepositoryWithActions {
-    private long maxTimeBeforeNotify = 1000000000;
+    private int secondsBeforeNotify = 1;
     private List<Observer> observers;
 
     public RepositoryProfiling(Repository repository) {
@@ -20,12 +20,12 @@ public class RepositoryProfiling extends RepositoryWithActions {
         observers.add(observer);
     }
 
-    public long getMaxTimeBeforeNotify() {
-        return maxTimeBeforeNotify;
+    public long getSecondsBeforeNotify() {
+        return secondsBeforeNotify;
     }
 
-    public void setMaxTimeBeforeNotify(long maxTimeBeforeNotify) {
-        this.maxTimeBeforeNotify = maxTimeBeforeNotify;
+    public void setSecondsBeforeNotify(int secondsBeforeNotify) {
+        this.secondsBeforeNotify = secondsBeforeNotify;
     }
 
     @Override
@@ -41,8 +41,9 @@ public class RepositoryProfiling extends RepositoryWithActions {
         return result;
     }
 
-    private boolean maxTimeLapsed(long time) {
-        return time > maxTimeBeforeNotify;
+    private boolean maxTimeLapsed(long timeLapsed) {
+        long maxTimeInNanoSeconds = secondsBeforeNotify * 1000000000;
+        return timeLapsed > maxTimeInNanoSeconds;
     }
 
     private void notifyObservers() {

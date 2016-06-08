@@ -28,15 +28,15 @@ public class RepositoryProfilingTest {
 
     @Test
     public void find() throws Exception {
-        long longTime = 1000000000;
-        repoProfiling.setMaxTimeBeforeNotify(longTime);
+        int longTime = 10;
+        repoProfiling.setSecondsBeforeNotify(longTime);
         repoProfiling.find("foo");
         verify(mockedObserver, never()).inform();
     }
 
     @Test
     public void findAndNotify() throws Exception {
-        repoProfiling.setMaxTimeBeforeNotify(0);
+        repoProfiling.setSecondsBeforeNotify(0);
         repoProfiling.find("foo");
         verify(mockedObserver).inform();
     }
