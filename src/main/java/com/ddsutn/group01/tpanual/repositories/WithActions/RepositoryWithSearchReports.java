@@ -4,18 +4,18 @@ import java.util.List;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Repository;
-import com.ddsutn.group01.tpanual.tools.Metrics;
+import com.ddsutn.group01.tpanual.tools.Reporter;
 
-public class RepositoryWithReporte extends RepositoryWithActions{
-   
-    private Metrics metrics;
+public class RepositoryWithSearchReports extends RepositoryWithActions{
     
-    RepositoryWithReporte(Repository repository) {
+    private Reporter reporter;
+   
+    RepositoryWithSearchReports(Repository repository) {
         super(repository);
     }
     
-    public void setMetricsSource(Metrics metrics) {
-        this.metrics = metrics;
+    public void setreporter(Reporter metrics) {
+        this.reporter = metrics;
     }
 
     @Override
@@ -26,11 +26,11 @@ public class RepositoryWithReporte extends RepositoryWithActions{
     }
     
     public void actualizarReporte() {
-        metrics.actualizarReporte();
+        reporter.actualizarReporte();
     }
     
     public void obtenerReporte() {
-        metrics.obtenerReporte();
+        reporter.obtenerReporte();
     }
     
 }
