@@ -2,12 +2,13 @@ package com.ddsutn.group01.tpanual.repositories.WithActions;
 
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.Repository;
-import com.ddsutn.group01.tpanual.tools.metrics.Metrics;
+import com.ddsutn.group01.tpanual.tools.Metrics;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.verify;
 
 public class RepositoryWithMetricsTest {
     private RepositoryWithMetrics repoWithMetrics;

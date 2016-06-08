@@ -6,31 +6,27 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Repository;
 import com.ddsutn.group01.tpanual.tools.Reporter;
 
-public class RepositoryWithSearchReports extends RepositoryWithActions{
-    
+public class RepositoryWithReport extends RepositoryWithActions{
     private Reporter reporter;
-   
-    RepositoryWithSearchReports(Repository repository) {
+
+    RepositoryWithReport(Repository repository) {
         super(repository);
     }
-    
-    public void setreporter(Reporter metrics) {
-        this.reporter = metrics;
+
+    public void setReporter(Reporter reporter) {
+        this.reporter = reporter;
     }
 
     @Override
     public List<PointOfInterest> find(String criteria) {
         List<PointOfInterest> result = repository.find(criteria);
-        actualizarReporte();
+
+        updateReport();
+
         return result;
     }
-    
-    public void actualizarReporte() {
-        reporter.actualizarReporte();
+
+    public void updateReport() {
+        reporter.updateReport();
     }
-    
-    public void obtenerReporte() {
-        reporter.obtenerReporte();
-    }
-    
 }
