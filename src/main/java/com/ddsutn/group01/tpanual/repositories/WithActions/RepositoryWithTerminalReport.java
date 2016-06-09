@@ -10,7 +10,7 @@ import com.ddsutn.group01.tpanual.tools.Reporter;
 public class RepositoryWithTerminalReport extends RepositoryWithActions{
     
     private HashMap<String, Integer> parcial = new HashMap<>();
-    private HashMap<String, Integer> total = new HashMap<>();
+    static HashMap<String, Integer> total = new HashMap<>();
     private Reporter reporter;
     private String terminal;
 
