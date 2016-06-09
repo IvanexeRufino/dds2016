@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.joda.time.LocalDate;
 
-public class PoiReporter implements Reporter {
+public class SearchReporter implements Reporter {
 
     private HashMap<LocalDate,Integer> reporte = new HashMap<>();
 
