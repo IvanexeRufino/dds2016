@@ -18,6 +18,10 @@ public class RepositoryWithTerminalReport extends RepositoryWithActions{
         super(repository);
         terminal = nombre;
     }
+    
+    public void setReporter(Reporter reporter) {
+        this.reporter = reporter;
+    }
 
     @Override
     public List<PointOfInterest> find(String criteria) {
