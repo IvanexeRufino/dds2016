@@ -7,7 +7,7 @@ import org.joda.time.LocalDate;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Repository;
-import com.ddsutn.group01.tpanual.tools.Reporter;
+import com.ddsutn.group01.tpanual.tools.reporters.Reporter;
 
 public class RepositoryWithReport extends RepositoryWithActions{
     private Reporter reporter;
@@ -34,7 +34,7 @@ public class RepositoryWithReport extends RepositoryWithActions{
         String fecha = LocalDate.now().toString();
         reporter.updateReport(fecha,1,data);
     }
-    
+
     public HashMap<String, Integer>  getReport() {
         return data;
     }

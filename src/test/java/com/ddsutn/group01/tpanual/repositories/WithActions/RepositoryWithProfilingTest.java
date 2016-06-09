@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.repositories.WithActions;
 
-import com.ddsutn.group01.tpanual.observers.Observer;
+import com.ddsutn.group01.tpanual.tools.observers.Observer;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.Repository;
 import org.junit.Before;

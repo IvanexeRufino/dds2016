@@ -1,6 +1,6 @@
-package com.ddsutn.group01.tpanual.observers;
+package com.ddsutn.group01.tpanual.tools.observers;
 
-import com.ddsutn.group01.tpanual.tools.Mailer;
+import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

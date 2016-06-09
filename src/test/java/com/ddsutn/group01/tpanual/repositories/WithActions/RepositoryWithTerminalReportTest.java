@@ -10,12 +10,12 @@ import org.mockito.Mockito;
 
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.Repository;
-import com.ddsutn.group01.tpanual.tools.Reporter;
+import com.ddsutn.group01.tpanual.tools.reporters.Reporter;
 
 public class RepositoryWithTerminalReportTest {
 	private RepositoryWithTerminalReport repositoryWithTerminalReport;
 	private Reporter mockedReporter;
-	 
+
 	@Before
 	public void setUp() throws Exception {
 	    Repository poiRepo = PoiRepository.getInstance();
@@ -26,7 +26,7 @@ public class RepositoryWithTerminalReportTest {
         });
         repositoryWithTerminalReport.setReporter(mockedReporter);
     }
-	    
+
     @Test
     public void find() throws Exception {
         HashMap<String, Integer> data = new HashMap<String, Integer>();

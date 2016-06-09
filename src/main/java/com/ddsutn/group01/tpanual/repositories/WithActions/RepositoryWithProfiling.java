@@ -1,7 +1,7 @@
 package com.ddsutn.group01.tpanual.repositories.WithActions;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
-import com.ddsutn.group01.tpanual.observers.Observer;
+import com.ddsutn.group01.tpanual.tools.observers.Observer;
 import com.ddsutn.group01.tpanual.repositories.Repository;
 
 import java.util.ArrayList;

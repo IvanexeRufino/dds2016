@@ -2,7 +2,7 @@ package com.ddsutn.group01.tpanual.repositories.WithActions;
 
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.Repository;
-import com.ddsutn.group01.tpanual.tools.Reporter;
+import com.ddsutn.group01.tpanual.tools.reporters.Reporter;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

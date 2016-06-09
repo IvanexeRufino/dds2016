@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual.tools;
+package com.ddsutn.group01.tpanual.tools.mailers;
 
 import com.sun.jersey.api.client.*;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;

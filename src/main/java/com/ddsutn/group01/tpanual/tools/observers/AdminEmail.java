@@ -1,6 +1,6 @@
-package com.ddsutn.group01.tpanual.observers;
+package com.ddsutn.group01.tpanual.tools.observers;
 
-import com.ddsutn.group01.tpanual.tools.Mailer;
+import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 
 public class AdminEmail implements Observer {
     private String email;

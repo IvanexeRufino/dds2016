@@ -2,7 +2,7 @@ package com.ddsutn.group01.tpanual.repositories.WithActions;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Repository;
-import com.ddsutn.group01.tpanual.tools.Metrics;
+import com.ddsutn.group01.tpanual.tools.metrics.Metrics;
 
 import java.util.List;
 
