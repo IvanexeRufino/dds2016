@@ -6,9 +6,10 @@ public class AdminEmail implements Observer {
     private String email;
     private String subject;
     private String content;
+    private Mailer mailer;
 
-    public AdminEmail(String email) {
-        this.email = email;
+    public AdminEmail(Mailer mailer) {
+        this.mailer = mailer;
     }
 
     public void setEmail(String email) {
@@ -26,7 +27,7 @@ public class AdminEmail implements Observer {
     @Override
     public void inform() {
         try {
-            Mailer.send(email, subject, content);
+            mailer.send(email, subject, content);
         } catch (Exception e) {
             e.printStackTrace();
         }
