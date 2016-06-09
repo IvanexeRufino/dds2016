@@ -9,6 +9,9 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.verify;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+
 public class RepositoryWithReportTest {
     private RepositoryWithReport repositoryWithReport;
     private Reporter mockedReporter;
@@ -19,14 +22,16 @@ public class RepositoryWithReportTest {
         repositoryWithReport = new RepositoryWithReport(poiRepo);
         mockedReporter = Mockito.spy(new Reporter() {
             @Override
-            public void updateReport() {}
+            public void updateReport(String key, Integer value, HashMap<String, Integer> data) {}
         });
         repositoryWithReport.setReporter(mockedReporter);
     }
 
     @Test
     public void find() throws Exception {
+        HashMap<String, Integer> data = new HashMap<String, Integer>();
+        String fecha = LocalDate.now().toString();
         repositoryWithReport.find("foo");
-        verify(mockedReporter).updateReport();
+        verify(mockedReporter).updateReport(fecha, 1, data);
     }
 }

@@ -1,26 +1,17 @@
 package com.ddsutn.group01.tpanual.tools;
 
-import org.joda.time.LocalDate;
-
 import java.util.HashMap;
 
 public class SearchReporter implements Reporter {
 
-    private HashMap<LocalDate, Integer> data = new HashMap<>();
-
-    public void updateReport() {
-        LocalDate date = LocalDate.now();
-        if (data.containsKey(date)) {
-            Integer resultsCounter = data.get(date);
-            resultsCounter++;
-
-            data.put(date, resultsCounter);
+    public void updateReport(String key, Integer value, HashMap<String, Integer> data) {
+        if (data.containsKey(key)) {
+            Integer resultsCounter = data.get(key);
+            resultsCounter = resultsCounter + value;
+            data.put(key, resultsCounter);
         } else {
-            data.put(date, 1);
+            data.put(key, value);
         }
     }
-
-    public HashMap<LocalDate, Integer> getReport() {
-        return data;
-    }
+    
 }
