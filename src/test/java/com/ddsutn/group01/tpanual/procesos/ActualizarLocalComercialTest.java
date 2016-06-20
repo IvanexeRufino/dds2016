@@ -12,36 +12,34 @@ import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Rubro;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
 import com.ddsutn.group01.tpanual.origins.LocalOrigin;
+import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 
 
 
 public class ActualizarLocalComercialTest {
-	private LocalOrigin olocal;
 	private LocalComercial carrousel;
     private Point point;
-    private HorariosDeAtencion horariosDeAtencion;
+    private HorariosDeAtencion horarios;
     private Rubro rubro;
 	
 	
 	@Before
 	public void init() {
-	LocalOrigin olocal = new LocalOrigin();
+	PoiRepository repo = PoiRepository.getInstance();
 	
-	Point point = new Point(1,1);
-    HorariosDeAtencion horarios = new HorariosDeAtencion();
-    Rubro rubro = Rubro.kiosco;
+	point = new Point(1,1);
+    horarios = new HorariosDeAtencion();
+    rubro = Rubro.kiosco;
 
-    LocalComercial carrousel = new LocalComercial(1,"carrousel",point,rubro,horarios);
+    carrousel = new LocalComercial(1,"carrousel",point,rubro,horarios);
 	carrousel.agregarPalabraClave("hola");
-	
-    olocal.add(carrousel);
    
 	}
 
 	@Test
 	public void testActualizarPalabrasClaves() {		
 		//carrousel.actualizarPalabrasClaves("juguete pelota");
-		Assert.assertTrue((carrousel.getPalabrasClaves().size())== 1);
+		Assert.assertEquals(carrousel.getPalabrasClaves().size(), 1);
 	}
 
 }
