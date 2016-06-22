@@ -31,7 +31,6 @@ public class FileitorTest {
     rubro = Rubro.kiosco;
 
     carrousel = new LocalComercial(1,"carrousel",point,rubro,horarios);
-	carrousel.agregarPalabraClave("autos");
 	
 	kiosquito = new LocalComercial (2,"kiosquito",point,rubro,horarios);
 	kiosquito.agregarPalabraClave("chupelupe");
