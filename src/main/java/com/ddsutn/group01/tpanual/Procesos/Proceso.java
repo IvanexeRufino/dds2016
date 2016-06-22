@@ -10,7 +10,7 @@ public abstract class Proceso {
     
     private Frecuencia tiempoDeEjecucion;
     private ExcepcionProceso tipoDeExcepcion;
-    private String estado = "No ejecutandose";
+    private String estado;
     private Log log = new Log();
     
     public void setFrecuencia(Frecuencia unaFrecuencia) {
@@ -21,8 +21,12 @@ public abstract class Proceso {
         tipoDeExcepcion = tipo;
     }
     
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void estadoTerminado() {
+        this.estado = "Terminado";
+    }
+    
+    public void estadoError() {
+    	this.estado = "Error";
     }
     
     public String getEstado() {
@@ -30,9 +34,8 @@ public abstract class Proceso {
     }
     
     public void ejecutarProceso() throws Exception {
-        this.setEstado("EnEjecucion");
         int cantidadDeResultados = this.ejecutar();
-        this.setEstado("Finalizado");
+        this.estadoTerminado();
         this.log.guardar(cantidadDeResultados,DateTime.now(), estado);
     }
     
@@ -48,6 +51,5 @@ public abstract class Proceso {
             };   
         tiempoDeEjecucion.activarProceso(task);
     }
-    
     
 }

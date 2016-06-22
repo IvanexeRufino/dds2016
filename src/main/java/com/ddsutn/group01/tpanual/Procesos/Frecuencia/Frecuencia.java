@@ -14,7 +14,7 @@ public abstract class Frecuencia {
         TimerTask timer = new TimerTask() {
             public void run() { 
                 ejecutable.run();
-                ejecutable.notify();}
+                }
             };      
         this.schedule(timer);
     }

@@ -55,11 +55,11 @@ public class FileitorTest {
 		Assert.assertTrue(kioscoDeMario.getPalabrasClaves().contains("jorgito"));
 	}
 	
-	@Test
-	public void testBasicDisarm() {
-		fileitor.basicDisarm("carrousel;juguete pelota barbie");
-		Assert.assertEquals(carrousel.getPalabrasClaves().size(), 3);		
-	}
+//	@Test
+//	public void testBasicDisarm() {
+//		fileitor.basicDisarm("carrousel;juguete pelota barbie");
+//		Assert.assertEquals(carrousel.getPalabrasClaves().size(), 3);		
+//	}
 	
 	@Test
 	public void testDisarm() {

@@ -13,7 +13,7 @@ public class ExcepcionMail implements ExcepcionProceso {
     
     @Override
     public void manejarError(Proceso process)  {
-        process.setEstado("Error");
+        process.estadoError();
         try{
         mailer.send("admin@gmail.com", "error", "error en proceso");
         }

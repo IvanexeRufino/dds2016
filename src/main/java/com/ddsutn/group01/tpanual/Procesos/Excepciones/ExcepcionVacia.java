@@ -6,7 +6,7 @@ public class ExcepcionVacia implements ExcepcionProceso {
     
     @Override
     public void manejarError(Proceso process) { 
-        process.setEstado("Error");
+        process.estadoError();
     }
 
 }
