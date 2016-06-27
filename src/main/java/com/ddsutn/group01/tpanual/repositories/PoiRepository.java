@@ -45,6 +45,10 @@ public class PoiRepository implements Repository {
         localOrigin.remove(poi);
     }
 
+    public PointOfInterest getPOI(int indice) {
+        return localOrigin.getPOI(indice);
+    }
+    
     @Override
     public List<PointOfInterest> find(String criteria) {
         List<PointOfInterest> lista = localOrigin.find(criteria);

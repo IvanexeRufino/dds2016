@@ -24,6 +24,10 @@ public class LocalOrigin implements Origin {
     public void remove(PointOfInterest poi) {
         dao.delete(poi);
     }
+    
+    public PointOfInterest getPOI(int indice) {
+        return dao.getPOI(indice);
+    }
 
     public ArrayList<PointOfInterest> getAll() {
         return dao.findAll();
