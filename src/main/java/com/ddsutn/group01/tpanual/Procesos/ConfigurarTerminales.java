@@ -11,8 +11,6 @@ public class ConfigurarTerminales {
     private List<Terminal> terminales;
     private List<Terminal> terminalesAEjecutar;
     
-    
-    
     public ConfigurarTerminales(List<Terminal> terminales) {
         this.terminales = terminales;
         this.terminalesAEjecutar = terminales;
@@ -29,11 +27,6 @@ public class ConfigurarTerminales {
     
     public void configurarTodasLasTerminales() {
         terminalesAEjecutar = terminales;
-    }
-    
-    public void configurarTerminal(Terminal unaTerminal) {
-        terminalesAEjecutar = terminales.stream().filter(terminal->terminal.getNombreDeTerminal() == unaTerminal.getNombreDeTerminal())
-                                                 .collect(Collectors.toList());
     }
     
     public void ejecutar() {
