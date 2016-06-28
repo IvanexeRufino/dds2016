@@ -12,14 +12,12 @@ import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 
-public class RepositoryWithActionsTest {
+public class BuscadorTest {
     private Action mockedAction;
-    private RepositoryWithActions repoWithActions;
+    PoiRepository poiRepo = PoiRepository.getInstance();
 
     @Before
     public void setUp() throws Exception {
-        Repository poiRepo = PoiRepository.getInstance();
-        repoWithActions = new RepositoryWithActions(poiRepo);
         mockedAction = Mockito.spy(new Action() {
             @Override
             public void precondition() {}
@@ -28,18 +26,18 @@ public class RepositoryWithActionsTest {
             public void postcondition(String criteria, List<PointOfInterest> result) {}
         });
 
-        repoWithActions.addAction(mockedAction);
+        poiRepo.addAction(mockedAction);
     }
 
     @Test
     public void runsPrecondition() throws Exception {
-        repoWithActions.find("foo");
+        poiRepo.find("foo");
         verify(mockedAction).precondition();
     }
 
     @Test
     public void runsPostcondition() throws Exception {
-        repoWithActions.find("foo");
+        poiRepo.find("foo");
         verify(mockedAction).postcondition(any(String.class), anyListOf(PointOfInterest.class));
     }
 }

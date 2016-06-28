@@ -37,7 +37,7 @@ public class LocalOriginTest {
     @Test
     public void eliminar() throws Exception {
         localOrigin.add(poi);
-        localOrigin.remove(poi);
+        localOrigin.remove(poi.getId());
         Assert.assertTrue(localOrigin.getAll().isEmpty());
     }
 

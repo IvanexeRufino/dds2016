@@ -3,21 +3,23 @@ package com.ddsutn.group01.tpanual.repositories;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.origins.LocalOrigin;
 import com.ddsutn.group01.tpanual.origins.Origin;
+import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class PoiRepository implements Repository {
+public class PoiRepository {
     private static PoiRepository instance = null;
     private List<Origin> origins;
     private LocalOrigin localOrigin;
+    private Buscador buscadorDePOI;
 
-    private PoiRepository() {
+    public PoiRepository() {
         localOrigin = new LocalOrigin();
         origins = new ArrayList<>();
+        buscadorDePOI = new Buscador();
     }
-
+    
     public static PoiRepository getInstance() {
         if (instance == null) {
             instance = new PoiRepository();
@@ -25,39 +27,40 @@ public class PoiRepository implements Repository {
 
         return instance;
     }
+    
+    public void addAction(Action action) {
+        buscadorDePOI.addAction(action);
+    }
 
+    public void removeAction(Action action) {
+        buscadorDePOI.removeAction(action);
+    }
+    
+    public LocalOrigin getOrigenLocal() {
+        return localOrigin;
+    }
+
+    public List<Origin> getOrigenes() {
+        return origins;
+    }
+    
     public void addOrigin(Origin origin) {
         origins.add(origin);
     }
 
-    @Override
     public void add(PointOfInterest poi) {
         localOrigin.add(poi);
     }
 
-    @Override
     public void edit(PointOfInterest poi) {
         localOrigin.edit(poi);
     }
 
-    @Override
-    public void remove(PointOfInterest poi) {
-        localOrigin.remove(poi);
+    public void remove(int indice) {
+        localOrigin.remove(indice);
     }
 
-    public PointOfInterest getPOI(int indice) {
-        return localOrigin.getPOI(indice);
-    }
-    
-    @Override
     public List<PointOfInterest> find(String criteria) {
-        List<PointOfInterest> lista = localOrigin.find(criteria);
-
-        lista.addAll(origins.stream()
-            .map(origin -> origin.find(criteria))
-            .flatMap(List::stream)
-            .collect(Collectors.toList()));
-
-        return lista;
+        return buscadorDePOI.find(criteria);
     }
 }

@@ -3,7 +3,6 @@ package com.ddsutn.group01.tpanual.origins;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 class PoiDAO {
     private ArrayList<PointOfInterest> pois;
@@ -17,18 +16,12 @@ class PoiDAO {
     }
 
     void update(PointOfInterest poi) {
-        delete(poi);
+        delete(poi.getId());
         create(poi);
     }
 
-    void delete(PointOfInterest poi) {
-        pois.removeIf((poiLocal) -> poiLocal.getId().equals(poi.getId()));
-    }
-
-    PointOfInterest getPOI(int indice) {
-        return pois.stream().filter(unPOI->unPOI.getId() == indice)
-                            .collect(Collectors.toList())
-                            .get(0);
+    void delete(int indice) {
+        pois.removeIf((poiLocal) -> poiLocal.getId().equals(indice));
     }
     
     ArrayList<PointOfInterest> findAll() {
