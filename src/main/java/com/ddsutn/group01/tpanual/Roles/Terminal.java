@@ -22,6 +22,18 @@ public class Terminal {
         this.nombreDeTerminal = nombreDeTerminal; 
     }
     
+    public int getComuna() {
+        return comuna;
+    }
+    
+    public String getNombreDeTerminal() {
+        return nombreDeTerminal;
+    }
+    
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
+    }
+    
     public void addAction(Action action) {
         actions.add(action);
     }
