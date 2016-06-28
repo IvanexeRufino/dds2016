@@ -1,5 +1,6 @@
 package com.ddsutn.group01.tpanual.repositories;
 
+import com.ddsutn.group01.tpanual.Roles.Terminal;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 import org.junit.Before;
@@ -12,9 +13,10 @@ import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 
-public class BuscadorTest {
+public class AccionesTest {
     private Action mockedAction;
-    PoiRepository poiRepo = PoiRepository.getInstance();
+    private Buscador buscador = new Buscador();
+    private Terminal unaTerminal = new Terminal("terminalUrquiza",1);
 
     @Before
     public void setUp() throws Exception {
@@ -25,19 +27,19 @@ public class BuscadorTest {
             @Override
             public void postcondition(String criteria, List<PointOfInterest> result) {}
         });
-
-        poiRepo.addAction(mockedAction);
+        unaTerminal.setBuscador(buscador);
+        unaTerminal.addAction(mockedAction);
     }
 
     @Test
     public void runsPrecondition() throws Exception {
-        poiRepo.find("foo");
+        unaTerminal.find("foo");
         verify(mockedAction).precondition();
     }
 
     @Test
     public void runsPostcondition() throws Exception {
-        poiRepo.find("foo");
+        unaTerminal.find("foo");
         verify(mockedAction).postcondition(any(String.class), anyListOf(PointOfInterest.class));
     }
 }

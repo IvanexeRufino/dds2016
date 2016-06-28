@@ -8,14 +8,9 @@
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//public class Profiling extends RepositoryWithActions {
+//public class Profiling implements Action {
 //    private int secondsBeforeNotify = 1;
-//    private List<Observer> observers;
-//
-//    public Profiling(Repository repository) {
-//        super(repository);
-//        observers = new ArrayList<>();
-//    }
+//    private List<Observer> observers = new ArrayList<>();
 //
 //    public void addObserver(Observer observer) {
 //        observers.add(observer);
@@ -30,7 +25,7 @@
 //    }
 //
 //    @Override
-//    public List<PointOfInterest> find(String criteria) {
+//    public List<PointOfInterest> postCondition(String criteria) {
 //        long startTime = System.nanoTime();
 //        List<PointOfInterest> result = repository.find(criteria);
 //        long estimatedTime = System.nanoTime() - startTime;
@@ -49,5 +44,17 @@
 //
 //    private void notifyObservers() {
 //        observers.stream().forEach(Observer::inform);
+//    }
+//
+//    @Override
+//    public void precondition() {
+//        // TODO Auto-generated method stub
+//        
+//    }
+//
+//    @Override
+//    public void postcondition(String criteria, List<PointOfInterest> result) {
+//        // TODO Auto-generated method stub
+//        
 //    }
 //}
