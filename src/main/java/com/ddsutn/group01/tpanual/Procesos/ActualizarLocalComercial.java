@@ -11,7 +11,7 @@ import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
 import com.ddsutn.group01.tpanual.origins.LocalOrigin;
 
 
-public class ActualizarLocalComercial {
+public class ActualizarLocalComercial extends Proceso{
 
 	
 	public ActualizarLocalComercial() {

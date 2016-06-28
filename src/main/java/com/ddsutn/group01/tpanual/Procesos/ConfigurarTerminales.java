@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import com.ddsutn.group01.tpanual.Roles.Terminal;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
-public class ConfigurarTerminales {
+public class ConfigurarTerminales extends Proceso {
     private List<Action> acciones;
     private List<Terminal> terminales;
     private List<Terminal> terminalesAEjecutar;

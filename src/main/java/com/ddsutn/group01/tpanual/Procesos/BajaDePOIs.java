@@ -6,7 +6,7 @@ import com.ddsutn.group01.tpanual.InterpreterJSON.InterpreterJSON;
 import com.ddsutn.group01.tpanual.dataSources.DataSourceBajaDePOIs;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 
-public class BajaDePOIs {
+public class BajaDePOIs extends Proceso{
     private DataSourceBajaDePOIs dataSource;
 
     BajaDePOIs(DataSourceBajaDePOIs dataSource) {

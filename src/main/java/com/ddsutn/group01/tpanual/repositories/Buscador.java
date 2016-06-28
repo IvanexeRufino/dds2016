@@ -15,4 +15,5 @@ public class Buscador {
                                               .collect(Collectors.toList()));
         return lista;
     }
+    
 }
