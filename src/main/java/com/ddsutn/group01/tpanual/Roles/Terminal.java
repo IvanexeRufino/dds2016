@@ -10,7 +10,7 @@ import com.ddsutn.group01.tpanual.repositories.actions.Action;
 public class Terminal {
     private int comuna;
     private String nombreDeTerminal;
-    private ArrayList<Action> actions = new ArrayList<>();
+    private List<Action> actions = new ArrayList<>();
     private Buscador buscador;
     
     public void setBuscador(Buscador unBuscador) {
