@@ -14,7 +14,7 @@ public class LocalComercial extends PointOfInterest {
         this.rubro = rubro;
         this.horarioDeAtencion = horarioDeAtencion;
     }
-
+   
     @Override
     public Boolean estaDisponible(DateTime unHorario) {
         return horarioDeAtencion.estaDisponible(unHorario);
@@ -27,5 +27,13 @@ public class LocalComercial extends PointOfInterest {
     @Override
     protected Double criterioDeCercania() {
         return rubro.getRadioDeCercania();
+    }
+    
+    public void actualizarPalabrasClaves (String palabras) {
+    	palabrasClaves.clear();
+    	String [] nuevasPalabras = palabras.split("\\s+");
+    	for (String palabra : nuevasPalabras) {
+    		palabrasClaves.add(palabra);
+    	}    	
     }
 }

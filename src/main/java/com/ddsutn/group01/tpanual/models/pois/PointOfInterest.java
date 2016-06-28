@@ -30,6 +30,10 @@ public abstract class PointOfInterest {
     public String getName() {
         return name;
     }
+    
+    public List<String> getPalabrasClaves() {
+        return palabrasClaves;
+    }
 
     public final void agregarPalabraClave(String unaPalabra) {
         palabrasClaves.add(unaPalabra);
