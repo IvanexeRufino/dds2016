@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.ddsutn.group01.tpanual.repositories.Frecuencia;
-
 public class Periodico implements Frecuencia{
     
     private Date dia;

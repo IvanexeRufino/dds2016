@@ -3,7 +3,7 @@ package com.ddsutn.group01.tpanual.Procesos;
 import java.io.IOException;
 import java.util.Date;
 
-import com.ddsutn.group01.tpanual.repositories.Frecuencia;
+import com.ddsutn.group01.tpanual.Procesos.Frecuencia.Frecuencia;
 
 public abstract class Proceso {
     
