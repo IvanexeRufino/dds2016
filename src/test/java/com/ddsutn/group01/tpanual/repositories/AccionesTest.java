@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 public class AccionesTest {
     private Action mockedAction;
     private Buscador buscador = new Buscador();
-    private Terminal unaTerminal = new Terminal("terminalUrquiza",1);
+    private Terminal unaTerminal = new Terminal("terminalUrquiza",1,buscador);
 
     @Before
     public void setUp() throws Exception {
@@ -27,7 +27,6 @@ public class AccionesTest {
             @Override
             public void postcondition(String criteria, List<PointOfInterest> result) {}
         });
-        unaTerminal.setBuscador(buscador);
         unaTerminal.addAction(mockedAction);
     }
 

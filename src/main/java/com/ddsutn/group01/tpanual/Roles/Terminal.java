@@ -12,26 +12,27 @@ public class Terminal {
     private String nombreDeTerminal;
     private List<Action> actions = new ArrayList<>();
     private Buscador buscador;
-    
-    public void setBuscador(Buscador unBuscador) {
-        this.buscador = unBuscador;
-    }
-    
-    public Terminal(String nombreDeTerminal, Integer unaComuna) {
+       
+    public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;
         this.nombreDeTerminal = nombreDeTerminal; 
+        this.buscador = unBuscador;
     }
     
     public int getComuna() {
         return comuna;
     }
     
-    public String getNombreDeTerminal() {
-        return nombreDeTerminal;
+    public List<Action> getAcciones() {
+        return actions;
     }
     
     public void setActions(List<Action> actions) {
         this.actions = actions;
+    }
+    
+    public String getNombreDeTerminal() {
+        return nombreDeTerminal;
     }
     
     public void addAction(Action action) {
