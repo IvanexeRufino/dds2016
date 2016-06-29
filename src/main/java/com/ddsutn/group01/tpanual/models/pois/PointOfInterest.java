@@ -54,4 +54,7 @@ public abstract class PointOfInterest {
     protected Double criterioDeCercania() {
         return 0.5;
     }
+
+	public void actualizarPalabrasClaves(String pclaves) {		
+	}
 }
