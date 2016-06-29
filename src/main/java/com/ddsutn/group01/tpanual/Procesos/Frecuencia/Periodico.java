@@ -25,7 +25,7 @@ public class Periodico implements Frecuencia{
                     e.printStackTrace();
                 }
                 ejecutable.run();
-                temporizador.notifyAll();}
+                temporizador.notify();}
             };      
         temporizador.scheduleAtFixedRate(timer,dia, periodo);
     }
