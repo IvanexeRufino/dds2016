@@ -12,9 +12,10 @@ public class ExcepcionMail implements ExcepcionProceso {
     }
     
     @Override
-    public void manejarError(Proceso process, Exception error)  {
+    public void manejarError(Proceso process)  {
+        process.setEstado("Error");
         try{
-        mailer.send("admin@gmail.com", "error", "error en proceso"+process.getClass());
+        mailer.send("admin@gmail.com", "error", "error en proceso");
         }
         catch (Exception e){
             e.printStackTrace();

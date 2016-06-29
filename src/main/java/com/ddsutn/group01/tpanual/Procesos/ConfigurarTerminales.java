@@ -29,8 +29,9 @@ public class ConfigurarTerminales extends Proceso {
         terminalesAEjecutar = terminales;
     }
     
-    public void ejecutar() {
+    public int ejecutar() {
         terminalesAEjecutar.forEach(terminales->terminales.setActions(acciones));
+        return terminalesAEjecutar.size();
     }
     
 }

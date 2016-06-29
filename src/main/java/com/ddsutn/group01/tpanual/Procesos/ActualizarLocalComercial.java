@@ -12,13 +12,19 @@ import com.ddsutn.group01.tpanual.origins.LocalOrigin;
 
 
 public class ActualizarLocalComercial extends Proceso{
-
+    
+	private int contador;
+    
+	private void aumentarContador() {
+	    contador = contador +1;
+	}
 	
 	public ActualizarLocalComercial() {
 	}
 
-	public void ejecutar() throws IOException {
+	public int ejecutar() throws IOException {
 		LocalOrigin olocal = new LocalOrigin();
+		contador = 0;
 		
 		 FileReader in = new FileReader("C:/entrega4.txt");
 		    BufferedReader br = new BufferedReader(in);
@@ -30,10 +36,13 @@ public class ActualizarLocalComercial extends Proceso{
 		        
 		        LocalComercial poiBuscado = (LocalComercial) olocal.getAll().stream().filter(poi -> poi.getName().equals(nombreLocal)).findFirst().get();
 		        poiBuscado.actualizarPalabrasClaves(pclaves);
+		        this.aumentarContador();
 		        
 		   }
 		    
 		    in.close();
+		    
+		    return contador;
 		    
 	}
 	

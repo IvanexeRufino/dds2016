@@ -1,43 +1,34 @@
 package com.ddsutn.group01.tpanual.Procesos.Excepciones;
 
 import com.ddsutn.group01.tpanual.Procesos.Proceso;
-import com.ddsutn.group01.tpanual.tools.mailers.MailgunMailer;
 
 public class ExcepcionIntentos implements ExcepcionProceso {
     
     private int cantidadDeIntentos;
     private int contador;
-    private MailgunMailer mailer;
-    private Boolean mailAdmin;
+    private ExcepcionProceso handler;
     
-    public ExcepcionIntentos(int cantidad, Boolean mailAdmin) {
+    public ExcepcionIntentos(int cantidad, ExcepcionProceso handler) {
         this.cantidadDeIntentos = cantidad;
         this.resetearContador();
-        this.mailAdmin = mailAdmin;
+        this.handler = handler;
     }
     
     private void resetearContador() {
         contador = 0;
     }
-    
-    public void manejarExcepcion (Exception error) {
-        if (contador<cantidadDeIntentos) {
-            
-        }
-    }
 
     @Override
-    public void manejarError(Proceso process, Exception error) throws Exception {
+    public void manejarError(Proceso process) throws Exception {
+        process.setEstado("Error");
         if(cantidadDeIntentos>contador){
             process.ejecutar(); 
         }
         else {
+            handler.manejarError(process);
             this.resetearContador();
-            if (mailAdmin) {
-                mailer = new MailgunMailer();
-                mailer.send("admin@gmail.com", "error", "error en proceso"+process.getClass());
-            }
         }
+        
     }
-    
 }
+    
