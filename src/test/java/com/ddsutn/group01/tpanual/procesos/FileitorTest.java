@@ -41,7 +41,6 @@ public class FileitorTest {
 	
 	PoiRepository.getInstance().add(carrousel);
 	PoiRepository.getInstance().add(kiosquito);
-	PoiRepository.getInstance().add(kioscoDeMario);
 	
 	fileitor = new Fileitor ("carrousel;barbie autos peluches\nkiosquito;chupelupe caramelos golosinas");
 	
