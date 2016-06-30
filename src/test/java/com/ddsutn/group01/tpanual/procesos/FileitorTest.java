@@ -2,6 +2,8 @@ package com.ddsutn.group01.tpanual.procesos;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +43,7 @@ public class FileitorTest {
 	PoiRepository.getInstance().add(kiosquito);
 	PoiRepository.getInstance().add(kioscoDeMario);
 	
-	fileitor = new Fileitor ("carrousel;barbie autos peluches /n kiosquito;chupelupe caramelos golosinas");
+	fileitor = new Fileitor ("carrousel;barbie autos peluches\nkiosquito;chupelupe caramelos golosinas");
 	
 	}
 
@@ -56,7 +58,17 @@ public class FileitorTest {
 	
 	@Test
 	public void testBasicDisarm() {
-		fileitor.basicDisarm("carrousel;juguete pelota");
-		Assert.assertEquals(carrousel.getPalabrasClaves().size(), 2);		
-	}	
+		fileitor.basicDisarm("carrousel;juguete pelota barbie");
+		Assert.assertEquals(carrousel.getPalabrasClaves().size(), 3);		
+	}
+	
+	@Test
+	public void testDisarm() {
+		List<String> lista = fileitor.disarm();
+		fileitor.ejecutar();
+		
+		Assert.assertEquals(lista.size(), 2);
+		Assert.assertTrue(lista.contains("carrousel;barbie autos peluches"));
+		//Assert.assertEquals(carrousel.getPalabrasClaves().size(),3);	
+	}
 }
