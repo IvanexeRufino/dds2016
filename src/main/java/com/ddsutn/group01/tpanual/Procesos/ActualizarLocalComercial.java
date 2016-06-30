@@ -1,7 +1,7 @@
 package com.ddsutn.group01.tpanual.Procesos;
 
 import java.io.BufferedReader;
-
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -10,35 +10,28 @@ import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.origins.LocalOrigin;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
+import com.google.common.io.Files;
 
 
 public class ActualizarLocalComercial extends Proceso{
-    private String file;
+	private String bigstring;
+   	private Fileitor fileitor;
+	@Override
 	
-	public ActualizarLocalComercial(String file) {
-		this.file = file;
+	public int ejecutar() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public ActualizarLocalComercial(String bigstring) {
+		this.bigstring = bigstring;
 	}
 
-	public int ejecutar() throws Exception {
-	    int contador = 0;
-		 FileReader in = new FileReader(file);
-		 BufferedReader br = new BufferedReader(in);
-		 String line;
-		   while ((line = br.readLine()) != null) {
-		       String [] aline = line.split(";");
-		       String nombreLocal = aline [0];
-		       String pclaves = aline [1];
-		       
-		       PointOfInterest poiBuscado = PoiRepository.getInstance()
-		    		   						.getOrigenLocal().getAll().stream()
-		    		   						.filter(poi -> poi.getName().equals(nombreLocal))
-		    		   						.findFirst().get();
-		       poiBuscado.actualizarPalabrasClaves(pclaves);	
-		       contador = contador + 1;
-		   }
-		   
-		 in.close();	
-		 br.close();
-		 return contador;
-	}	
+	//public int ejecutar() throws Exception {
+	//	this.fileitor = new Fileitor (bigstring);
+	//	fileitor.ejecutar();
+		//return ;
+		
+
+//}
 }
