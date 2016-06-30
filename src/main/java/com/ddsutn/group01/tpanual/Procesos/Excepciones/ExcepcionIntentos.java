@@ -17,12 +17,21 @@ public class ExcepcionIntentos implements ExcepcionProceso {
     private void resetearContador() {
         contador = 0;
     }
+    
+    private void aumentarContador() {
+        contador = contador + 1;
+    }
 
     @Override
-    public void manejarError(Proceso process) throws Exception {
-        process.setEstado("Error");
+    public void manejarError(Proceso process) {
+        this.aumentarContador();
         if(cantidadDeIntentos>contador){
+            try{
             process.ejecutar(); 
+            }
+            catch (Exception e) {
+                this.manejarError(process);
+            }
         }
         else {
             handler.manejarError(process);

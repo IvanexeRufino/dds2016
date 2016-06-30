@@ -41,12 +41,8 @@ public abstract class Proceso {
             try {
                 this.ejecutarProceso();
             } catch (Exception e) {
-                try {
                     tipoDeExcepcion.manejarError(this);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
                 }
-            }
             };   
         tiempoDeEjecucion.activarProceso(task);
     }
