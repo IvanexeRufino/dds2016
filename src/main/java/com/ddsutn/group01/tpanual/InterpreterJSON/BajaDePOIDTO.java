@@ -1,24 +1,22 @@
 package com.ddsutn.group01.tpanual.InterpreterJSON;
 
-import java.util.ArrayList;
-
-import org.joda.time.DateTime;
+import java.util.List;
 
 public class BajaDePOIDTO {
-    private ArrayList<Integer> listDePOIs;
-    private DateTime unaFecha;
+    private List<Integer> puntos;
+    private String fecha;
     
-    public ArrayList<Integer> getListDePOIs() {
-        return listDePOIs;
+    public List<Integer> getPuntos() {
+        return puntos;
     }
-    public void setListDePOIs(ArrayList<Integer> listDePOIs) {
-        this.listDePOIs = listDePOIs;
+    public void setPuntos(List<Integer> listDePOIs) {
+        this.puntos = listDePOIs;
     }
-    public DateTime getUnaFecha() {
-        return unaFecha;
+    public String getFecha() {
+        return fecha;
     }
-    public void setUnaFecha(DateTime unaFecha) {
-        this.unaFecha = unaFecha;
+    public void setFecha(String unaFecha) {
+        this.fecha = unaFecha;
     } 
     
 }
