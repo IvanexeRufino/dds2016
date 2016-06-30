@@ -45,13 +45,13 @@ public class ConfigurarTerminalesTest {
     }
     
     @Test
-    public void terminalEzeizaTieneUnaAccionConfigurada() {
+    public void terminalEzeizaTieneUnaAccionConfigurada() throws Exception{
         proceso.ejecutar();
         Assert.assertEquals(1, ezeiza.getAcciones().size());
     }
     
     @Test
-    public void terminalPachecoNoTieneAccionesPorqueNoEsDeLaComunaUno() {
+    public void terminalPachecoNoTieneAccionesPorqueNoEsDeLaComunaUno() throws Exception{
         proceso.configurarTerminalesPorComuna(1);
         proceso.ejecutar();
         Assert.assertEquals(0, pacheco.getAcciones().size());

@@ -32,12 +32,13 @@ public class BajaDePOIsTest {
     }
     
     @Test
-    public void bajaDePOIEliminaCincoPois() {
-        Assert.assertEquals(proceso.ejecutar(),5);
+    public void bajaDePOIEliminaCincoPois() throws Exception{
+        int resultados = proceso.ejecutar();
+        Assert.assertEquals(resultados,5);
     }
     
     @Test
-    public void BajaDePOINoEliminaADoce() {
+    public void BajaDePOINoEliminaADoce() throws Exception{
         proceso.ejecutar();
         Assert.assertEquals(2, repo.getOrigenLocal().getAll().size());
     }

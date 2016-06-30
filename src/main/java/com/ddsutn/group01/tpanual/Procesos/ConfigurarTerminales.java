@@ -29,7 +29,7 @@ public class ConfigurarTerminales extends Proceso {
         terminalesAEjecutar = terminales;
     }
     
-    public int ejecutar() {
+    public int ejecutar() throws Exception{
         terminalesAEjecutar.forEach(terminales->terminales.setActions(acciones));
         return terminalesAEjecutar.size();
     }

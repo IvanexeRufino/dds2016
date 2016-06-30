@@ -14,17 +14,13 @@ import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 
 public class ActualizarLocalComercial extends Proceso{
     private String file;
-	private int contador;
-    
-	private void aumentarContador() {
-	    contador = contador +1;
-	}
 	
 	public ActualizarLocalComercial(String file) {
 		this.file = file;
 	}
 
-	public int ejecutar() throws IOException {
+	public int ejecutar() throws Exception {
+	    int contador = 0;
 		 FileReader in = new FileReader(file);
 		 BufferedReader br = new BufferedReader(in);
 		 String line;
@@ -37,7 +33,8 @@ public class ActualizarLocalComercial extends Proceso{
 		    		   						.getOrigenLocal().getAll().stream()
 		    		   						.filter(poi -> poi.getName().equals(nombreLocal))
 		    		   						.findFirst().get();
-		       poiBuscado.actualizarPalabrasClaves(pclaves);		        
+		       poiBuscado.actualizarPalabrasClaves(pclaves);	
+		       contador = contador + 1;
 		   }
 		   
 		 in.close();	
