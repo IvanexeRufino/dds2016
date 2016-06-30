@@ -18,14 +18,14 @@ public class Fileitor {
 	public Fileitor(String archivo) {
 		this.archivo = archivo;
 	}
-
+	
 	public List<String> disarm () {
 		StringTokenizer tok = new StringTokenizer(archivo,"\n");
 		int nrotokens = tok.countTokens();
 		String [] splitArr = new String [nrotokens];
 		for (int i=0;i<nrotokens;i++) {
 			splitArr[i]=tok.nextToken();
-		}
+		}	
 		
 		List<String> lista = new ArrayList<String>(Arrays.asList(splitArr));
 		return lista;
