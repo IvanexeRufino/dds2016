@@ -1,5 +1,23 @@
 package com.ddsutn.group01.tpanual.Procesos.Frecuencia;
 
-public interface Frecuencia {
-    public void activarProceso (Runnable ejecutable) throws InterruptedException;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public abstract class Frecuencia {
+    
+    protected Date dia;
+    protected long periodo;
+    protected Timer timer = new Timer();
+    
+    public void activarProceso (Runnable ejecutable) {   
+        TimerTask timer = new TimerTask() {
+            public void run() { 
+                ejecutable.run();
+                ejecutable.notify();}
+            };      
+        this.schedule(timer);
+    }
+
+    public abstract void schedule (TimerTask timer);
 }

@@ -1,14 +1,14 @@
 package com.ddsutn.group01.tpanual.Procesos.Excepciones;
 
 import com.ddsutn.group01.tpanual.Procesos.Proceso;
-import com.ddsutn.group01.tpanual.tools.mailers.MailgunMailer;
+import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 
 public class ExcepcionMail implements ExcepcionProceso {
     
-    private MailgunMailer mailer;
+    private Mailer mailer;
     
-    public ExcepcionMail(MailgunMailer mailer) {
-        this.mailer = mailer;
+    public ExcepcionMail (Mailer unMailer) {
+        this.mailer = unMailer;
     }
     
     @Override

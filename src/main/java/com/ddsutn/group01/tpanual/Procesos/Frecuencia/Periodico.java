@@ -1,33 +1,19 @@
 package com.ddsutn.group01.tpanual.Procesos.Frecuencia;
 
 import java.util.Date;
-import java.util.Timer;
 import java.util.TimerTask;
 
-public class Periodico implements Frecuencia{
+public class Periodico extends Frecuencia {
     
-    private Date dia;
     private long periodo;
-    private Timer temporizador ;
     
     public Periodico(Date diaDeInicio, long periodo) {
         this.dia = diaDeInicio;
         this.periodo = periodo;
-        temporizador = new Timer();
     }
     
-    public void activarProceso (Runnable ejecutable) throws InterruptedException {   
-        TimerTask timer = new TimerTask() {
-            public void run() { 
-                try {
-                    temporizador.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                ejecutable.run();
-                temporizador.notify();}
-            };      
-        temporizador.scheduleAtFixedRate(timer,dia, periodo);
+    public void schedule (TimerTask task) { 
+        timer.scheduleAtFixedRate(task ,dia, periodo);
     }
 
 }

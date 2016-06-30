@@ -37,7 +37,6 @@ public class ExcepcionIntentos implements ExcepcionProceso {
             handler.manejarError(process);
             this.resetearContador();
         }
-        
     }
 }
     

@@ -1,7 +1,5 @@
 package com.ddsutn.group01.tpanual.Procesos;
 
-import java.util.Date;
-
 import org.joda.time.DateTime;
 
 import com.ddsutn.group01.tpanual.Procesos.Excepciones.ExcepcionProceso;
@@ -27,6 +25,10 @@ public abstract class Proceso {
         this.estado = estado;
     }
     
+    public String getEstado() {
+        return estado;
+    }
+    
     public void ejecutarProceso() throws Exception {
         this.setEstado("EnEjecucion");
         int cantidadDeResultados = this.ejecutar();
@@ -36,7 +38,7 @@ public abstract class Proceso {
     
     public abstract int ejecutar() throws Exception;
  
-    public void activarProcesos (Date unHorario) throws Exception {
+    public void activarProcesos() {
         Runnable task = () -> {
             try {
                 this.ejecutarProceso();

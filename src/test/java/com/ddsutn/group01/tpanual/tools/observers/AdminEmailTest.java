@@ -18,7 +18,6 @@ public class AdminEmailTest {
             public void send(String to, String subject, String content) throws Exception { }
         });
         adminEmail = new AdminEmail(mockedMailer);
-
     }
 
     @Test
