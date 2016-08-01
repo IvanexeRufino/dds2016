@@ -1,7 +1,5 @@
 package com.ddsutn.group01.tpanual.procesos;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Assert;

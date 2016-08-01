@@ -46,7 +46,7 @@ public class Terminal {
     public List<PointOfInterest> find(String criteria) {
         actions.forEach(Action::precondition);
         List<PointOfInterest> lista =  buscador.find(criteria);
-        actions.forEach(action -> action.postcondition(criteria, lista));
+        actions.forEach(action -> action.postcondition(criteria, lista.size(),nombreDeTerminal));
         return lista;
     }
     

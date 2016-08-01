@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.ddsutn.group01.tpanual.Procesos.ConfigurarTerminales;
+import com.ddsutn.group01.tpanual.Procesos.Filtradores.PorComuna;
 import com.ddsutn.group01.tpanual.Roles.Terminal;
-import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Buscador;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
@@ -18,28 +18,30 @@ import com.ddsutn.group01.tpanual.repositories.actions.Action;
 public class ConfigurarTerminalesTest {
     
     private Action mockedAction;
-    private Buscador unBuscador = new Buscador();
     private Terminal ezeiza;
     private Terminal pacheco;
     private ConfigurarTerminales proceso;
     List<Terminal> terminales = new ArrayList<Terminal>();
     List<Action> acciones = new ArrayList<Action>();
+    Buscador buscador = new Buscador();
+    PorComuna filtrador = new PorComuna(1);
     
     @Before
     public void init() {
-        pacheco = new Terminal("pacheco",2,unBuscador);
-        ezeiza = new Terminal("ezeiza",1,unBuscador);
+        
+        pacheco = new Terminal("pacheco",2,buscador);
+        ezeiza = new Terminal("ezeiza",1,buscador);
         mockedAction = Mockito.spy(new Action() {
             @Override
             public void precondition() {}
 
             @Override
-            public void postcondition(String criteria, List<PointOfInterest> result) {}
+            public void postcondition(String criteria, int result, String terminal) {}
         });
         acciones.add(mockedAction);
         terminales.add(ezeiza);
         terminales.add(pacheco);
-        proceso = new ConfigurarTerminales(terminales);
+        proceso = new ConfigurarTerminales(filtrador,terminales);
         proceso.setAcciones(acciones);
         
     }
@@ -52,7 +54,6 @@ public class ConfigurarTerminalesTest {
     
     @Test
     public void terminalPachecoNoTieneAccionesPorqueNoEsDeLaComunaUno() throws Exception{
-        proceso.configurarTerminalesPorComuna(1);
         proceso.ejecutar();
         Assert.assertEquals(0, pacheco.getAcciones().size());
     }

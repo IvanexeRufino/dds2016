@@ -7,25 +7,24 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.List;
-
 import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 
 public class AccionesTest {
     private Action mockedAction;
+    private Terminal unaTerminal;
     private Buscador buscador = new Buscador();
-    private Terminal unaTerminal = new Terminal("terminalUrquiza",1,buscador);
 
     @Before
     public void setUp() throws Exception {
+        unaTerminal = new Terminal("terminalUrquiza",1,buscador);
         mockedAction = Mockito.spy(new Action() {
             @Override
             public void precondition() {}
 
             @Override
-            public void postcondition(String criteria, List<PointOfInterest> result) {}
+            public void postcondition(String criteria, int result, String nombre) {}
         });
         unaTerminal.addAction(mockedAction);
     }
@@ -39,6 +38,6 @@ public class AccionesTest {
     @Test
     public void runsPostcondition() throws Exception {
         unaTerminal.find("foo");
-        verify(mockedAction).postcondition(any(String.class), anyListOf(PointOfInterest.class));
+        verify(mockedAction).postcondition(any(String.class), anyListOf(PointOfInterest.class).size(),any(String.class));
     }
 }

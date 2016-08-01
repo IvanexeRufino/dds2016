@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Buscador {
-
+    
     public List<PointOfInterest> find(String criteria) {
         PoiRepository repositorio = PoiRepository.getInstance();
         List<PointOfInterest> lista = repositorio.getOrigenLocal().find(criteria);

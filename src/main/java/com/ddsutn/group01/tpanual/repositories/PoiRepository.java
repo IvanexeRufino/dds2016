@@ -11,12 +11,10 @@ public class PoiRepository {
     private static PoiRepository instance = null;
     private List<Origin> origins;
     private LocalOrigin localOrigin;
-    private Buscador buscadorDePOI;
 
     public PoiRepository() {
         localOrigin = new LocalOrigin();
         origins = new ArrayList<>();
-        buscadorDePOI = new Buscador();
     }
     
     public static PoiRepository getInstance() {
@@ -25,10 +23,6 @@ public class PoiRepository {
         }
 
         return instance;
-    }
-    
-    public Buscador getBuscador() {
-        return buscadorDePOI;
     }
     
     public LocalOrigin getOrigenLocal() {
