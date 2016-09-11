@@ -18,7 +18,7 @@ public class AccionesTest {
 
     @Before
     public void setUp() throws Exception {
-        unaTerminal = new Terminal("terminalUrquiza",1,buscador);
+        unaTerminal = new Terminal("terminalUrquiza", 1, buscador);
         mockedAction = Mockito.spy(new Action() {
             @Override
             public void precondition() {}
@@ -26,6 +26,7 @@ public class AccionesTest {
             @Override
             public void postcondition(String criteria, int result, String nombre) {}
         });
+
         unaTerminal.addAction(mockedAction);
     }
 
