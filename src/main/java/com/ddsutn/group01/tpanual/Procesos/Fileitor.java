@@ -13,38 +13,38 @@ import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 
 public class Fileitor {
 	private String archivo;
-	private List<String> lalista;
-	
+
 	public Fileitor(String archivo) {
 		this.archivo = archivo;
 	}
-	
+
 	public List<String> disarm () {
 		StringTokenizer tok = new StringTokenizer(archivo,"\n");
 		int nrotokens = tok.countTokens();
 		String [] splitArr = new String [nrotokens];
 		for (int i=0;i<nrotokens;i++) {
 			splitArr[i]=tok.nextToken();
-		}	
-		
-		List<String> lista = new ArrayList<String>(Arrays.asList(splitArr));
-		return lista;
+		}
+
+		return new ArrayList<>(Arrays.asList(splitArr));
 	}
-	
+
 	public void ejecutar() {
-		lalista = this.disarm();
-		lalista.stream().forEach(line-> this.basicDisarm(line));
+		List<String> lalista = this.disarm();
+
+		lalista.forEach(this::basicDisarm);
 	}
-	
+
 	public void basicDisarm (String unalinea) {
 		String [] aline = unalinea.split(";");
         String nlocal = aline [0];
         String pclaves = aline [1];
-        
+
         PointOfInterest poiBuscado = PoiRepository.getInstance()
-                .getOrigenLocal().getAll().stream()
-                .filter(poi -> poi.getName().equals(nlocal))
-                .findFirst().get();
+            .getOrigenLocal().getAll().stream()
+            .filter(poi -> poi.getName().equals(nlocal))
+            .findFirst().get();
+
         poiBuscado.actualizarPalabrasClaves(pclaves);
 	}
 }

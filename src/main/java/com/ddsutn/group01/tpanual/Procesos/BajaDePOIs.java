@@ -13,12 +13,12 @@ public class BajaDePOIs extends Proceso{
     public BajaDePOIs(DataSourceBajaDePOIs dataSource) {
         this.dataSource = dataSource;
     }
-    
+
     public int ejecutar() throws Exception{
-        PoiRepository repositorio = PoiRepository.getInstance();
         String resultado = dataSource.bajaDePOIs();
         List<Integer> listaDePOIs = InterpreterJSON.getListaDePOIs(resultado);
-        listaDePOIs.stream().forEach(unNumero->repositorio.remove(unNumero));
+        listaDePOIs.forEach(PoiRepository.getInstance()::remove);
+
         return listaDePOIs.size();
     }
 }
