@@ -1,8 +1,11 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
+import javax.persistence.Entity;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+@Entity
 public class ParadaColectivo extends PointOfInterest {
     public ParadaColectivo(Integer id, String name, Point point) {
         super(id, name, point);

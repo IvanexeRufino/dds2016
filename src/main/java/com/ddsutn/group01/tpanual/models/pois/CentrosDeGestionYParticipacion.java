@@ -1,8 +1,11 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
+import javax.persistence.Entity;
+
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+@Entity
 public class CentrosDeGestionYParticipacion extends PoiConServicios {
     private Polygon zonaDelimitada;
 

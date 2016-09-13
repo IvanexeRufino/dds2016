@@ -7,8 +7,13 @@ import org.uqbar.geodds.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ManyToMany;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class PoiConServicios extends PointOfInterest {
-    private List<Servicio> servicios;
+	@ManyToMany
+	private List<Servicio> servicios;
 
     public List<Servicio> getServicios() {
         return servicios;

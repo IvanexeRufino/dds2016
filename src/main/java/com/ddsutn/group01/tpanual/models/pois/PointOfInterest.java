@@ -6,10 +6,27 @@ import org.uqbar.geodds.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class PointOfInterest {
-    private Integer id;
+    @Id
+    @GeneratedValue
+    @Column(name="poi_id")
+	private Integer id;
     protected String name;
     protected Point point;
+    
+    @OneToMany
+    @JoinColumn(name="poi_id")
     protected List<String> palabrasClaves;
 
     public PointOfInterest(Integer id, String name, Point point) {

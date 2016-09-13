@@ -9,12 +9,17 @@ import org.uqbar.geodds.Point;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class SucursalBanco extends PoiConServicios {
 
     public SucursalBanco(Integer id, String name, Point point) {
         super(id, name, point);
         agregarUnServicio(servicioDeAtencionAlCliente());
     }
+    
 
     private Servicio servicioDeAtencionAlCliente() {
         HorariosDeAtencion horarioBancario = new HorariosDeAtencion();

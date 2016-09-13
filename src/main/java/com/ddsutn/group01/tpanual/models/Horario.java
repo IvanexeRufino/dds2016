@@ -5,7 +5,9 @@ import org.joda.time.LocalTime;
 
 import java.time.DayOfWeek;
 
+import javax.persistence.Entity;
 
+@Entity
 public class Horario {
     private DayOfWeek dia;
     private LocalTime horaDeApertura;
