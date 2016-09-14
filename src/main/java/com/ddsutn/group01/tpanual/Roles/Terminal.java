@@ -29,6 +29,9 @@ public class Terminal {
 	@OneToOne(fetch = FetchType.LAZY)
     private Buscador buscador;
 
+	@SuppressWarnings("unused")
+	private Terminal() {}
+	
     public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;
         this.nombreDeTerminal = nombreDeTerminal;
