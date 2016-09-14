@@ -15,6 +15,6 @@ public class PointConverter implements AttributeConverter<Point, String> {
     @Override
     public Point convertToEntityAttribute(String pointString) {
         String[] coordinates = pointString.split(SEPARATOR);
-        return new Point(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1]));
+        return new Point(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
     }
 }

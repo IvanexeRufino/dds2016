@@ -1,21 +1,27 @@
 package com.ddsutn.group01.tpanual.models;
 
+import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.HorariosConverter;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @Entity
-public class HorariosDeAtencion {
-	//anotation para esto
+public class HorariosDeAtencion extends PersistentRecord {
+    @Column
+    @Convert(converter = HorariosConverter.class)
     private List<Horario> horarios;
 
     public HorariosDeAtencion() {
         horarios = new ArrayList<>();
     }
-    
+
     public List<Horario> getHorarios() {
         return horarios;
     }
@@ -29,6 +35,6 @@ public class HorariosDeAtencion {
     }
 
     public void setHorarios(List<Horario> unosHorarios) {
-        horarios = unosHorarios;       
+        horarios = unosHorarios;
     }
 }

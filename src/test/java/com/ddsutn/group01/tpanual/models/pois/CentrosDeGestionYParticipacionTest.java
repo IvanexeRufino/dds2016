@@ -16,7 +16,7 @@ public class CentrosDeGestionYParticipacionTest {
     @Before
     public void init() {
         mockedPolygon = Mockito.mock(Polygon.class);
-        cgp = new CentrosDeGestionYParticipacion(1, "foo", mockedPolygon);
+        cgp = new CentrosDeGestionYParticipacion("foo", mockedPolygon);
     }
 
     @Test

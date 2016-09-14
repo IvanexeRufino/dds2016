@@ -3,28 +3,36 @@ package com.ddsutn.group01.tpanual.models.pois;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Rubro;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @Entity
 public class LocalComercial extends PointOfInterest {
-    @ManyToOne
-    @Column(name="Rubro")
-    @Enumerated
+    @Column
+    @Enumerated(EnumType.STRING)
 	private Rubro rubro;
-    
-    @ManyToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="horarios_de_atencion_id")
     private HorariosDeAtencion horarioDeAtencion;
+
+    @SuppressWarnings("unused")
+    public LocalComercial() {}
 
     public LocalComercial(String name, Point point, Rubro rubro, HorariosDeAtencion horarioDeAtencion) {
         super(name, point);
         this.rubro = rubro;
         this.horarioDeAtencion = horarioDeAtencion;
+    }
+
+    public Rubro getRubro() {
+        return rubro;
+    }
+
+    public HorariosDeAtencion getHorarioDeAtencion() {
+        return horarioDeAtencion;
     }
 
     @Override

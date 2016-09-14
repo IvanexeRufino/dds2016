@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 public class CentrosDeGestionYParticipacion extends PoiConServicios {
     private Polygon zonaDelimitada;
 
-    public CentrosDeGestionYParticipacion(Integer id, String name, Polygon zonaDelimitada) {
+    public CentrosDeGestionYParticipacion(String name, Polygon zonaDelimitada) {
         super(name, null);
         this.zonaDelimitada = zonaDelimitada;
     }

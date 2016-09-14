@@ -19,7 +19,7 @@ import java.util.List;
 public class CGPAdapterTest {
     private List<PointOfInterest> listaReal;
     private CentrosDeGestionYParticipacion centroPosta;
-    
+
     @Before
     public void init() {
         ArrayList<CentroDTO> unaListaDeCentrosDTO = new ArrayList<>();
@@ -27,7 +27,7 @@ public class CGPAdapterTest {
         ArrayList<String> zonasIncluidas = new ArrayList<>();
         zonasIncluidas.add("palermo");
         zonasIncluidas.add("belgrano");
-        
+
         DiasDeServicio lunesOchoHoras = new DiasDeServicio(1,8,0,16,0);
         ArrayList<DiasDeServicio> unosDias = new ArrayList<>();
         unosDias.add(lunesOchoHoras);
@@ -44,15 +44,15 @@ public class CGPAdapterTest {
 
         unaListaDeCentrosDTO.add(centroDTO1);
         unaListaDeCentrosDTO.add(centroDTO2);
-        
+
         listaReal = CGPAdapter.adapt(unaListaDeCentrosDTO);
     }
-    
+
     @Test
     public void cGP1EstaDisponibleElLunesALas12() {
         Polygon poligono = new Polygon();
         CentrosDeGestionYParticipacion unCentro = (CentrosDeGestionYParticipacion) listaReal.get(0);
-        centroPosta = new CentrosDeGestionYParticipacion(4,"centroTransformado", poligono);
+        centroPosta = new CentrosDeGestionYParticipacion("centroTransformado", poligono);
         LocalTime horaDeApertura = new LocalTime(8, 0);
         LocalTime horaDeCierre = new LocalTime(16, 0);
         Horario horaAtencionLunes = new Horario(DayOfWeek.MONDAY, horaDeApertura, horaDeCierre);
@@ -62,7 +62,7 @@ public class CGPAdapterTest {
         Servicio cobros = new Servicio("cobros",horariosDeAtencion);
         centroPosta.agregarUnServicio(cobros);
         centroPosta.agregarUnServicio(pagos);
-        
+
         Assert.assertEquals(unCentro.getName(), centroPosta.getName());
         Assert.assertEquals(unCentro.getServicios().get(0).getNombre(), centroPosta.getServicios().get(0).getNombre());
         Assert.assertEquals(unCentro.getServicios().get(1).getNombre(), centroPosta.getServicios().get(1).getNombre());
@@ -71,6 +71,6 @@ public class CGPAdapterTest {
         Assert.assertEquals(unCentro.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeApertura(),
                             centroPosta.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeApertura());
         Assert.assertEquals(unCentro.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeCierre(),
-                            centroPosta.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeCierre());   
+                            centroPosta.getServicios().get(0).getHorariosDeAtencion().getHorarios().get(0).getHoraDeCierre());
    }
 }

@@ -9,6 +9,7 @@ import org.uqbar.geodds.Point;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,9 @@ public abstract class PointOfInterest extends PersistentRecord {
     @Column
     @Convert(converter = StringListConverter.class)
     protected List<String> palabrasClaves;
+
+    @SuppressWarnings("unused")
+    protected PointOfInterest() {}
 
     public PointOfInterest(String name, Point point) {
         this.name = name;
@@ -63,6 +67,7 @@ public abstract class PointOfInterest extends PersistentRecord {
         return 0.5;
     }
 
+    // TODO: FIX ME
 	public void actualizarPalabrasClaves(String pclaves) {
 	}
 }

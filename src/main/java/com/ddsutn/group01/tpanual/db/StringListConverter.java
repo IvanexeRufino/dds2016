@@ -4,17 +4,18 @@ import javax.persistence.AttributeConverter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class StringListConverter implements AttributeConverter<List<String>, String> {
+public class StringListConverter implements AttributeConverter<List, String> {
     private static final String SEPARATOR = ", ";
 
     @Override
-    public String convertToDatabaseColumn(List<String> list) {
+    public String convertToDatabaseColumn(List list) {
         return String.join(SEPARATOR, list);
     }
 
     @Override
-    public List<String> convertToEntityAttribute(String stringJoined) {
+    public List convertToEntityAttribute(String stringJoined) {
         return new ArrayList<>(Arrays.asList(stringJoined.split(SEPARATOR)));
     }
 }

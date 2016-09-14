@@ -21,7 +21,7 @@ public class CGPAdapter {
 
     static private CentrosDeGestionYParticipacion modelarCGP(CentroDTO unCentro) {
         Polygon poligono = new Polygon();
-        CentrosDeGestionYParticipacion centro = new CentrosDeGestionYParticipacion(unCentro.getNroDeComuna(), "centroTransformado", poligono);
+        CentrosDeGestionYParticipacion centro = new CentrosDeGestionYParticipacion("centroTransformado", poligono);
         centro.setServicios(unCentro.getServicios().stream().map(unServicioDTO->modelarServicio(unServicioDTO))
                                                             .collect(Collectors.toList()));
         return centro;
