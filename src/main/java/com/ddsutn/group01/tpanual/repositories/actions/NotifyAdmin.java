@@ -1,13 +1,29 @@
 package com.ddsutn.group01.tpanual.repositories.actions;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 import com.ddsutn.group01.tpanual.tools.mailers.MailgunMailer;
 
-public class NotifyAdmin implements Action {
-    private int secondsBeforeNotify = 1;
-    private long time;
+@Entity
+public class NotifyAdmin extends Action {
+	@Column
+    private long secondsBeforeNotify = 1;
+    @Column
+	private long time;
+    @Transient
     private Mailer mailer = new MailgunMailer();
-
+    
+    public long getTime(){
+    	return time;
+    }
+    
+    public void setTime(long time){
+    	this.time = time;
+    }
+    
     public long getSecondsBeforeNotify() {
         return secondsBeforeNotify;
     }
