@@ -14,7 +14,7 @@ public class LocalComercial extends PointOfInterest {
     @Enumerated(EnumType.STRING)
 	private Rubro rubro;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = { CascadeType.PERSIST })
     @JoinColumn(name="horarios_de_atencion_id")
     private HorariosDeAtencion horarioDeAtencion;
 

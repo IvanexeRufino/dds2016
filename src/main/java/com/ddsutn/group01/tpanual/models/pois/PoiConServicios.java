@@ -4,21 +4,25 @@ import com.ddsutn.group01.tpanual.models.Servicio;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import java.util.ArrayList;
 import java.util.List;
 
 @MappedSuperclass
 public abstract class PoiConServicios extends PointOfInterest {
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Servicio> servicios;
 
-    public List<Servicio> getServicios() {
-        return servicios;
-    }
 
     public PoiConServicios(String name, Point point) {
         super(name, point);
         servicios = new ArrayList<>();
+    }
+
+    public List<Servicio> getServicios() {
+        return servicios;
     }
 
     @Override

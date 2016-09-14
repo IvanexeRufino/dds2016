@@ -1,5 +1,6 @@
 package com.ddsutn.group01.tpanual.adapters.CGP;
 
+import com.ddsutn.group01.tpanual.db.Polygon;
 import com.ddsutn.group01.tpanual.models.Horario;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Servicio;
@@ -10,7 +11,6 @@ import org.joda.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Polygon;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;

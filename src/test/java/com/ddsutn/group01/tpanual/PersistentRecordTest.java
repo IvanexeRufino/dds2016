@@ -1,10 +1,12 @@
 package com.ddsutn.group01.tpanual;
 
+import com.ddsutn.group01.tpanual.db.Polygon;
 import com.ddsutn.group01.tpanual.models.Horario;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Rubro;
+import com.ddsutn.group01.tpanual.models.Servicio;
+import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
-import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
 import org.joda.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,15 +38,22 @@ public class PersistentRecordTest {
         localComercial.agregarPalabraClave("bleh");
         localComercial.agregarPalabraClave("sarasa");
 
+        Polygon polygon = new Polygon(Arrays.asList(new Point(1, 2), new Point(3, 4)));
+        Servicio servicio = new Servicio("servicio", horariosDeAtencion);
+        CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("foo", polygon);
+        cgp.agregarUnServicio(servicio);
+
+
         EntityTransaction tx = entityManager.getTransaction();
 
         tx.begin();
         entityManager.persist(localComercial);
+        entityManager.persist(cgp);
         tx.commit();
 
-        LocalComercial persistedLocalComercial = entityManager.find(LocalComercial.class, 1);
+        LocalComercial persistedLocalComercial = entityManager.find(LocalComercial.class, localComercial.getId());
 
-        Assert.assertEquals(persistedLocalComercial.getId(), (Integer)1);
+        Assert.assertEquals(persistedLocalComercial.getId(), localComercial.getId());
         Assert.assertEquals(persistedLocalComercial.getPoint().latitude(), 1.0, 0);
         Assert.assertEquals(persistedLocalComercial.getPoint().longitude(), 2.0, 0);
         Assert.assertEquals(persistedLocalComercial.getRubro(), Rubro.kiosco);

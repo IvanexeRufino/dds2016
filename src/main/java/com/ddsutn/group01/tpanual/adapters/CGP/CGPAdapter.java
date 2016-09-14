@@ -1,12 +1,12 @@
 package com.ddsutn.group01.tpanual.adapters.CGP;
 
+import com.ddsutn.group01.tpanual.db.Polygon;
 import com.ddsutn.group01.tpanual.models.Horario;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import org.joda.time.LocalTime;
-import org.uqbar.geodds.Polygon;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;

@@ -1,11 +1,11 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
+import com.ddsutn.group01.tpanual.db.Polygon;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
 import static org.mockito.Matchers.any;
 

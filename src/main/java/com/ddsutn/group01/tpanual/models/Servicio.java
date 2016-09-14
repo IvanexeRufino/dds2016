@@ -1,10 +1,22 @@
 package com.ddsutn.group01.tpanual.models;
 
+import com.ddsutn.group01.tpanual.PersistentRecord;
 import org.joda.time.DateTime;
 
-public class Servicio {
+import javax.persistence.*;
+
+@Entity
+public class Servicio extends PersistentRecord {
+    @Column
     private String nombre;
+
+    @ManyToOne(cascade = { CascadeType.PERSIST })
+    @JoinColumn(name="horarios_de_atencion_id")
     private HorariosDeAtencion horariosDeAtencion;
+
+    @SuppressWarnings("unused")
+    protected Servicio() {
+    }
 
     public Servicio(String nombre, HorariosDeAtencion horariosDeAtencion) {
         this.nombre = nombre;

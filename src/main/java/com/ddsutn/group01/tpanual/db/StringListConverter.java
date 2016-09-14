@@ -10,8 +10,9 @@ public class StringListConverter implements AttributeConverter<List, String> {
     private static final String SEPARATOR = ", ";
 
     @Override
+    @SuppressWarnings("unchecked")
     public String convertToDatabaseColumn(List list) {
-        return String.join(SEPARATOR, list);
+        return String.join(SEPARATOR, (List<String>) list);
     }
 
     @Override
