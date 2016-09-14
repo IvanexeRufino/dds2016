@@ -12,9 +12,11 @@ import javax.persistence.Id;
 public class Buscador {
 	@Id @GeneratedValue
 	private long id;
-	
+
 	public Buscador(){}
-    
+
+    // TODO: El repo podría conocer al buscar. De esa forma todas las acciones (buscar, crear, eliminar, editar)
+    // se hacen directamente hablando con el repo
     public List<PointOfInterest> find(String criteria) {
         PoiRepository repositorio = PoiRepository.getInstance();
         List<PointOfInterest> lista = repositorio.getOrigenLocal().find(criteria);
@@ -30,5 +32,5 @@ public class Buscador {
 //        tx.commit();
         return lista;
     }
-    
+
 }

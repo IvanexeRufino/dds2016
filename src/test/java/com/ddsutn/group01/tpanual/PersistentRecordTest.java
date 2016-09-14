@@ -64,5 +64,7 @@ public class PersistentRecordTest {
         Assert.assertEquals(persistedLocalComercial.getRubro(), Rubro.kiosco);
         Assert.assertEquals(persistedLocalComercial.getPalabrasClaves(), Arrays.asList("foo", "bleh", "sarasa"));
         Assert.assertEquals(persistedLocalComercial.getHorarioDeAtencion().getHorarios(), horariosDeAtencion.getHorarios());
+
+//        System.out.println(entityManager.createQuery("from PointOfInterest").getResultList());
     }
 }
