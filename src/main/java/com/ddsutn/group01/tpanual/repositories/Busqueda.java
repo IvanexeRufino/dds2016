@@ -4,18 +4,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 @Entity
-public class Busqueda {
+public class Busqueda extends PersistentRecord{
 	
-	@Id @GeneratedValue
-	private Integer id;
 	@Column (length = 50)
 	private String criteria;
 	//no esta persistido POI
@@ -24,14 +20,6 @@ public class Busqueda {
 
 	@SuppressWarnings("unused")
 	private Busqueda() {}
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getCriteria() {
 		return criteria;

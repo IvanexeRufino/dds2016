@@ -6,21 +6,17 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Buscador;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
 @Entity
-public class Terminal {
+public class Terminal extends PersistentRecord{
 	
-	@Id @GeneratedValue
-	private Integer id;
     private int comuna;
 	@Column (length = 25)
     private String nombreDeTerminal;
