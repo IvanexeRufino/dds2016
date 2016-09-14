@@ -2,12 +2,18 @@ package com.ddsutn.group01.tpanual.tools.reporters;
 
 import java.util.HashMap;
 
+import javax.persistence.Transient;
+
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
-public class TerminalReport implements Action {
+public class TerminalReport extends Action {
 
+	//MISMO QUE EN REPORT
+	@Transient
     private HashMap<String, Integer> parcial = new HashMap<>();
+	@Transient
     private HashMap<String, Integer> total = new HashMap<>();
+	@Transient
     private Reporter reporter;
 
     public void setReporter(Reporter reporter) {

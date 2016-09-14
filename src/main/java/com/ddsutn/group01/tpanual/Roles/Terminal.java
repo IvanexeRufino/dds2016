@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -20,8 +21,7 @@ public class Terminal extends PersistentRecord{
     private int comuna;
 	@Column (length = 25)
     private String nombreDeTerminal;
-	//no esta persistido actions
-	@Transient
+	@OneToMany
     private List<Action> actions;
 	@OneToOne(fetch = FetchType.LAZY)
     private Buscador buscador;

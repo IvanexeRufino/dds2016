@@ -27,10 +27,7 @@ public class Buscador extends PersistentRecord{
                                               .collect(Collectors.toList()));
 //		  persistir las busquedas con sus parametros
         EntityManager em = PerThreadEntityManagers.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
         em.persist(new Busqueda(criteria,lista));
-        tx.commit();
         return lista;
     }
     

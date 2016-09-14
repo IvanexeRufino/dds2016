@@ -14,8 +14,6 @@ import com.ddsutn.group01.tpanual.repositories.actions.Action;
 @Entity
 public class Report extends Action{
 	
-	@Id @GeneratedValue
-	private Integer id;
 	@Transient
     private Reporter reporter;
 	//DEUDA TECNICA como persistir un hashmap a la base de datos

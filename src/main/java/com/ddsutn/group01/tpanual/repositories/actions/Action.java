@@ -1,10 +1,10 @@
 package com.ddsutn.group01.tpanual.repositories.actions;
 
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
 
 import com.ddsutn.group01.tpanual.PersistentRecord;
 
-@MappedSuperclass
+@Entity
 public abstract class Action extends PersistentRecord {
     public void precondition() {
 	}

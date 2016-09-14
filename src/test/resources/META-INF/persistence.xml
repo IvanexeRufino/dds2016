@@ -6,7 +6,13 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
+		<class>com.ddsutn.group01.tpanual.repositories.actions.Action</class>
         <class>com.ddsutn.group01.tpanual.repositories.actions.NotifyAdmin</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.Metrics</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.MetricsSource</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.Report</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.Reporter</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.TerminalReport</class>
         <class>com.ddsutn.group01.tpanual.models.pois.ParadaColectivo</class>
         <class>com.ddsutn.group01.tpanual.models.pois.LocalComercial</class>
         <class>com.ddsutn.group01.tpanual.models.HorariosDeAtencion</class>
