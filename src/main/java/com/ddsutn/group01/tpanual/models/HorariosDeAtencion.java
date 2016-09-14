@@ -5,7 +5,11 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+
+@Entity
 public class HorariosDeAtencion {
+	//anotation para esto
     private List<Horario> horarios;
 
     public HorariosDeAtencion() {
