@@ -7,6 +7,7 @@ import com.ddsutn.group01.tpanual.models.Rubro;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
+import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 import org.joda.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Before;
@@ -43,12 +44,16 @@ public class PersistentRecordTest {
         CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("foo", polygon);
         cgp.agregarUnServicio(servicio);
 
+        SucursalBanco sucursalBanco = new SucursalBanco("banco", new Point(5, 6));
+        sucursalBanco.agregarUnServicio(servicio);
+        sucursalBanco.agregarPalabraClave("many");
 
         EntityTransaction tx = entityManager.getTransaction();
 
         tx.begin();
         entityManager.persist(localComercial);
         entityManager.persist(cgp);
+        entityManager.persist(sucursalBanco);
         tx.commit();
 
         LocalComercial persistedLocalComercial = entityManager.find(LocalComercial.class, localComercial.getId());

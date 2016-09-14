@@ -11,6 +11,7 @@
         <class>com.ddsutn.group01.tpanual.models.HorariosDeAtencion</class>
         <class>com.ddsutn.group01.tpanual.models.Servicio</class>
         <class>com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion</class>
+        <class>com.ddsutn.group01.tpanual.models.pois.SucursalBanco</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
