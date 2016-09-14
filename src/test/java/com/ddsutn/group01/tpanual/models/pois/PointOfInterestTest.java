@@ -17,7 +17,7 @@ public class PointOfInterestTest {
     @Before
     public void init() {
         mockedPoint = Mockito.mock(Point.class);
-        poi = Mockito.spy(new PointOfInterest(1, "foo", mockedPoint) {
+        poi = Mockito.spy(new PointOfInterest("foo", mockedPoint) {
             @Override
             public Boolean estaDisponible(DateTime unHorario) {
                 return false;

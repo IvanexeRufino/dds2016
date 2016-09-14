@@ -16,7 +16,7 @@ public class LocalOriginTest {
     public void setUp() throws Exception {
         localOrigin = new LocalOrigin();
         Point mockedPoint = Mockito.mock(Point.class);
-        poi = new ParadaColectivo(1, "7", mockedPoint);
+        poi = new ParadaColectivo("7", mockedPoint);
     }
 
     @Test

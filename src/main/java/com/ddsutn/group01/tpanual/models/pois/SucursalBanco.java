@@ -6,13 +6,15 @@ import com.ddsutn.group01.tpanual.models.Servicio;
 import org.joda.time.LocalTime;
 import org.uqbar.geodds.Point;
 
+import javax.persistence.Entity;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 
+@Entity
 public class SucursalBanco extends PoiConServicios {
 
-    public SucursalBanco(Integer id, String name, Point point) {
-        super(id, name, point);
+    public SucursalBanco(String name, Point point) {
+        super(name, point);
         agregarUnServicio(servicioDeAtencionAlCliente());
     }
 

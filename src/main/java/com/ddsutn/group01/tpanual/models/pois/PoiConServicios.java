@@ -4,9 +4,11 @@ import com.ddsutn.group01.tpanual.models.Servicio;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+import javax.persistence.MappedSuperclass;
 import java.util.ArrayList;
 import java.util.List;
 
+@MappedSuperclass
 public abstract class PoiConServicios extends PointOfInterest {
     private List<Servicio> servicios;
 
@@ -14,8 +16,8 @@ public abstract class PoiConServicios extends PointOfInterest {
         return servicios;
     }
 
-    public PoiConServicios(Integer id, String name, Point point) {
-        super(id, name, point);
+    public PoiConServicios(String name, Point point) {
+        super(name, point);
         servicios = new ArrayList<>();
     }
 

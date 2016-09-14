@@ -23,7 +23,7 @@ public class LocalComercialTest {
         horariosDeAtencion = Mockito.mock(HorariosDeAtencion.class);
         rubro = Rubro.kiosco;
 
-        localComercial = new LocalComercial(1, "unLocal", mockedPoint, rubro, horariosDeAtencion);
+        localComercial = new LocalComercial("unLocal", mockedPoint, rubro, horariosDeAtencion);
     }
 
     @Test

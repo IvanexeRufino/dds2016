@@ -1,36 +1,44 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
+import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.PointConverter;
+import com.ddsutn.group01.tpanual.db.StringListConverter;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.MappedSuperclass;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class PointOfInterest {
-    private Integer id;
+@MappedSuperclass
+public abstract class PointOfInterest extends PersistentRecord {
+    @Column
     protected String name;
+
+    @Column
+    @Convert(converter = PointConverter.class)
     protected Point point;
+
+    @Column
+    @Convert(converter = StringListConverter.class)
     protected List<String> palabrasClaves;
 
-    public PointOfInterest(Integer id, String name, Point point) {
-        this.id = id;
+    public PointOfInterest(String name, Point point) {
         this.name = name;
         this.point = point;
         palabrasClaves = new ArrayList<>();
     }
-    
+
     public Point getPoint() {
         return point;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {
         return name;
     }
-    
+
     public List<String> getPalabrasClaves() {
         return palabrasClaves;
     }
@@ -55,6 +63,6 @@ public abstract class PointOfInterest {
         return 0.5;
     }
 
-	public void actualizarPalabrasClaves(String pclaves) {		
+	public void actualizarPalabrasClaves(String pclaves) {
 	}
 }

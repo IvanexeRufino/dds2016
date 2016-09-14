@@ -8,7 +8,7 @@ class PoiDAO {
     private ArrayList<PointOfInterest> pois;
 
     PoiDAO() {
-        this.pois = new ArrayList<PointOfInterest>();
+        this.pois = new ArrayList<>();
     }
 
     void create(PointOfInterest poi) {
@@ -23,7 +23,7 @@ class PoiDAO {
     void delete(int indice) {
         pois.removeIf((poiLocal) -> poiLocal.getId().equals(indice));
     }
-    
+
     ArrayList<PointOfInterest> findAll() {
         return pois;
     }

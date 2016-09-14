@@ -25,7 +25,7 @@ public class ActualizarLocalComercialTest {
 
 	@Test
 	public void testActualizarPalabrasClaves() {
-        LocalComercial carrousel = new LocalComercial(1, "carrousel", point, rubro, horarios);
+        LocalComercial carrousel = new LocalComercial("carrousel", point, rubro, horarios);
         carrousel.agregarPalabraClave("colegio");
 
 		carrousel.actualizarPalabrasClaves("chocolate caramelos chupelupe");

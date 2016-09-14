@@ -15,7 +15,7 @@ import java.util.List;
 public class BancoAdapterTest {
     private List<PointOfInterest> listaReal;
     private SucursalBanco sucursalPosta;
-    
+
     @Before
     public void init() {
         ArrayList<String> unaLista = new ArrayList<>();
@@ -30,34 +30,34 @@ public class BancoAdapterTest {
     public void adaptarJSON1esIgualAUnaSucursalDeBancoDeNuestroDominio() {
       SucursalBanco unaSucursal = (SucursalBanco) listaReal.get(0);
       Point punto = new Point(30,50);
-      sucursalPosta = new SucursalBanco(1, "Banco de la Plaza",  new Point(-35, 72));
+      sucursalPosta = new SucursalBanco("Banco de la Plaza",  new Point(-35, 72));
       Servicio depositos = new Servicio("depositos",null);
       Servicio extracciones = new Servicio("extracciones",null);
       sucursalPosta.agregarUnServicio(depositos);
       sucursalPosta.agregarUnServicio(extracciones);
-      
+
       Assert.assertEquals(unaSucursal.getName(), sucursalPosta.getName());
       Assert.assertTrue(unaSucursal.getPoint().distance(punto) == sucursalPosta.getPoint().distance(punto));
       Assert.assertEquals(unaSucursal.getServicios().get(1).getNombre(), sucursalPosta.getServicios().get(1).getNombre());
       Assert.assertEquals(unaSucursal.getServicios().get(2).getNombre(), sucursalPosta.getServicios().get(2).getNombre());
       }
-    
+
     @Test
     public void adaptarJSON2NoImportaElOrden() {
         SucursalBanco unaSucursal = (SucursalBanco) listaReal.get(1);
         Point punto = new Point(30,50);
-        sucursalPosta = new SucursalBanco(2, "Banco de la Plaza",  new Point(-36, 73));
+        sucursalPosta = new SucursalBanco("Banco de la Plaza",  new Point(-36, 73));
         Servicio depositos = new Servicio("depositos",null);
         Servicio extracciones = new Servicio("extracciones",null);
         sucursalPosta.agregarUnServicio(depositos);
         sucursalPosta.agregarUnServicio(extracciones);
-        
+
         Assert.assertEquals(unaSucursal.getName(), sucursalPosta.getName());
         Assert.assertTrue(unaSucursal.getPoint().distance(punto) == sucursalPosta.getPoint().distance(punto));
         Assert.assertEquals(unaSucursal.getServicios().get(1).getNombre(), sucursalPosta.getServicios().get(1).getNombre());
         Assert.assertEquals(unaSucursal.getServicios().get(2).getNombre(), sucursalPosta.getServicios().get(2).getNombre());
     }
-    
+
     @Test (expected = RuntimeException.class)
     public void adaptarLanzaExcepcionSiEstaMalFormadoElString() {
         ArrayList<String> unaLista = new ArrayList<>();

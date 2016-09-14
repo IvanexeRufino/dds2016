@@ -31,7 +31,7 @@ public class FileitorTest {
 
 	@Test
 	public void testActualizarPalabrasClaves() {
-        LocalComercial kioscoDeMario = new LocalComercial(2, "kioscoDeMario", point, rubro, horarios);
+        LocalComercial kioscoDeMario = new LocalComercial("kioscoDeMario", point, rubro, horarios);
         kioscoDeMario.agregarPalabraClave("foo");
 
 		kioscoDeMario.actualizarPalabrasClaves("tita jorgito tictac");
@@ -45,7 +45,7 @@ public class FileitorTest {
 
 	@Test
 	public void testBasicDisarm() {
-        LocalComercial carrousel = new LocalComercial(1, "carrousel", point, rubro, horarios);
+        LocalComercial carrousel = new LocalComercial("carrousel", point, rubro, horarios);
         PoiRepository.getInstance().add(carrousel);
 
 		fileitor.basicDisarm("carrousel;juguete pelota barbie");

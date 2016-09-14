@@ -24,9 +24,9 @@ public class BajaDePOIsTest {
         dataSource = new DataSourceBajaDePOIsMock();
         proceso = new BajaDePOIs(dataSource);
 
-        ParadaColectivo paradaUno = new ParadaColectivo(1, null, null);
-        ParadaColectivo paradaDos = new ParadaColectivo(2, null, null);
-        ParadaColectivo paradaTres = new ParadaColectivo(3, null, null);
+        ParadaColectivo paradaUno = new ParadaColectivo(null, null);
+        ParadaColectivo paradaDos = new ParadaColectivo(null, null);
+        ParadaColectivo paradaTres = new ParadaColectivo(null, null);
 
         repo.add(paradaUno);
         repo.add(paradaDos);

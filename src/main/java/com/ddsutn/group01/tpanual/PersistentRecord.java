@@ -9,10 +9,15 @@ public class PersistentRecord {
     @SuppressWarnings("unused")
     @Id
     @GeneratedValue
-    private long id;
+    private Integer id;
 
     @SuppressWarnings("unused")
-    public long getId() {
+    public Integer getId() {
         return id;
+    }
+
+    @SuppressWarnings("unused")
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
