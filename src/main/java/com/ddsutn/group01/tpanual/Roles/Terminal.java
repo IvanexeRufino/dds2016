@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Buscador;
@@ -19,12 +20,12 @@ import com.ddsutn.group01.tpanual.repositories.actions.Action;
 public class Terminal {
 	
 	@Id @GeneratedValue
-	private long id;
+	private Integer id;
     private int comuna;
 	@Column (length = 25)
     private String nombreDeTerminal;
-	//todavia pienso en si puede ser un many to many
-	@OneToMany
+	//no esta persistido actions
+	@Transient
     private List<Action> actions;
 	@OneToOne(fetch = FetchType.LAZY)
     private Buscador buscador;
@@ -43,6 +44,10 @@ public class Terminal {
         return comuna;
     }
 
+    public Buscador getBuscador() {
+    	return buscador;
+    }
+    
     public List<Action> getAcciones() {
         return actions;
     }
