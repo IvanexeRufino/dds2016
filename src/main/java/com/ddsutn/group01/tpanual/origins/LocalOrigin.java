@@ -30,7 +30,6 @@ public class LocalOrigin implements Origin {
 
     @Override
     public List<PointOfInterest> find(String criteria) {
-//        return dao.findAll().stream().filter(poi -> poi.palabraEsta(criteria)).collect(Collectors.toList());
-        return null;
+        return dao.findAll().stream().filter(poi -> poi.palabraEsta(criteria)).collect(Collectors.toList());
     }
 }
