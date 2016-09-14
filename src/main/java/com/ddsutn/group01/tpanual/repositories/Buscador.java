@@ -13,7 +13,7 @@ public class Buscador {
 	@Id @GeneratedValue
 	private long id;
 	
-	private Buscador(){}
+	public Buscador(){}
     
     public List<PointOfInterest> find(String criteria) {
         PoiRepository repositorio = PoiRepository.getInstance();
