@@ -6,24 +6,21 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
+import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Buscador;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
 @Entity
-public class Terminal {
+public class Terminal extends PersistentRecord{
 	
-	@Id @GeneratedValue
-	private long id;
     private int comuna;
 	@Column (length = 25)
     private String nombreDeTerminal;
-	//todavia pienso en si puede ser un many to many
 	@OneToMany
     private List<Action> actions;
 	@OneToOne(fetch = FetchType.LAZY)
@@ -43,6 +40,10 @@ public class Terminal {
         return comuna;
     }
 
+    public Buscador getBuscador() {
+    	return buscador;
+    }
+    
     public List<Action> getAcciones() {
         return actions;
     }

@@ -2,12 +2,15 @@ package com.ddsutn.group01.tpanual.tools.metrics;
 
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 
-public class Metrics implements Action {
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
+@Entity
+public class Metrics extends Action {
     private long timer;
-    private List<MetricsSource> metricsSource = new ArrayList<MetricsSource>();
+    //lo mismo que en el resultado de las busquedas, no es necesario tener un array si la idea en un primer lugar fue almacenarlas
 
     @Override
     public void precondition() {
@@ -21,6 +24,7 @@ public class Metrics implements Action {
     }
 
     private void almacenar(String criteria, int resultsCount, long timeLapsed) {
-        metricsSource.add(new MetricsSource(criteria, resultsCount, timeLapsed));
+        EntityManager em = PerThreadEntityManagers.getEntityManager();
+        em.persist(new MetricsSource(criteria, resultsCount, timeLapsed));
     }
 }

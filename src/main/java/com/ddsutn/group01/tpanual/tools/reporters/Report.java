@@ -1,12 +1,23 @@
 package com.ddsutn.group01.tpanual.tools.reporters;
 
 import java.util.HashMap;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.joda.time.LocalDate;
 
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
-public class Report implements Action{
+@Entity
+public class Report extends Action{
+	
+	@Transient
     private Reporter reporter;
+	//DEUDA TECNICA como persistir un hashmap a la base de datos
+	@Transient
     private HashMap<String, Integer> data = new HashMap<>();
 
     public void setReporter(Reporter reporter) {
