@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class LocalOrigin implements Origin {
     private PoiDAO dao;
 
+    // TODO: Deberíamos definir una interfaz DAO y recibirlo por param
     public LocalOrigin() {
         this.dao = new PoiDAO();
     }
