@@ -2,11 +2,10 @@ package com.ddsutn.group01.tpanual.models.pois;
 
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Rubro;
-
-import javax.persistence.*;
-
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
+
+import javax.persistence.*;
 
 @Entity
 public class LocalComercial extends PointOfInterest {

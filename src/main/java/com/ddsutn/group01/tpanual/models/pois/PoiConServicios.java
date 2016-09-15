@@ -4,12 +4,7 @@ import com.ddsutn.group01.tpanual.models.Servicio;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
