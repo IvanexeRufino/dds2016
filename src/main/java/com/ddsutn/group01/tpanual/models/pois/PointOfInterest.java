@@ -6,13 +6,7 @@ import com.ddsutn.group01.tpanual.db.StringListConverter;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 

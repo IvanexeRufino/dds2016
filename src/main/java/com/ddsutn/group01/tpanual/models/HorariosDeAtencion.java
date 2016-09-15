@@ -4,13 +4,11 @@ import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.db.HorariosConverter;
 import org.joda.time.DateTime;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class HorariosDeAtencion extends PersistentRecord {
