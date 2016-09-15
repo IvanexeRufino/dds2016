@@ -5,8 +5,8 @@ public enum Rubro {
 
     private double radioDeCercania;
 
-    Rubro(double unRadio){
-    	this.radioDeCercania = unRadio;
+    Rubro(double unRadio) {
+        this.radioDeCercania = unRadio;
     }
 
     public double getRadioDeCercania() {
@@ -14,6 +14,6 @@ public enum Rubro {
     }
 
     public String getNombre() {
-    	return name();
+        return name();
     }
 }

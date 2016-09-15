@@ -20,7 +20,8 @@ public class PoiConServiciosTest {
         unHorario = DateTime.now();
 
         Point mockedPoint = Mockito.mock(Point.class);
-        poi = Mockito.spy(new PoiConServicios("foo", mockedPoint) {});
+        poi = Mockito.spy(new PoiConServicios(1, "foo", mockedPoint) {
+        });
 
         mockedServicio = Mockito.mock(Servicio.class);
         Mockito.when(mockedServicio.getNombre()).thenReturn("servicio foo");

@@ -11,8 +11,8 @@ import java.util.Arrays;
 
 public class SucursalBanco extends PoiConServicios {
 
-    public SucursalBanco(String name, Point point) {
-        super(name, point);
+    public SucursalBanco(Integer id, String name, Point point) {
+        super(id, name, point);
         agregarUnServicio(servicioDeAtencionAlCliente());
     }
 

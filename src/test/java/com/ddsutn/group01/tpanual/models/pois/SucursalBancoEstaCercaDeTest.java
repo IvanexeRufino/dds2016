@@ -15,7 +15,7 @@ public class SucursalBancoEstaCercaDeTest {
     @Before
     public void init() {
         mockedPoint = Mockito.mock(Point.class);
-        poi = new SucursalBanco("santander", mockedPoint);
+        poi = new SucursalBanco(1, "santander", mockedPoint);
     }
 
     @Test

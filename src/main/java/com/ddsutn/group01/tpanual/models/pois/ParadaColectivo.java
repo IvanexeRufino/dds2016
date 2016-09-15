@@ -4,17 +4,18 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class ParadaColectivo extends PointOfInterest {
-    public ParadaColectivo(String name, Point point) {
-        super(name, point);
+    public ParadaColectivo(Integer id, String name, Point point) {
+        super(id, name, point);
     }
 
     @Override
     public Boolean estaDisponible(DateTime unHorario) {
-    	return true;
+        return true;
     }
+
     @Override
     public Boolean cumpleCondicion(String unaPalabra) {
-    	return name.contains(unaPalabra);
+        return name.contains(unaPalabra);
     }
 
     @Override

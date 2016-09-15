@@ -10,8 +10,12 @@ import java.util.List;
 public abstract class PoiConServicios extends PointOfInterest {
     private List<Servicio> servicios;
 
-    public PoiConServicios(String name, Point point) {
-        super(name, point);
+    public List<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public PoiConServicios(Integer id, String name, Point point) {
+        super(id, name, point);
         servicios = new ArrayList<>();
     }
 
@@ -22,10 +26,10 @@ public abstract class PoiConServicios extends PointOfInterest {
 
     public Boolean estaDisponible(DateTime unHorario, String nombreServicio) {
         return servicios.stream()
-                .filter(servicio -> servicio.getNombre().equals(nombreServicio))
-                .map(servicio -> servicio.estaDisponible(unHorario))
-                .findFirst()
-                .orElse(false);
+            .filter(servicio -> servicio.getNombre().equals(nombreServicio))
+            .map(servicio -> servicio.estaDisponible(unHorario))
+            .findFirst()
+            .orElse(false);
     }
 
     @Override
@@ -35,5 +39,9 @@ public abstract class PoiConServicios extends PointOfInterest {
 
     public void agregarUnServicio(Servicio servicio) {
         servicios.add(servicio);
+    }
+
+    public void setServicios(List<Servicio> unosServicios) {
+        servicios = unosServicios;
     }
 }

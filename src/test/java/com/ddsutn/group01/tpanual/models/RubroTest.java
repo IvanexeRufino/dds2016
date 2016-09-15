@@ -11,6 +11,7 @@ public class RubroTest {
         rubro = Rubro.kiosco;
         Assert.assertEquals(0.2, rubro.getRadioDeCercania(), 0);
     }
+
     @Test
     public void rubroLibreriaEstaCercaDe() {
         rubro = Rubro.libreriaEscolar;
