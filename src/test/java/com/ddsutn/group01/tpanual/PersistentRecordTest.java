@@ -7,6 +7,7 @@ import com.ddsutn.group01.tpanual.models.Rubro;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
+import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 import org.joda.time.LocalTime;
 import org.junit.Assert;
@@ -19,6 +20,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.time.DayOfWeek;
 import java.util.Arrays;
+import java.util.List;
 
 public class PersistentRecordTest {
     private EntityManager entityManager;
@@ -61,7 +63,5 @@ public class PersistentRecordTest {
         Assert.assertEquals(persistedLocalComercial.getRubro(), Rubro.kiosco);
         Assert.assertEquals(persistedLocalComercial.getPalabrasClaves(), Arrays.asList("foo", "bleh", "sarasa"));
         Assert.assertEquals(persistedLocalComercial.getHorarioDeAtencion().getHorarios(), horariosDeAtencion.getHorarios());
-
-//        System.out.println(entityManager.createQuery("from PointOfInterest").getResultList());
     }
 }
