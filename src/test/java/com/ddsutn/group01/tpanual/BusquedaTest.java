@@ -41,7 +41,7 @@ public class BusquedaTest {
     	ParadaColectivo parada = new ParadaColectivo("114", point);
     	PoiRepository.getInstance().add(parada);
     	terminal.find("114");
-    	Busqueda persistedBusqueda = entityManager.find(Busqueda.class, 1);
+    	Busqueda persistedBusqueda = entityManager.find(Busqueda.class, 2);
     	Assert.assertEquals(persistedBusqueda.getCriteria() , "114");
     }
     
@@ -55,8 +55,8 @@ public class BusquedaTest {
     	acciones.add(metrica);
     	terminal.setActions(acciones);
     	terminal.find("114");
-    	Busqueda persistedBusqueda = entityManager.find(Busqueda.class, 1);
-    	MetricsSource data = entityManager.find(MetricsSource.class, 2);
+    	Busqueda persistedBusqueda = entityManager.find(Busqueda.class, 2);
+    	MetricsSource data = entityManager.find(MetricsSource.class, 3);
     	Assert.assertEquals(persistedBusqueda.getCriteria() , "114");
 		Assert.assertEquals(data.getResultados(), 1);
     }

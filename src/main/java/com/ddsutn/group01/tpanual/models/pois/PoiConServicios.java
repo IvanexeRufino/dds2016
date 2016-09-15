@@ -5,12 +5,16 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import java.util.ArrayList;
 import java.util.List;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class PoiConServicios extends PointOfInterest {
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Servicio> servicios;
