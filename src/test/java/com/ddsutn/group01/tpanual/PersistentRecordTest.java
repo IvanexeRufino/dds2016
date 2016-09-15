@@ -49,12 +49,9 @@ public class PersistentRecordTest {
         sucursalBanco.agregarPalabraClave("many");
 
         EntityTransaction tx = entityManager.getTransaction();
-
-        tx.begin();
         entityManager.persist(localComercial);
         entityManager.persist(cgp);
         entityManager.persist(sucursalBanco);
-        tx.commit();
 
         LocalComercial persistedLocalComercial = entityManager.find(LocalComercial.class, localComercial.getId());
 
