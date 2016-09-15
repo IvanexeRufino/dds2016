@@ -11,6 +11,8 @@ public class ParadaColectivo extends PointOfInterest {
         super(name, point);
     }
 
+    protected ParadaColectivo() {}
+    
     @Override
     public Boolean estaDisponible(DateTime unHorario) {
         return true;

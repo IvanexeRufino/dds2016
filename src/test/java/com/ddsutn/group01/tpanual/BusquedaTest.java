@@ -41,10 +41,10 @@ public class BusquedaTest {
 	
     @Test
     public void busquedaTestGuardaResultadosDeLaBusqueda() throws InterruptedException {
-    	tx.begin();
     	Point point = new Point(4,5);
     	ParadaColectivo parada = new ParadaColectivo("114", point);
     	PoiRepository.getInstance().add(parada);
+    	tx.begin();
     	terminal.find("114");
 		Busqueda persistedBusqueda = (Busqueda) entityManager.createQuery("from Busqueda").getResultList().get(0);
     	Assert.assertEquals(persistedBusqueda.getCriteria() , "114");
@@ -53,10 +53,11 @@ public class BusquedaTest {
     
     @Test
     public void busquedaMasMetricsParaIntegrar(){
-    	tx.begin();
+
     	Point point = new Point(4,5);
     	ParadaColectivo parada = new ParadaColectivo("116", point);
     	PoiRepository.getInstance().add(parada);
+    	tx.begin();
     	Metrics metrica = new Metrics();
     	List<Action> acciones = new ArrayList<Action>();
     	acciones.add(metrica);

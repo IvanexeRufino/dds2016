@@ -16,7 +16,9 @@ class PoiDAO {
 
     void create(PointOfInterest poi) {
         EntityTransaction tx = entityManager.getTransaction();
+        tx.begin();
         entityManager.persist(poi);
+        tx.commit();
     }
 
     void update(PointOfInterest poi) {
