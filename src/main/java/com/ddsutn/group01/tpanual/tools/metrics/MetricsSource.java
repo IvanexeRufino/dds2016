@@ -2,6 +2,7 @@ package com.ddsutn.group01.tpanual.tools.metrics;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.ddsutn.group01.tpanual.PersistentRecord;
 
