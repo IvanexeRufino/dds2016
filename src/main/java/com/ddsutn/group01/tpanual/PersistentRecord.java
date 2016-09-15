@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 public class PersistentRecord {
     @SuppressWarnings("unused")
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     @SuppressWarnings("unused")

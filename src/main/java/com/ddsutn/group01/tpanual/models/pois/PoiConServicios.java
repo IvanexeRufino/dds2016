@@ -14,6 +14,8 @@ public abstract class PoiConServicios extends PointOfInterest {
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Servicio> servicios;
 
+    protected PoiConServicios() {}
+
 
     public PoiConServicios(String name, Point point) {
         super(name, point);

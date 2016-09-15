@@ -30,7 +30,7 @@ public class BusquedaTest {
 	private Buscador buscador;
 	private EntityManager entityManager;
 	private EntityTransaction tx;
-	
+
     @Before
     public void setUp() {
     	entityManager = PerThreadEntityManagers.getEntityManager();
@@ -38,7 +38,7 @@ public class BusquedaTest {
     	buscador = new Buscador();
      	terminal = new Terminal("abasto", 1, buscador);
     }
-	
+
     @Test
     public void busquedaTestGuardaResultadosDeLaBusqueda() throws InterruptedException {
     	Point point = new Point(4,5);
@@ -50,7 +50,7 @@ public class BusquedaTest {
     	Assert.assertEquals(persistedBusqueda.getCriteria() , "114");
     	tx.rollback();
     }
-    
+
     @Test
     public void busquedaMasMetricsParaIntegrar(){
 
@@ -59,7 +59,7 @@ public class BusquedaTest {
     	PoiRepository.getInstance().add(parada);
     	tx.begin();
     	Metrics metrica = new Metrics();
-    	List<Action> acciones = new ArrayList<Action>();
+    	List<Action> acciones = new ArrayList<>();
     	acciones.add(metrica);
     	terminal.setActions(acciones);
     	terminal.find("116");
@@ -69,5 +69,5 @@ public class BusquedaTest {
 		Assert.assertEquals(persistedMetricSource.getResultados(), 1);
 		tx.rollback();
     }
-    
+
 }
