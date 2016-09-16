@@ -9,6 +9,8 @@ import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
+import com.ddsutn.group01.tpanual.repositories.PoiRepository;
+
 import org.joda.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,14 +26,18 @@ import java.util.List;
 
 public class PersistentRecordTest {
     private EntityManager entityManager;
+    private EntityTransaction tx;
+    private PoiRepository repo = PoiRepository.getInstance();
 
     @Before
     public void setUp() {
         entityManager = PerThreadEntityManagers.getEntityManager();
+        tx = entityManager.getTransaction();
     }
 
     @Test
     public void xxx() {
+    	tx.begin();
         HorariosDeAtencion horariosDeAtencion = new HorariosDeAtencion();
         horariosDeAtencion.agregarHorario(new Horario(DayOfWeek.THURSDAY, new LocalTime(10, 0), new LocalTime(19, 0)));
         horariosDeAtencion.agregarHorario(new Horario(DayOfWeek.FRIDAY, new LocalTime(9, 0), new LocalTime(18, 0)));
@@ -49,11 +55,12 @@ public class PersistentRecordTest {
         SucursalBanco sucursalBanco = new SucursalBanco("banco", new Point(5, 6));
         sucursalBanco.agregarUnServicio(servicio);
         sucursalBanco.agregarPalabraClave("many");
-
-        EntityTransaction tx = entityManager.getTransaction();
-        entityManager.persist(localComercial);
-        entityManager.persist(cgp);
-        entityManager.persist(sucursalBanco);
+               
+        repo.add(localComercial);
+        repo.add(cgp);
+        repo.add(sucursalBanco);
+        
+ 
 
         LocalComercial persistedLocalComercial = entityManager.find(LocalComercial.class, localComercial.getId());
 
@@ -63,5 +70,6 @@ public class PersistentRecordTest {
         Assert.assertEquals(persistedLocalComercial.getRubro(), Rubro.kiosco);
         Assert.assertEquals(persistedLocalComercial.getPalabrasClaves(), Arrays.asList("foo", "bleh", "sarasa"));
         Assert.assertEquals(persistedLocalComercial.getHorarioDeAtencion().getHorarios(), horariosDeAtencion.getHorarios());
+        tx.rollback();
     }
 }
