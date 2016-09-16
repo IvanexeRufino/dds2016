@@ -16,7 +16,6 @@ public abstract class PointOfInterest extends PersistentRecord {
     @Column
     protected String name;
 
-    @Column(nullable = false)
     @Convert(converter = PointConverter.class)
     protected Point point;
 
