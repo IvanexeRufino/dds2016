@@ -39,7 +39,7 @@ public class Fileitor {
 		String [] aline = unalinea.split(";");
         String nlocal = aline [0];
         String pclaves = aline [1];
-
+        System.out.printf("%s",nlocal);
         PointOfInterest poiBuscado = PoiRepository.getInstance()
             .getOrigenLocal().getAll().stream()
             .filter(poi -> poi.getName().equals(nlocal))

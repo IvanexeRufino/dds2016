@@ -10,39 +10,42 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 public class BajaDePOIsTest {
     private BajaDePOIs proceso;
     private DataSourceBajaDePOIsMock dataSource;
     private PoiRepository repo = PoiRepository.getInstance();
+    private EntityManager em = PerThreadEntityManagers.getEntityManager();
+    private EntityTransaction tx;
 
     @Before
     public void init() {
         dataSource = new DataSourceBajaDePOIsMock();
         proceso = new BajaDePOIs(dataSource);
-
-        ParadaColectivo paradaUno = new ParadaColectivo(null, null);
-        ParadaColectivo paradaDos = new ParadaColectivo(null, null);
-        ParadaColectivo paradaTres = new ParadaColectivo(null, null);
-
-        repo.add(paradaUno);
-        repo.add(paradaDos);
-        repo.add(paradaTres);
-    }
-
-    @After
-    public void terminate() {
-        List<Integer> poiIDs = repo.getOrigenLocal().getAll().stream().map(PointOfInterest::getId)
-            .collect(Collectors.toList());
-
-        poiIDs.forEach(PoiRepository.getInstance()::remove);
+        tx = em.getTransaction();
     }
 
     @Test
     public void ejecutar() throws Exception {
+    	tx.begin();
+    	
+    	Point p = new Point(4,5);
+        ParadaColectivo paradaUno = new ParadaColectivo("114", p);
+        ParadaColectivo paradaDos = new ParadaColectivo("115", p);
+        ParadaColectivo paradaTres = new ParadaColectivo("116", p);
+    	
+        repo.add(paradaUno);
+        repo.add(paradaDos);
+        repo.add(paradaTres);
+        
         int idsToBeDeleted = InterpreterJSON.getListaDePOIs(dataSource.bajaDePOIs()).size();
         int remainingIds = repo.getOrigenLocal().getAll().size() - idsToBeDeleted;
 
@@ -50,5 +53,6 @@ public class BajaDePOIsTest {
 
         Assert.assertEquals(deletedIds, idsToBeDeleted);
         Assert.assertEquals(remainingIds, repo.getOrigenLocal().getAll().size());
+        tx.rollback();
     }
 }

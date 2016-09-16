@@ -35,8 +35,4 @@ public class ActualizarLocalComercialTest {
 		Assert.assertTrue(carrousel.getPalabrasClaves().contains("caramelos"));
 		Assert.assertTrue(carrousel.getPalabrasClaves().contains("chupelupe"));
 	}
-
-//	@Test
-//	public void testEjecutarActualizacionLocalComercial() {}
-
 }
