@@ -13,7 +13,6 @@ import javax.persistence.Id;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-@Entity
 public class Buscador extends PersistentRecord {
 	public Buscador() {}
 
@@ -26,7 +25,6 @@ public class Buscador extends PersistentRecord {
                                               .map(origin -> origin.find(criteria))
                                               .flatMap(List::stream)
                                               .collect(Collectors.toList()));
-//		  persistir las busquedas con sus parametros
         EntityManager em = PerThreadEntityManagers.getEntityManager();
         em.persist(new Busqueda(criteria,lista));
         return lista;

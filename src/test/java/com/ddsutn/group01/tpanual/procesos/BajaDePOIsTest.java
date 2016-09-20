@@ -28,8 +28,6 @@ public class BajaDePOIsTest {
 
     @Before
     public void init() {
-        dataSource = new DataSourceBajaDePOIsMock();
-        proceso = new BajaDePOIs(dataSource);
         tx = em.getTransaction();
     }
 
@@ -45,6 +43,9 @@ public class BajaDePOIsTest {
         repo.add(paradaUno);
         repo.add(paradaDos);
         repo.add(paradaTres);
+        
+        dataSource = new DataSourceBajaDePOIsMock(paradaUno.getId(),paradaDos.getId());
+        proceso = new BajaDePOIs(dataSource);
         
         int idsToBeDeleted = InterpreterJSON.getListaDePOIs(dataSource.bajaDePOIs()).size();
         int remainingIds = repo.getOrigenLocal().getAll().size() - idsToBeDeleted;

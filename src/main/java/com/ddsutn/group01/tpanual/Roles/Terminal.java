@@ -23,7 +23,7 @@ public class Terminal extends PersistentRecord{
     private String nombreDeTerminal;
 	@OneToMany
     private List<Action> actions;
-	@OneToOne(fetch = FetchType.LAZY)
+	@Transient
     private Buscador buscador;
 
 	@SuppressWarnings("unused")

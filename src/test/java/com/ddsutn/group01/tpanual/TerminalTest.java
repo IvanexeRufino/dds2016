@@ -29,7 +29,6 @@ public class TerminalTest {
     @Test
     public void terminalTest() {
     	tx.begin();
-    	entityManager.persist(buscador);
     	entityManager.persist(terminal);
     	Terminal persistedTerminal = entityManager.find(Terminal.class, terminal.getId());
     	Assert.assertEquals(persistedTerminal.getComuna(), 1);

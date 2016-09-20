@@ -4,13 +4,14 @@ import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.Transient;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 @Entity
 public class Metrics extends Action {
+	@Transient
     private long timer;
-    //lo mismo que en el resultado de las busquedas, no es necesario tener un array si la idea en un primer lugar fue almacenarlas
 
     @Override
     public void precondition() {

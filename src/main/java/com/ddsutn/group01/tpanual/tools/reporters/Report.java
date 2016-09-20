@@ -16,7 +16,6 @@ public class Report extends Action{
 	
 	@Transient
     private Reporter reporter;
-	//DEUDA TECNICA como persistir un hashmap a la base de datos
 	@Transient
     private HashMap<String, Integer> data = new HashMap<>();
 
