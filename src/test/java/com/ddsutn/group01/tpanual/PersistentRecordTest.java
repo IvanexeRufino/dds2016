@@ -7,37 +7,22 @@ import com.ddsutn.group01.tpanual.models.Rubro;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
-import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 
 import org.joda.time.LocalTime;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import java.time.DayOfWeek;
 import java.util.Arrays;
-import java.util.List;
 
-public class PersistentRecordTest {
-    private EntityManager entityManager;
-    private EntityTransaction tx;
+public class PersistentRecordTest extends AbstractPersistenceTestTest{
     private PoiRepository repo = PoiRepository.getInstance();
-
-    @Before
-    public void setUp() {
-        entityManager = PerThreadEntityManagers.getEntityManager();
-        tx = entityManager.getTransaction();
-    }
-
+    
     @Test
     public void xxx() {
-    	tx.begin();
         HorariosDeAtencion horariosDeAtencion = new HorariosDeAtencion();
         horariosDeAtencion.agregarHorario(new Horario(DayOfWeek.THURSDAY, new LocalTime(10, 0), new LocalTime(19, 0)));
         horariosDeAtencion.agregarHorario(new Horario(DayOfWeek.FRIDAY, new LocalTime(9, 0), new LocalTime(18, 0)));
@@ -62,7 +47,7 @@ public class PersistentRecordTest {
         
  
 
-        LocalComercial persistedLocalComercial = entityManager.find(LocalComercial.class, localComercial.getId());
+        LocalComercial persistedLocalComercial = em.find(LocalComercial.class, localComercial.getId());
 
         Assert.assertEquals(persistedLocalComercial.getId(), localComercial.getId());
         Assert.assertEquals(persistedLocalComercial.getPoint().latitude(), 1.0, 0);
@@ -70,6 +55,5 @@ public class PersistentRecordTest {
         Assert.assertEquals(persistedLocalComercial.getRubro(), Rubro.kiosco);
         Assert.assertEquals(persistedLocalComercial.getPalabrasClaves(), Arrays.asList("foo", "bleh", "sarasa"));
         Assert.assertEquals(persistedLocalComercial.getHorarioDeAtencion().getHorarios(), horariosDeAtencion.getHorarios());
-        tx.rollback();
     }
 }
