@@ -3,8 +3,6 @@ package com.ddsutn.group01.tpanual.tools.reporters;
 import java.util.HashMap;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import org.joda.time.LocalDate;

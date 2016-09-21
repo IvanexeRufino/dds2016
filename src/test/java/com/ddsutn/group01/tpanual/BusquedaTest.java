@@ -3,8 +3,6 @@ package com.ddsutn.group01.tpanual;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

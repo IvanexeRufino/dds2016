@@ -4,12 +4,7 @@ import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 

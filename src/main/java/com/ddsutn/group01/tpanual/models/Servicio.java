@@ -14,10 +14,6 @@ public class Servicio extends PersistentRecord {
     @JoinColumn(name="horarios_de_atencion_id")
     private HorariosDeAtencion horariosDeAtencion;
 
-    @SuppressWarnings("unused")
-    protected Servicio() {
-    }
-
     public Servicio(String nombre, HorariosDeAtencion horariosDeAtencion) {
         this.nombre = nombre;
         this.horariosDeAtencion = horariosDeAtencion;

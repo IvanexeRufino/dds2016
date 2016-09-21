@@ -17,9 +17,6 @@ public class LocalComercial extends PointOfInterest {
     @JoinColumn(name="horarios_de_atencion_id")
     private HorariosDeAtencion horarioDeAtencion;
 
-    @SuppressWarnings("unused")
-    public LocalComercial() {}
-
     public LocalComercial(String name, Point point, Rubro rubro, HorariosDeAtencion horarioDeAtencion) {
         super(name, point);
         this.rubro = rubro;

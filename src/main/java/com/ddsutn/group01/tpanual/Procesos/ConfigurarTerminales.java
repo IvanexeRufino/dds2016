@@ -1,7 +1,6 @@
 package com.ddsutn.group01.tpanual.Procesos;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.ddsutn.group01.tpanual.Procesos.Filtradores.FiltradorDeTerminales;
 import com.ddsutn.group01.tpanual.Roles.Terminal;

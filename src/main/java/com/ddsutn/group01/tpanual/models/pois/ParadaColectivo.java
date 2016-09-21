@@ -10,8 +10,6 @@ public class ParadaColectivo extends PointOfInterest {
     public ParadaColectivo(String name, Point point) {
         super(name, point);
     }
-
-    protected ParadaColectivo() {}
     
     @Override
     public Boolean estaDisponible(DateTime unHorario) {

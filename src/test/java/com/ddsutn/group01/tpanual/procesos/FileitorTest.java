@@ -12,7 +12,6 @@ import com.ddsutn.group01.tpanual.Procesos.Fileitor;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Rubro;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
-import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 
 public class FileitorTest {
     private Point point;

@@ -23,9 +23,6 @@ public abstract class PointOfInterest extends PersistentRecord {
     @Convert(converter = StringListConverter.class)
     protected List<String> palabrasClaves;
 
-    @SuppressWarnings("unused")
-    protected PointOfInterest() {}
-
     public PointOfInterest(String name, Point point) {
         this.name = name;
         this.point = point;

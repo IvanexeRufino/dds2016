@@ -3,7 +3,6 @@ package com.ddsutn.group01.tpanual.Procesos;
 public class ActualizarLocalComercial extends Proceso{
 	private String bigstring;
    	private Fileitor fileitor;
-   	private int contador;
 
 	public ActualizarLocalComercial(String bigstring) {
 		this.bigstring = bigstring;
