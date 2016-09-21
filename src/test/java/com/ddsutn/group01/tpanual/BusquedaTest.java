@@ -34,7 +34,7 @@ public class BusquedaTest extends AbstractPersistenceTestTest{
     	ParadaColectivo parada = new ParadaColectivo("114", point);
     	PoiRepository.getInstance().add(parada);
     	terminal.find("114");
-		Busqueda persistedBusqueda = (Busqueda) em.createQuery("from Busqueda").getResultList().get(0);
+		Busqueda persistedBusqueda = (Busqueda) em.createQuery("from Busqueda").getSingleResult();
     	Assert.assertEquals(persistedBusqueda.getCriteria() , "114");
     }
 
@@ -48,8 +48,8 @@ public class BusquedaTest extends AbstractPersistenceTestTest{
     	acciones.add(metrica);
     	terminal.setActions(acciones);
     	terminal.find("116");
-		Busqueda persistedBusqueda = (Busqueda) em.createQuery("from Busqueda").getResultList().get(0);
-		MetricsSource persistedMetricSource = (MetricsSource) em.createQuery("from MetricsSource").getResultList().get(0);
+		Busqueda persistedBusqueda = (Busqueda) em.createQuery("from Busqueda").getSingleResult();
+		MetricsSource persistedMetricSource = (MetricsSource) em.createQuery("from MetricsSource").getSingleResult();
     	Assert.assertEquals(persistedBusqueda.getCriteria() , "116");
 		Assert.assertEquals(persistedMetricSource.getResultados(), 1);
     }
