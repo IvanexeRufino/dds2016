@@ -1,6 +1,5 @@
 package com.ddsutn.group01.tpanual.origins;
 
-import com.ddsutn.group01.tpanual.AbstractPersistenceTestTest;
 import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
 
 import org.junit.Assert;
@@ -8,8 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
-public class LocalOriginTest extends AbstractPersistenceTestTest{
+public class LocalOriginTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
     private LocalOrigin localOrigin;
     private ParadaColectivo poi;

@@ -1,6 +1,5 @@
 package com.ddsutn.group01.tpanual.procesos;
 
-import com.ddsutn.group01.tpanual.AbstractPersistenceTestTest;
 import com.ddsutn.group01.tpanual.InterpreterJSON.InterpreterJSON;
 import com.ddsutn.group01.tpanual.Procesos.BajaDePOIs;
 import com.ddsutn.group01.tpanual.models.mocks.DataSourceBajaDePOIsMock;
@@ -9,8 +8,10 @@ import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
-public class BajaDePOIsTest extends AbstractPersistenceTestTest{
+public class BajaDePOIsTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
     private BajaDePOIs proceso;
     private DataSourceBajaDePOIsMock dataSource;
     private PoiRepository repo = PoiRepository.getInstance();

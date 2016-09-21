@@ -14,11 +14,13 @@ import org.joda.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import java.time.DayOfWeek;
 import java.util.Arrays;
 
-public class PersistentRecordTest extends AbstractPersistenceTestTest{
+public class PersistentRecordTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
     private PoiRepository repo = PoiRepository.getInstance();
     
     @Test
@@ -47,7 +49,7 @@ public class PersistentRecordTest extends AbstractPersistenceTestTest{
         
  
 
-        LocalComercial persistedLocalComercial = em.find(LocalComercial.class, localComercial.getId());
+        LocalComercial persistedLocalComercial = entityManager().find(LocalComercial.class, localComercial.getId());
 
         Assert.assertEquals(persistedLocalComercial.getId(), localComercial.getId());
         Assert.assertEquals(persistedLocalComercial.getPoint().latitude(), 1.0, 0);

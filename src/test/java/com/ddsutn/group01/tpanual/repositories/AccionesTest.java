@@ -1,18 +1,19 @@
 package com.ddsutn.group01.tpanual.repositories;
 
-import com.ddsutn.group01.tpanual.AbstractPersistenceTestTest;
 import com.ddsutn.group01.tpanual.Roles.Terminal;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 
-public class AccionesTest extends AbstractPersistenceTestTest{
+public class AccionesTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
     private Action mockedAction;
     private Terminal unaTerminal;
     private Buscador buscador = new Buscador();
