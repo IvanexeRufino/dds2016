@@ -15,7 +15,7 @@ public class PolygonConverter implements AttributeConverter<Polygon, String> {
     @Override
     public String convertToDatabaseColumn(Polygon polygon) {
         List<String> points = polygon.getPoints().stream().map(point -> {
-            return point.latitude()+ ITEM_SEPARATOR + point.longitude();
+            return point.latitude() + ITEM_SEPARATOR + point.longitude();
         }).collect(Collectors.toList());
         return String.join(SEPARATOR, points);
     }

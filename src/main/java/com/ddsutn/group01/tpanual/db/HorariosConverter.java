@@ -1,7 +1,6 @@
 package com.ddsutn.group01.tpanual.db;
 
 import com.ddsutn.group01.tpanual.models.Horario;
-
 import org.joda.time.LocalTime;
 
 import javax.persistence.AttributeConverter;
@@ -11,14 +10,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HorariosConverter implements AttributeConverter<List<Horario>, String> {
+public class HorariosConverter implements AttributeConverter<List, String> {
     private static final String SEPARATOR = ", ";
     private static final String ITEM_SEPARATOR = "-";
 
     @Override
-    public String convertToDatabaseColumn(List<Horario> list) {
+    public String convertToDatabaseColumn(List list) {
 
-        List<String> result = list.stream().map(horario -> {
+        List<Horario> horarios = (List<Horario>) list;
+        List<String> result = horarios.stream().map(horario -> {
             StringBuilder sb = new StringBuilder();
             sb.append(horario.getDia().toString());
             sb.append(ITEM_SEPARATOR);
@@ -33,7 +33,7 @@ public class HorariosConverter implements AttributeConverter<List<Horario>, Stri
     }
 
     @Override
-    public List<Horario> convertToEntityAttribute(String string) {
+    public List convertToEntityAttribute(String string) {
         List<String> horarios = new ArrayList<> (Arrays.asList(string.split(SEPARATOR)));
 
         return horarios.stream().map(horario -> {
