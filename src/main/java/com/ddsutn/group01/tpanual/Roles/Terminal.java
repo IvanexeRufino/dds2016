@@ -15,7 +15,7 @@ import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
 @Entity
 public class Terminal extends PersistentRecord{
-	
+
     private int comuna;
 	@Column (length = 25)
     private String nombreDeTerminal;
@@ -26,7 +26,7 @@ public class Terminal extends PersistentRecord{
 
 	@SuppressWarnings("unused")
 	private Terminal() {}
-	
+
     public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;
         this.nombreDeTerminal = nombreDeTerminal;
@@ -41,7 +41,7 @@ public class Terminal extends PersistentRecord{
     public Buscador getBuscador() {
     	return buscador;
     }
-    
+
     public List<Action> getAcciones() {
         return actions;
     }
