@@ -7,17 +7,17 @@ import java.util.TimerTask;
 public abstract class Frecuencia {
 
     protected Date dia;
-    protected long periodo;
     protected Timer timer = new Timer();
 
-    public void activarProceso (Runnable ejecutable) {
+    public void activarProceso(Runnable ejecutable) {
         TimerTask timer = new TimerTask() {
             public void run() {
                 ejecutable.run();
-                }
-            };
+            }
+        };
+
         this.schedule(timer);
     }
 
-    public abstract void schedule (TimerTask timer);
+    public abstract void schedule(TimerTask timer);
 }

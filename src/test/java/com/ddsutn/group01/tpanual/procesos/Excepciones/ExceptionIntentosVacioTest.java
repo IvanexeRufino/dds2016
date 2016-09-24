@@ -6,6 +6,7 @@ import com.ddsutn.group01.tpanual.procesos.Frecuencia.Unico;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
@@ -15,24 +16,23 @@ public class ExceptionIntentosVacioTest {
 
     private CountDownLatch lock = new CountDownLatch(1);
     private BajaDePOIs proceso;
-    private DataSourceBajaDePOIs dataSource;
 
     @Before
     public void init() throws InterruptedException {
         ExcepcionVacia vacia = new ExcepcionVacia();
         Date dia = new Date();
         Unico frecuenciaUnica = new Unico(dia);
-        ExcepcionIntentos intentos = new ExcepcionIntentos(3, vacia);
+        ExcepcionIntentos intentos = new ExcepcionIntentos(1, vacia);
 
-        proceso = new BajaDePOIs(dataSource);
+        proceso = new BajaDePOIs(Mockito.mock(DataSourceBajaDePOIs.class));
         proceso.setTipoDeExcepcion(intentos);
         proceso.setFrecuencia(frecuenciaUnica);
         proceso.activarProcesos();
-        lock.await(2000, TimeUnit.MILLISECONDS);
+        lock.await(1000, TimeUnit.MILLISECONDS);
     }
 
     @Test
-    public void LuegoDeTresIntentosMarcaElProcesoComoFallado() {
+    public void luegoDeUnIntentoMarcaElProcesoComoFallado() {
         Assert.assertEquals("Error", proceso.getEstado());
     }
 

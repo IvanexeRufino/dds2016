@@ -7,17 +7,16 @@ public class ExcepcionMail implements ExcepcionProceso {
 
     private Mailer mailer;
 
-    public ExcepcionMail (Mailer unMailer) {
+    public ExcepcionMail(Mailer unMailer) {
         this.mailer = unMailer;
     }
 
     @Override
-    public void manejarError(Proceso process)  {
+    public void manejarError(Proceso process) {
         process.estadoError();
-        try{
-        mailer.send("admin@gmail.com", "error", "error en proceso");
-        }
-        catch (Exception e){
+        try {
+            mailer.send("admin@gmail.com", "error", "error en proceso");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

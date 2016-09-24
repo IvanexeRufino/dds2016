@@ -1,9 +1,9 @@
 package com.ddsutn.group01.tpanual.procesos;
 
 import com.ddsutn.group01.tpanual.procesos.Filtradores.PorComuna;
-import com.ddsutn.group01.tpanual.roles.Terminal;
 import com.ddsutn.group01.tpanual.repositories.Buscador;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import com.ddsutn.group01.tpanual.roles.Terminal;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,15 +28,7 @@ public class ConfigurarTerminalesTest {
 
         pacheco = new Terminal("pacheco", 2, buscador);
         ezeiza = new Terminal("ezeiza", 1, buscador);
-        Action mockedAction = Mockito.spy(new Action() {
-            @Override
-            public void precondition() {
-            }
-
-            @Override
-            public void postcondition(String criteria, int result, String terminal) {
-            }
-        });
+        Action mockedAction = Mockito.mock(Action.class);
 
         acciones.add(mockedAction);
         terminales.add(ezeiza);
@@ -48,12 +40,14 @@ public class ConfigurarTerminalesTest {
     @Test
     public void terminalEzeizaTieneUnaAccionConfigurada() throws Exception {
         proceso.ejecutar();
+
         Assert.assertEquals(1, ezeiza.getAcciones().size());
     }
 
     @Test
     public void terminalPachecoNoTieneAccionesPorqueNoEsDeLaComunaUno() throws Exception {
         proceso.ejecutar();
+
         Assert.assertEquals(0, pacheco.getAcciones().size());
     }
 }

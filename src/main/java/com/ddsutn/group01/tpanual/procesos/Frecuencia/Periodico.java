@@ -12,8 +12,8 @@ public class Periodico extends Frecuencia {
         this.periodo = periodo;
     }
 
-    public void schedule (TimerTask task) {
-        timer.scheduleAtFixedRate(task ,dia, periodo);
+    public void schedule(TimerTask task) {
+        timer.scheduleAtFixedRate(task, dia, periodo);
     }
 
 }

@@ -5,27 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
-import com.ddsutn.group01.tpanual.tools.mailers.MailgunMailer;
 
 @Entity
 public class NotifyAdmin extends Action {
 	@Column
     private long secondsBeforeNotify = 1;
+
     @Column
 	private long time;
+
     @Transient
-    private Mailer mailer = new MailgunMailer();
-    
+    private Mailer mailer;
+
+    public NotifyAdmin(Mailer mailer) {
+        this.mailer = mailer;
+    }
+
     public long getTime(){
     	return time;
-    }
-    
-    public void setTime(long time){
-    	this.time = time;
-    }
-    
-    public long getSecondsBeforeNotify() {
-        return secondsBeforeNotify;
     }
 
     public void setSecondsBeforeNotify(int secondsBeforeNotify) {
@@ -52,8 +49,9 @@ public class NotifyAdmin extends Action {
     @Override
     public void postcondition(String criteria, int result, String nombre) {
         time = System.nanoTime() - time;
+
         if (maxTimeLapsed(time)) {
             notifyAdmin();
-        }     
+        }
     }
 }

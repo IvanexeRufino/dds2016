@@ -5,13 +5,13 @@ import java.util.TimerTask;
 
 public class Unico extends Frecuencia {
 
-    public Unico (Date dia) {
+    public Unico(Date dia) {
         this.dia = dia;
     }
 
     @Override
     public void schedule(TimerTask task) {
-        timer.schedule(task,dia);
+        timer.schedule(task, dia);
     }
 
 }

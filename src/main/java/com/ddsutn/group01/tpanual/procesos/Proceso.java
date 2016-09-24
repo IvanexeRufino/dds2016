@@ -1,10 +1,9 @@
 package com.ddsutn.group01.tpanual.procesos;
 
-import org.joda.time.DateTime;
-
 import com.ddsutn.group01.tpanual.procesos.Excepciones.ExcepcionProceso;
 import com.ddsutn.group01.tpanual.procesos.Frecuencia.Frecuencia;
 import com.ddsutn.group01.tpanual.procesos.Log.Log;
+import org.joda.time.DateTime;
 
 public abstract class Proceso {
 
@@ -26,7 +25,7 @@ public abstract class Proceso {
     }
 
     public void estadoError() {
-    	this.estado = "Error";
+        this.estado = "Error";
     }
 
     public String getEstado() {
@@ -36,7 +35,7 @@ public abstract class Proceso {
     public void ejecutarProceso() throws Exception {
         int cantidadDeResultados = this.ejecutar();
         this.estadoTerminado();
-        this.log.guardar(cantidadDeResultados,DateTime.now(), estado);
+        this.log.guardar(cantidadDeResultados, DateTime.now(), estado);
     }
 
     public abstract int ejecutar() throws Exception;
@@ -46,9 +45,10 @@ public abstract class Proceso {
             try {
                 this.ejecutarProceso();
             } catch (Exception e) {
-                    tipoDeExcepcion.manejarError(this);
-                }
-            };
+                tipoDeExcepcion.manejarError(this);
+            }
+        };
+
         tiempoDeEjecucion.activarProceso(task);
     }
 

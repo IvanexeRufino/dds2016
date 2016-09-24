@@ -1,12 +1,11 @@
 package com.ddsutn.group01.tpanual.tools.metrics;
 
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Transient;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 @Entity
 public class Metrics extends Action {

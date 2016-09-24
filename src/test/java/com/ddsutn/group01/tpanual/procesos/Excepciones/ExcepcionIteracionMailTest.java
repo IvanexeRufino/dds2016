@@ -21,25 +21,21 @@ public class ExcepcionIteracionMailTest {
     private Mailer mockedMailer;
     private CountDownLatch lock = new CountDownLatch(1);
     private BajaDePOIs proceso;
-    private DataSourceBajaDePOIs dataSource;
 
     @Before
     public void init() throws InterruptedException {
-        mockedMailer = Mockito.spy(new Mailer() {
-            @Override
-            public void send(String to, String subject, String content) throws Exception {}
-        });
+        mockedMailer = Mockito.mock(Mailer.class);
 
-        ExcepcionMail mail = new ExcepcionMail(mockedMailer);
+        ExcepcionMail excepcionMail = new ExcepcionMail(mockedMailer);
         Date dia = new Date();
         Unico frecuenciaUnica = new Unico(dia);
-        ExcepcionIntentos intentos = new ExcepcionIntentos(3, mail);
+        ExcepcionIntentos intentos = new ExcepcionIntentos(1, excepcionMail);
 
-        proceso = new BajaDePOIs(dataSource);
+        proceso = new BajaDePOIs(Mockito.mock(DataSourceBajaDePOIs.class));
         proceso.setTipoDeExcepcion(intentos);
         proceso.setFrecuencia(frecuenciaUnica);
         proceso.activarProcesos();
-        lock.await(2000, TimeUnit.MILLISECONDS);
+        lock.await(1000, TimeUnit.MILLISECONDS);
     }
 
     @Test

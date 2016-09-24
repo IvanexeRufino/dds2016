@@ -9,7 +9,6 @@ import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
-
 import org.joda.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +19,7 @@ import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 
-public class PersistentRecordTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
+public class PersistentRecordTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
     private PoiRepository repo = PoiRepository.getInstance();
 
     @Test
