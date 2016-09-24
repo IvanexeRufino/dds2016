@@ -1,14 +1,14 @@
 package com.ddsutn.group01.tpanual.repositories;
 
-import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
-import java.util.List;
-import java.util.stream.Collectors;
-import javax.persistence.EntityManager;
-
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-public class Buscador extends PersistentRecord {
+import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Buscador {
+
 	public Buscador() {}
 
     // TODO: El repo podría conocer al buscar. De esa forma todas las acciones (buscar, crear, eliminar, editar)
@@ -24,4 +24,5 @@ public class Buscador extends PersistentRecord {
         em.persist(new Busqueda(criteria,lista));
         return lista;
     }
+
 }

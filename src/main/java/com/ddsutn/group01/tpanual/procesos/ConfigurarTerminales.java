@@ -1,25 +1,25 @@
-package com.ddsutn.group01.tpanual.Procesos;
+package com.ddsutn.group01.tpanual.procesos;
+
+import com.ddsutn.group01.tpanual.procesos.Filtradores.FiltradorDeTerminales;
+import com.ddsutn.group01.tpanual.roles.Terminal;
+import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
 import java.util.List;
 
-import com.ddsutn.group01.tpanual.Procesos.Filtradores.FiltradorDeTerminales;
-import com.ddsutn.group01.tpanual.Roles.Terminal;
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
-
-public class ConfigurarTerminales extends Proceso {
+public class ConfigurarTerminales extends com.ddsutn.group01.tpanual.procesos.Proceso {
     private List<Action> acciones;
     private List<Terminal> terminales;
     private FiltradorDeTerminales filtrador;
-    
+
     public ConfigurarTerminales(FiltradorDeTerminales unFiltro, List<Terminal> unasTerminales) {
         filtrador = unFiltro;
         terminales = unasTerminales;
     }
-    
+
     public void setTerminales(List<Terminal> unasTerminales) {
         terminales = unasTerminales;
     }
-    
+
     public void setAcciones(List<Action> acciones) {
         this.acciones = acciones;
     }
@@ -29,5 +29,5 @@ public class ConfigurarTerminales extends Proceso {
         terminalesAEjecutar.forEach(terminal -> terminal.setActions(acciones));
         return terminalesAEjecutar.size();
     }
-    
+
 }

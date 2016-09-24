@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 public class PersistentRecordTest extends AbstractPersistenceTest implements WithGlobalEntityManager{
     private PoiRepository repo = PoiRepository.getInstance();
-    
+
     @Test
     public void xxx() {
         HorariosDeAtencion horariosDeAtencion = new HorariosDeAtencion();
@@ -42,12 +42,10 @@ public class PersistentRecordTest extends AbstractPersistenceTest implements Wit
         SucursalBanco sucursalBanco = new SucursalBanco("banco", new Point(5, 6));
         sucursalBanco.agregarUnServicio(servicio);
         sucursalBanco.agregarPalabraClave("many");
-               
+
         repo.add(localComercial);
         repo.add(cgp);
         repo.add(sucursalBanco);
-        
- 
 
         LocalComercial persistedLocalComercial = entityManager().find(LocalComercial.class, localComercial.getId());
 

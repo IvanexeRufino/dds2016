@@ -1,59 +1,58 @@
 package com.ddsutn.group01.tpanual.procesos;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.ddsutn.group01.tpanual.procesos.Filtradores.PorComuna;
+import com.ddsutn.group01.tpanual.roles.Terminal;
+import com.ddsutn.group01.tpanual.repositories.Buscador;
+import com.ddsutn.group01.tpanual.repositories.actions.Action;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.ddsutn.group01.tpanual.Procesos.ConfigurarTerminales;
-import com.ddsutn.group01.tpanual.Procesos.Filtradores.PorComuna;
-import com.ddsutn.group01.tpanual.Roles.Terminal;
-import com.ddsutn.group01.tpanual.repositories.Buscador;
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ConfigurarTerminalesTest {
-    
-    private Action mockedAction;
+
     private Terminal ezeiza;
     private Terminal pacheco;
     private ConfigurarTerminales proceso;
-    List<Terminal> terminales = new ArrayList<Terminal>();
-    List<Action> acciones = new ArrayList<Action>();
-    Buscador buscador = new Buscador();
-    PorComuna filtrador = new PorComuna(1);
-    
+
     @Before
     public void init() {
-        
-        pacheco = new Terminal("pacheco",2,buscador);
-        ezeiza = new Terminal("ezeiza",1,buscador);
-        mockedAction = Mockito.spy(new Action() {
+        List<Terminal> terminales = new ArrayList<>();
+        List<Action> acciones = new ArrayList<>();
+        Buscador buscador = new Buscador();
+        PorComuna filtrador = new PorComuna(1);
+
+        pacheco = new Terminal("pacheco", 2, buscador);
+        ezeiza = new Terminal("ezeiza", 1, buscador);
+        Action mockedAction = Mockito.spy(new Action() {
             @Override
-            public void precondition() {}
+            public void precondition() {
+            }
 
             @Override
-            public void postcondition(String criteria, int result, String terminal) {}
+            public void postcondition(String criteria, int result, String terminal) {
+            }
         });
+
         acciones.add(mockedAction);
         terminales.add(ezeiza);
         terminales.add(pacheco);
-        proceso = new ConfigurarTerminales(filtrador,terminales);
+        proceso = new ConfigurarTerminales(filtrador, terminales);
         proceso.setAcciones(acciones);
-        
     }
-    
+
     @Test
-    public void terminalEzeizaTieneUnaAccionConfigurada() throws Exception{
+    public void terminalEzeizaTieneUnaAccionConfigurada() throws Exception {
         proceso.ejecutar();
         Assert.assertEquals(1, ezeiza.getAcciones().size());
     }
-    
+
     @Test
-    public void terminalPachecoNoTieneAccionesPorqueNoEsDeLaComunaUno() throws Exception{
+    public void terminalPachecoNoTieneAccionesPorqueNoEsDeLaComunaUno() throws Exception {
         proceso.ejecutar();
         Assert.assertEquals(0, pacheco.getAcciones().size());
     }

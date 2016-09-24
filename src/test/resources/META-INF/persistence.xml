@@ -5,7 +5,7 @@
              version="2.0">
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		
+
 		<class>com.ddsutn.group01.tpanual.repositories.actions.Action</class>
         <class>com.ddsutn.group01.tpanual.repositories.actions.NotifyAdmin</class>
         <class>com.ddsutn.group01.tpanual.tools.metrics.Metrics</class>
@@ -19,7 +19,7 @@
         <class>com.ddsutn.group01.tpanual.models.Servicio</class>
         <class>com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion</class>
         <class>com.ddsutn.group01.tpanual.models.pois.SucursalBanco</class>
-        <class>com.ddsutn.group01.tpanual.Roles.Terminal</class>
+        <class>com.ddsutn.group01.tpanual.roles.Terminal</class>
         <class>com.ddsutn.group01.tpanual.repositories.Busqueda</class>
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

@@ -1,23 +1,22 @@
-package com.ddsutn.group01.tpanual.Roles;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+package com.ddsutn.group01.tpanual.roles;
 
 import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.Buscador;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-public class Terminal extends PersistentRecord{
+public class Terminal extends PersistentRecord {
 
     private int comuna;
-	@Column (length = 25)
+	@Column(length = 25)
     private String nombreDeTerminal;
 	@OneToMany
     private List<Action> actions;

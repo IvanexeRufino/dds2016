@@ -1,16 +1,16 @@
-package com.ddsutn.group01.tpanual.Procesos.Excepciones;
+package com.ddsutn.group01.tpanual.procesos.Excepciones;
 
-import com.ddsutn.group01.tpanual.Procesos.Proceso;
+import com.ddsutn.group01.tpanual.procesos.Proceso;
 import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 
 public class ExcepcionMail implements ExcepcionProceso {
-    
+
     private Mailer mailer;
-    
+
     public ExcepcionMail (Mailer unMailer) {
         this.mailer = unMailer;
     }
-    
+
     @Override
     public void manejarError(Proceso process)  {
         process.estadoError();
@@ -21,5 +21,5 @@ public class ExcepcionMail implements ExcepcionProceso {
             e.printStackTrace();
         }
     }
-    
+
 }

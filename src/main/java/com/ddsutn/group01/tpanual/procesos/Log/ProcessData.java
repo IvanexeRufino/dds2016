@@ -1,13 +1,13 @@
-package com.ddsutn.group01.tpanual.Procesos.Log;
+package com.ddsutn.group01.tpanual.procesos.Log;
 
 import org.joda.time.DateTime;
 
 public class ProcessData {
-    
+
     private int cantidad;
     private DateTime fecha;
     private String estado;
-    
+
     public int getCantidad() {
 		return cantidad;
 	}
