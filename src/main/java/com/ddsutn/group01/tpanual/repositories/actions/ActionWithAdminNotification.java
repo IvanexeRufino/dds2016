@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 
 @Entity
-public class NotifyAdmin extends Action {
+public class ActionWithAdminNotification extends Action {
 	@Column
     private long secondsBeforeNotify = 1;
 
@@ -17,7 +17,7 @@ public class NotifyAdmin extends Action {
     @Transient
     private Mailer mailer;
 
-    public NotifyAdmin(Mailer mailer) {
+    public ActionWithAdminNotification(Mailer mailer) {
         this.mailer = mailer;
     }
 
@@ -47,7 +47,7 @@ public class NotifyAdmin extends Action {
     }
 
     @Override
-    public void postcondition(String criteria, int result, String nombre) {
+    public void postcondition(String searchText, int result, String nombre) {
         time = System.nanoTime() - time;
 
         if (maxTimeLapsed(time)) {

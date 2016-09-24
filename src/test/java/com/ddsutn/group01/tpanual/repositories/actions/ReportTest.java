@@ -13,13 +13,13 @@
 //import java.util.HashMap;
 //
 //public class ReportTest {
-//    private Report report;
+//    private ActionWithReport report;
 //    private Reporter mockedReporter;
 //
 //    @Before
 //    public void setUp() throws Exception {
 //        Repository poiRepo = PoiRepository.getInstance();
-//        report = new Report(poiRepo);
+//        report = new ActionWithReport(poiRepo);
 //        mockedReporter = Mockito.spy(new Reporter() {
 //            @Override
 //            public void updateReport(String key, Integer value, HashMap<String, Integer> data) {}

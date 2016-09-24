@@ -12,27 +12,26 @@ import java.util.List;
 public class ResultadoBusqueda extends PersistentRecord {
 
     @Column(length = 50)
-    private String criteria;
+    private String searchText;
 
     //no esta persistido POI
     @Transient
     private List<PointOfInterest> resultados;
 
     @SuppressWarnings("unused")
-    private ResultadoBusqueda() {
-    }
+    private ResultadoBusqueda() {}
 
-    public ResultadoBusqueda(String parametros, List<PointOfInterest> results) {
-        this.criteria = parametros;
+    public ResultadoBusqueda(String searchText, List<PointOfInterest> results) {
+        this.searchText = searchText;
         this.resultados = results;
     }
 
-    public String getCriteria() {
-        return criteria;
+    public String getSearchText() {
+        return searchText;
     }
 
-    public void setCriteria(String criteria) {
-        this.criteria = criteria;
+    public void setSearchText(String searchText) {
+        this.searchText = searchText;
     }
 
     public List<PointOfInterest> getResultados() {

@@ -8,7 +8,7 @@ import javax.persistence.Transient;
 import java.util.HashMap;
 
 @Entity
-public class Report extends Action {
+public class ActionWithReport extends Action {
 
     @Transient
     private Reporter reporter;
@@ -29,13 +29,10 @@ public class Report extends Action {
     }
 
     @Override
-    public void precondition() {
-
-    }
+    public void precondition() {}
 
     @Override
-    public void postcondition(String criteria, int result, String nombre) {
+    public void postcondition(String searchText, int result, String nombre) {
         updateReport();
-
     }
 }

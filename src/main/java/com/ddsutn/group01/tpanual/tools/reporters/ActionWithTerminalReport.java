@@ -6,7 +6,7 @@ import javax.persistence.Transient;
 
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 
-public class TerminalReport extends Action {
+public class ActionWithTerminalReport extends Action {
 
 	//MISMO QUE EN REPORT
 	@Transient
@@ -20,8 +20,8 @@ public class TerminalReport extends Action {
         this.reporter = reporter;
     }
 
-    public void updateReportParcial(String criteria, Integer cantidadDeResultados) {
-        reporter.updateReport(criteria, cantidadDeResultados,parcial);
+    public void updateReportParcial(String searchText, Integer cantidadDeResultados) {
+        reporter.updateReport(searchText, cantidadDeResultados,parcial);
     }
 
     public void updateReportTotal(Integer cantidadDeResultados, String nombre) {
@@ -38,14 +38,14 @@ public class TerminalReport extends Action {
 
     @Override
     public void precondition() {
-        
+
     }
 
     @Override
-    public void postcondition(String criteria, int result, String nombre) {
-        updateReportParcial(criteria, result);
+    public void postcondition(String searchText, int result, String nombre) {
+        updateReportParcial(searchText, result);
         updateReportTotal(result,nombre);
-        
+
     }
 
 }

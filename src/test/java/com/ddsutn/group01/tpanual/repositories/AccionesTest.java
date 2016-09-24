@@ -26,7 +26,7 @@ public class AccionesTest extends AbstractPersistenceTest implements WithGlobalE
             public void precondition() {}
 
             @Override
-            public void postcondition(String criteria, int result, String nombre) {}
+            public void postcondition(String searchText, int result, String nombre) {}
         });
 
         unaTerminal.addAction(mockedAction);

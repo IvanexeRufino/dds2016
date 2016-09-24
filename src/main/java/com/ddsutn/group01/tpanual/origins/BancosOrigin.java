@@ -15,8 +15,8 @@ class BancosOrigin implements Origin {
     }
 
     @Override
-    public List<PointOfInterest> find(String criteria) {
-        ArrayList<String> result = dataSource.search(criteria);
+    public List<PointOfInterest> find(String searchText) {
+        ArrayList<String> result = dataSource.search(searchText);
         return BancoAdapter.adapt(result);
     }
 }

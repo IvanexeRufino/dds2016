@@ -9,9 +9,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Action extends PersistentRecord {
-    public void precondition() {
-    }
+    public void precondition() {}
 
-    public void postcondition(String criteria, int result, String nombre) {
-    }
+    public void postcondition(String searchText, int result, String nombre) {}
 }

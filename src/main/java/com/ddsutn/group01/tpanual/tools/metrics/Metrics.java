@@ -1,30 +1,47 @@
 package com.ddsutn.group01.tpanual.tools.metrics;
 
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import com.ddsutn.group01.tpanual.PersistentRecord;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.Transient;
 
 @Entity
-public class Metrics extends Action {
-	@Transient
-    private long timer;
+public class Metrics extends PersistentRecord {
 
-    @Override
-    public void precondition() {
-        timer = System.nanoTime();
+    @Column(length = 25)
+    private String searchText;
+
+    private int resultados;
+
+    private long tiempo;
+
+    public Metrics(String searchText, int resultsCount, long timeLapsed) {
+        this.searchText = searchText;
+        this.resultados = resultsCount;
+        this.tiempo = timeLapsed;
     }
 
-    @Override
-    public void postcondition(String criteria, int result, String nombre) {
-        timer = System.nanoTime() - timer;
-        almacenar(criteria, result, timer);
+    public String getSearchText() {
+        return searchText;
     }
 
-    private void almacenar(String criteria, int resultsCount, long timeLapsed) {
-        EntityManager em = PerThreadEntityManagers.getEntityManager();
-        em.persist(new MetricsSource(criteria, resultsCount, timeLapsed));
+    public void setSearchText(String searchText) {
+        this.searchText = searchText;
+    }
+
+    public int getResultados() {
+        return resultados;
+    }
+
+    public void setResultados(int resultados) {
+        this.resultados = resultados;
+    }
+
+    public long getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(long tiempo) {
+        this.tiempo = tiempo;
     }
 }

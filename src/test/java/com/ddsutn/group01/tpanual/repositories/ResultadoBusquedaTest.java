@@ -3,8 +3,8 @@ package com.ddsutn.group01.tpanual.repositories;
 import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 import com.ddsutn.group01.tpanual.roles.Terminal;
+import com.ddsutn.group01.tpanual.tools.metrics.ActionWithMetrics;
 import com.ddsutn.group01.tpanual.tools.metrics.Metrics;
-import com.ddsutn.group01.tpanual.tools.metrics.MetricsSource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +33,7 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
         terminal.find("114");
         ResultadoBusqueda resultadoBusqueda = (ResultadoBusqueda) entityManager().createQuery("from ResultadoBusqueda").getSingleResult();
 
-        Assert.assertEquals(resultadoBusqueda.getCriteria(), "114");
+        Assert.assertEquals(resultadoBusqueda.getSearchText(), "114");
     }
 
     @Test
@@ -41,15 +41,15 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
         Point point = new Point(4, 5);
         ParadaColectivo parada = new ParadaColectivo("116", point);
         PoiRepository.getInstance().add(parada);
-        Metrics metrica = new Metrics();
+        ActionWithMetrics metrica = new ActionWithMetrics();
         List<Action> acciones = new ArrayList<>();
         acciones.add(metrica);
         terminal.setActions(acciones);
         terminal.find("116");
         ResultadoBusqueda resultadoBusqueda = (ResultadoBusqueda) entityManager().createQuery("from ResultadoBusqueda").getSingleResult();
-        MetricsSource persistedMetricSource = (MetricsSource) entityManager().createQuery("from MetricsSource").getSingleResult();
+        Metrics persistedMetricSource = (Metrics) entityManager().createQuery("from Metrics").getSingleResult();
 
-        Assert.assertEquals(resultadoBusqueda.getCriteria(), "116");
+        Assert.assertEquals(resultadoBusqueda.getSearchText(), "116");
         Assert.assertEquals(persistedMetricSource.getResultados(), 1);
     }
 

@@ -16,15 +16,16 @@ import java.util.List;
 public class Terminal extends PersistentRecord {
 
     private int comuna;
-	@Column(length = 25)
+    @Column(length = 25)
     private String nombreDeTerminal;
-	@OneToMany
+    @OneToMany
     private List<Action> actions;
-	@Transient
+    @Transient
     private Buscador buscador;
 
-	@SuppressWarnings("unused")
-	private Terminal() {}
+    @SuppressWarnings("unused")
+    private Terminal() {
+    }
 
     public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;
@@ -38,7 +39,7 @@ public class Terminal extends PersistentRecord {
     }
 
     public Buscador getBuscador() {
-    	return buscador;
+        return buscador;
     }
 
     public List<Action> getAcciones() {
@@ -61,10 +62,10 @@ public class Terminal extends PersistentRecord {
         actions.remove(action);
     }
 
-    public List<PointOfInterest> find(String criteria) {
+    public List<PointOfInterest> find(String searchText) {
         actions.forEach(Action::precondition);
-        List<PointOfInterest> lista =  buscador.find(criteria);
-        actions.forEach(action -> action.postcondition(criteria, lista.size(),nombreDeTerminal));
+        List<PointOfInterest> lista = buscador.find(searchText);
+        actions.forEach(action -> action.postcondition(searchText, lista.size(), nombreDeTerminal));
         return lista;
     }
 }

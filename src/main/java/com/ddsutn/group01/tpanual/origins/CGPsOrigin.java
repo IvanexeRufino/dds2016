@@ -16,8 +16,8 @@ class CGPsOrigin implements Origin {
     }
 
     @Override
-    public List<PointOfInterest> find(String criteria) {
-        ArrayList<CentroDTO> result = dataSource.search(criteria);
+    public List<PointOfInterest> find(String searchText) {
+        ArrayList<CentroDTO> result = dataSource.search(searchText);
         return CGPAdapter.adapt(result);
     }
 }

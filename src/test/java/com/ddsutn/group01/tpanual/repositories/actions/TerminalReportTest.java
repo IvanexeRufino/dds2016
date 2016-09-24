@@ -13,13 +13,13 @@
 //import com.ddsutn.group01.tpanual.tools.reporters.Reporter;
 //
 //public class TerminalReportTest {
-//	private TerminalReport terminalReport;
+//	private ActionWithTerminalReport terminalReport;
 //	private Reporter mockedReporter;
 //
 //	@Before
 //	public void setUp() throws Exception {
 //	    Repository poiRepo = PoiRepository.getInstance();
-//	    terminalReport = new TerminalReport(poiRepo, "terminalAbasto");
+//	    terminalReport = new ActionWithTerminalReport(poiRepo, "terminalAbasto");
 //	    mockedReporter = Mockito.spy(new Reporter() {
 //            @Override
 //            public void updateReport(String key, Integer value, HashMap<String, Integer> data) {}
