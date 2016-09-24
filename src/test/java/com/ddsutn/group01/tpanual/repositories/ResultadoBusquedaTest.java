@@ -1,9 +1,6 @@
 package com.ddsutn.group01.tpanual.repositories;
 
 import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
-import com.ddsutn.group01.tpanual.repositories.Buscador;
-import com.ddsutn.group01.tpanual.repositories.Busqueda;
-import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.actions.Action;
 import com.ddsutn.group01.tpanual.roles.Terminal;
 import com.ddsutn.group01.tpanual.tools.metrics.Metrics;
@@ -18,7 +15,7 @@ import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
+public class ResultadoBusquedaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
     private Terminal terminal;
 
@@ -34,9 +31,9 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
         ParadaColectivo parada = new ParadaColectivo("114", point);
         PoiRepository.getInstance().add(parada);
         terminal.find("114");
-        Busqueda persistedBusqueda = (Busqueda) entityManager().createQuery("from Busqueda").getSingleResult();
+        ResultadoBusqueda resultadoBusqueda = (ResultadoBusqueda) entityManager().createQuery("from ResultadoBusqueda").getSingleResult();
 
-        Assert.assertEquals(persistedBusqueda.getCriteria(), "114");
+        Assert.assertEquals(resultadoBusqueda.getCriteria(), "114");
     }
 
     @Test
@@ -49,10 +46,10 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
         acciones.add(metrica);
         terminal.setActions(acciones);
         terminal.find("116");
-        Busqueda persistedBusqueda = (Busqueda) entityManager().createQuery("from Busqueda").getSingleResult();
+        ResultadoBusqueda resultadoBusqueda = (ResultadoBusqueda) entityManager().createQuery("from ResultadoBusqueda").getSingleResult();
         MetricsSource persistedMetricSource = (MetricsSource) entityManager().createQuery("from MetricsSource").getSingleResult();
 
-        Assert.assertEquals(persistedBusqueda.getCriteria(), "116");
+        Assert.assertEquals(resultadoBusqueda.getCriteria(), "116");
         Assert.assertEquals(persistedMetricSource.getResultados(), 1);
     }
 

@@ -9,7 +9,7 @@ import javax.persistence.Transient;
 import java.util.List;
 
 @Entity
-public class Busqueda extends PersistentRecord {
+public class ResultadoBusqueda extends PersistentRecord {
 
     @Column(length = 50)
     private String criteria;
@@ -19,7 +19,13 @@ public class Busqueda extends PersistentRecord {
     private List<PointOfInterest> resultados;
 
     @SuppressWarnings("unused")
-    private Busqueda() {}
+    private ResultadoBusqueda() {
+    }
+
+    public ResultadoBusqueda(String parametros, List<PointOfInterest> results) {
+        this.criteria = parametros;
+        this.resultados = results;
+    }
 
     public String getCriteria() {
         return criteria;
@@ -35,11 +41,6 @@ public class Busqueda extends PersistentRecord {
 
     public void setResultados(List<PointOfInterest> resultados) {
         this.resultados = resultados;
-    }
-
-    public Busqueda(String parametros, List<PointOfInterest> results) {
-        this.criteria = parametros;
-        this.resultados = results;
     }
 
 }

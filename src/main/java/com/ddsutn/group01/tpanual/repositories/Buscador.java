@@ -9,20 +9,18 @@ import java.util.stream.Collectors;
 
 public class Buscador {
 
-	public Buscador() {}
-
-    // TODO: El repo podría conocer al buscar. De esa forma todas las acciones (buscar, crear, eliminar, editar)
-    // se hacen directamente hablando con el repo
+    // TODO: El repo podría conocer al buscar. De esa forma todas las acciones (buscar, crear, eliminar, editar) se hacen directamente hablando con el repo
     public List<PointOfInterest> find(String criteria) {
         PoiRepository repositorio = PoiRepository.getInstance();
         List<PointOfInterest> lista = repositorio.getOrigenLocal().find(criteria);
         lista.addAll(repositorio.getOrigenes().stream()
-                                              .map(origin -> origin.find(criteria))
-                                              .flatMap(List::stream)
-                                              .collect(Collectors.toList()));
+            .map(origin -> origin.find(criteria))
+            .flatMap(List::stream)
+            .collect(Collectors.toList()));
+
         EntityManager em = PerThreadEntityManagers.getEntityManager();
-        em.persist(new Busqueda(criteria,lista));
+        em.persist(new ResultadoBusqueda(criteria, lista));
+
         return lista;
     }
-
 }
