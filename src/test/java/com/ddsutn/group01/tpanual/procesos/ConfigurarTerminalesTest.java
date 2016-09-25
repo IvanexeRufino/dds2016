@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.procesos;
 
-import com.ddsutn.group01.tpanual.procesos.Filtradores.PorComuna;
+import com.ddsutn.group01.tpanual.procesos.filters.ComunaFilter;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.actions.Action;
 import com.ddsutn.group01.tpanual.roles.Terminal;
@@ -24,7 +24,7 @@ public class ConfigurarTerminalesTest {
         List<Terminal> terminales = new ArrayList<>();
         List<Action> acciones = new ArrayList<>();
         Buscador buscador = new Buscador();
-        PorComuna filtrador = new PorComuna(1);
+        ComunaFilter filtrador = new ComunaFilter(1);
 
         pacheco = new Terminal("pacheco", 2, buscador);
         ezeiza = new Terminal("ezeiza", 1, buscador);

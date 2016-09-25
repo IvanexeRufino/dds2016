@@ -14,18 +14,20 @@ import java.util.List;
 
 @Entity
 public class Terminal extends PersistentRecord {
-
+    @Column
     private int comuna;
+
     @Column(length = 25)
     private String nombreDeTerminal;
+
     @OneToMany
     private List<Action> actions;
+
     @Transient
     private Buscador buscador;
 
     @SuppressWarnings("unused")
-    private Terminal() {
-    }
+    private Terminal() {}
 
     public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;
@@ -66,6 +68,7 @@ public class Terminal extends PersistentRecord {
         actions.forEach(Action::precondition);
         List<PointOfInterest> lista = buscador.find(searchText);
         actions.forEach(action -> action.postcondition(searchText, lista.size(), nombreDeTerminal));
+
         return lista;
     }
 }

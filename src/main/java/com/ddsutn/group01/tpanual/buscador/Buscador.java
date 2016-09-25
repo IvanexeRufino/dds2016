@@ -12,9 +12,8 @@ public class Buscador {
 
     public List<PointOfInterest> find(String searchText) {
         PoisCache cache = PoisCache.getInstance();
-        List<PointOfInterest> cachedResult = cache.get(searchText);
-
         List<PointOfInterest> result;
+        List<PointOfInterest> cachedResult = cache.get(searchText);
 
         if (cachedResult.isEmpty()) {
             result = PoiRepository.getInstance().findAll(searchText);

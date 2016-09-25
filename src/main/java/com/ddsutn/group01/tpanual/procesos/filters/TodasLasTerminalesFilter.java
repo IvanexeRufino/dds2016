@@ -1,10 +1,10 @@
-package com.ddsutn.group01.tpanual.procesos.Filtradores;
+package com.ddsutn.group01.tpanual.procesos.filters;
 
 import java.util.List;
 
 import com.ddsutn.group01.tpanual.roles.Terminal;
 
-public class TodasLasTerminales implements FiltradorDeTerminales {
+public class TodasLasTerminalesFilter implements TerminalesFilter {
 
     @Override
     public List<Terminal> filtrar(List<Terminal> terminales) {
