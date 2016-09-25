@@ -12,8 +12,9 @@ public class ActionWithReport extends Action {
 
     @Transient
     private Reporter reporter;
+
     @Transient
-    private HashMap<String, Integer> data = new HashMap<>();
+    private HashMap<String, Integer> report = new HashMap<>();
 
     public void setReporter(Reporter reporter) {
         this.reporter = reporter;
@@ -21,18 +22,18 @@ public class ActionWithReport extends Action {
 
     public void updateReport() {
         String fecha = LocalDate.now().toString();
-        reporter.updateReport(fecha, 1, data);
+        reporter.updateReport(fecha, 1, report);
     }
 
     public HashMap<String, Integer> getReport() {
-        return data;
+        return report;
     }
 
     @Override
     public void precondition() {}
 
     @Override
-    public void postcondition(String searchText, int result, String nombre) {
+    public void postcondition(String searchText, int result, String nombreDeTerminal) {
         updateReport();
     }
 }

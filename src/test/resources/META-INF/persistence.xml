@@ -8,8 +8,8 @@
 
 		<class>com.ddsutn.group01.tpanual.actions.Action</class>
         <class>com.ddsutn.group01.tpanual.actions.ActionWithAdminNotification</class>
-        <class>com.ddsutn.group01.tpanual.actions.ActionWithMetrics</class>
-        <class>com.ddsutn.group01.tpanual.tools.metrics.Metrics</class>
+        <class>com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.SearchMetrics</class>
         <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.Report</class>
         <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.Reporter</class>
         <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.TerminalReport</class>

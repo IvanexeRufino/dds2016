@@ -4,13 +4,13 @@ import java.util.HashMap;
 
 public class Reporter {
 
-    public void updateReport(String key, Integer value, HashMap<String, Integer> data) {
-        if (data.containsKey(key)) {
-            Integer resultsCounter = data.get(key);
-            resultsCounter = resultsCounter + value;
-            data.put(key, resultsCounter);
+    public void updateReport(String key, Integer counter, HashMap<String, Integer> report) {
+        if (report.containsKey(key)) {
+            Integer resultsCounter = report.get(key);
+            resultsCounter = resultsCounter + counter;
+            report.put(key, resultsCounter);
         } else {
-            data.put(key, value);
+            report.put(key, counter);
         }
     }
 

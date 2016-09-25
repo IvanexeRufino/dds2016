@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.actions;
 
-import com.ddsutn.group01.tpanual.tools.metrics.Metrics;
+import com.ddsutn.group01.tpanual.tools.metrics.SearchMetrics;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import javax.persistence.Entity;
@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Transient;
 
 @Entity
-public class ActionWithMetrics extends Action {
+public class ActionWithSearchMetrics extends Action {
 
     @Transient
     private long timer;
@@ -19,11 +19,11 @@ public class ActionWithMetrics extends Action {
     }
 
     @Override
-    public void postcondition(String searchText, int resultsCount, String nombreTerminal) {
+    public void postcondition(String searchText, int resultsCount, String nombreDeTerminal) {
         long timeLapsed = System.nanoTime() - timer;
 
         EntityManager em = PerThreadEntityManagers.getEntityManager();
-        em.persist(new Metrics(searchText, resultsCount, timeLapsed));
+        em.persist(new SearchMetrics(searchText, resultsCount, timeLapsed));
     }
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ServicioDTO {
     private String nombre;
-    private ArrayList<DiasDeServicio> listaDeDias = new ArrayList<DiasDeServicio>();
+    private ArrayList<DiasDeServicio> listaDeDias = new ArrayList<>();
 
     public ServicioDTO(String nombre, ArrayList<DiasDeServicio> listaDeDias) {
         this.nombre = nombre;

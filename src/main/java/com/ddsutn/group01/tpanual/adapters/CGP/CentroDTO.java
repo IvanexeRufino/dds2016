@@ -8,7 +8,7 @@ public class CentroDTO {
     private String nombreDirector;
     private String domicilio;
     private String telefono;
-    private ArrayList<ServicioDTO> servicios = new ArrayList<ServicioDTO>();
+    private ArrayList<ServicioDTO> servicios = new ArrayList<>();
 
     public CentroDTO(int nroDeComuna, ArrayList<String> zonasIncluidas, String nombreDirector, String domicilio,
                      String telefono, ArrayList<ServicioDTO> servicios) {

@@ -7,12 +7,12 @@ import java.util.HashMap;
 
 public class ActionWithTerminalReport extends Action {
 
-	//MISMO QUE EN REPORT
-	@Transient
-    private HashMap<String, Integer> parcial = new HashMap<>();
-	@Transient
-    private HashMap<String, Integer> total = new HashMap<>();
-	@Transient
+    //MISMO QUE EN REPORT
+    @Transient
+    private HashMap<String, Integer> partialReport = new HashMap<>();
+    @Transient
+    private HashMap<String, Integer> fullReport = new HashMap<>();
+    @Transient
     private Reporter reporter;
 
     public void setReporter(Reporter reporter) {
@@ -20,19 +20,19 @@ public class ActionWithTerminalReport extends Action {
     }
 
     public void updateReportParcial(String searchText, Integer cantidadDeResultados) {
-        reporter.updateReport(searchText, cantidadDeResultados,parcial);
+        reporter.updateReport(searchText, cantidadDeResultados, partialReport);
     }
 
     public void updateReportTotal(Integer cantidadDeResultados, String nombre) {
-        reporter.updateReport(nombre, cantidadDeResultados, total);
+        reporter.updateReport(nombre, cantidadDeResultados, fullReport);
     }
 
-    public HashMap<String,Integer> getReporteParcial() {
-        return parcial;
+    public HashMap<String, Integer> getReporteParcial() {
+        return partialReport;
     }
 
-    public HashMap<String,Integer> getReporteTotal() {
-        return total;
+    public HashMap<String, Integer> getReporteTotal() {
+        return fullReport;
     }
 
     @Override
@@ -41,9 +41,9 @@ public class ActionWithTerminalReport extends Action {
     }
 
     @Override
-    public void postcondition(String searchText, int result, String nombre) {
+    public void postcondition(String searchText, int result, String nombreDeTerminal) {
         updateReportParcial(searchText, result);
-        updateReportTotal(result,nombre);
+        updateReportTotal(result, nombreDeTerminal);
 
     }
 

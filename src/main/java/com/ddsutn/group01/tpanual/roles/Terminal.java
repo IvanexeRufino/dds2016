@@ -66,9 +66,9 @@ public class Terminal extends PersistentRecord {
 
     public List<PointOfInterest> find(String searchText) {
         actions.forEach(Action::precondition);
-        List<PointOfInterest> lista = buscador.find(searchText);
-        actions.forEach(action -> action.postcondition(searchText, lista.size(), nombreDeTerminal));
+        List<PointOfInterest> resultados = buscador.find(searchText);
+        actions.forEach(action -> action.postcondition(searchText, resultados.size(), nombreDeTerminal));
 
-        return lista;
+        return resultados;
     }
 }

@@ -47,7 +47,7 @@ public class ActionWithAdminNotification extends Action {
     }
 
     @Override
-    public void postcondition(String searchText, int result, String nombre) {
+    public void postcondition(String searchText, int result, String nombreDeTerminal) {
         time = System.nanoTime() - time;
 
         if (maxTimeLapsed(time)) {

@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class Metrics extends PersistentRecord {
+public class SearchMetrics extends PersistentRecord {
 
     @Column(length = 25)
     private String searchText;
@@ -15,7 +15,7 @@ public class Metrics extends PersistentRecord {
 
     private long tiempo;
 
-    public Metrics(String searchText, int resultsCount, long timeLapsed) {
+    public SearchMetrics(String searchText, int resultsCount, long timeLapsed) {
         this.searchText = searchText;
         this.resultados = resultsCount;
         this.tiempo = timeLapsed;

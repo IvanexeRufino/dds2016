@@ -12,12 +12,12 @@ import java.util.stream.Stream;
 public class PoiRepository {
 
     private static PoiRepository instance = null;
-    private List<Origin> origins;
+    private List<Origin> externalOrigins;
     private LocalOrigin localOrigin;
 
     public PoiRepository() {
         localOrigin = new LocalOrigin();
-        origins = new ArrayList<>();
+        externalOrigins = new ArrayList<>();
     }
 
     public static PoiRepository getInstance() {
@@ -29,7 +29,7 @@ public class PoiRepository {
     }
 
     public void addExternalOrigin(Origin origin) {
-        origins.add(origin);
+        externalOrigins.add(origin);
     }
 
     public void add(PointOfInterest poi) {
@@ -54,7 +54,7 @@ public class PoiRepository {
 
     public List<PointOfInterest> findAll(String searchText) {
         List<PointOfInterest> localResults = findLocally(searchText);
-        List<PointOfInterest> externalResults = origins.stream()
+        List<PointOfInterest> externalResults = externalOrigins.stream()
             .map(origin -> origin.find(searchText))
             .flatMap(List::stream)
             .collect(Collectors.toList());
