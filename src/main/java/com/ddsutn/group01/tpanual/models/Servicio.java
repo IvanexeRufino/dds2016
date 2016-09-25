@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.models;
 
-import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;

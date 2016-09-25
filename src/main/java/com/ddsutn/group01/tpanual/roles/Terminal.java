@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.roles;
 
-import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.actions.Action;

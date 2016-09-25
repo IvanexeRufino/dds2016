@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.buscador;
 
-import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 import javax.persistence.Column;

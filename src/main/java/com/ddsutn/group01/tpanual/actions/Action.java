@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.actions;
 
-import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;

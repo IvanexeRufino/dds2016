@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual;
+package com.ddsutn.group01.tpanual.db;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

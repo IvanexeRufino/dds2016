@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual.procesos;
+package com.ddsutn.group01.tpanual.roles;
 
 import com.ddsutn.group01.tpanual.procesos.filters.TerminalesFilter;
 import com.ddsutn.group01.tpanual.roles.Terminal;

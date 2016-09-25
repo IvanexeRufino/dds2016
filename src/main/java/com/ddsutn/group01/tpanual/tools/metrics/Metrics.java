@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.tools.metrics;
 
-import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.models;
 
-import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.db.HorariosConverter;
 import org.joda.time.DateTime;
 

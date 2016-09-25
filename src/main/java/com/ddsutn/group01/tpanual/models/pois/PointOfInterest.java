@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
-import com.ddsutn.group01.tpanual.PersistentRecord;
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.db.PointConverter;
 import com.ddsutn.group01.tpanual.db.StringListConverter;
 import org.joda.time.DateTime;

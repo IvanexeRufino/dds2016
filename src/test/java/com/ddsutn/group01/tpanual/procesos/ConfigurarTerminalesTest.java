@@ -3,6 +3,7 @@ package com.ddsutn.group01.tpanual.procesos;
 import com.ddsutn.group01.tpanual.procesos.filters.ComunaFilter;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.actions.Action;
+import com.ddsutn.group01.tpanual.roles.ConfigurarTerminales;
 import com.ddsutn.group01.tpanual.roles.Terminal;
 import org.junit.Assert;
 import org.junit.Before;
