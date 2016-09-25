@@ -21,13 +21,7 @@ public class AccionesTest extends AbstractPersistenceTest implements WithGlobalE
     @Before
     public void setUp() throws Exception {
         unaTerminal = new Terminal("terminalUrquiza", 1, buscador);
-        mockedAction = Mockito.spy(new Action() {
-            @Override
-            public void precondition() {}
-
-            @Override
-            public void postcondition(String searchText, int result, String nombre) {}
-        });
+        mockedAction = Mockito.mock(Action.class);
 
         unaTerminal.addAction(mockedAction);
     }
