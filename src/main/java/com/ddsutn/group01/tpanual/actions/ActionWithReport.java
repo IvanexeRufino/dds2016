@@ -1,6 +1,6 @@
-package com.ddsutn.group01.tpanual.tools.reporters;
+package com.ddsutn.group01.tpanual.actions;
 
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import com.ddsutn.group01.tpanual.tools.reporters.Reporter;
 import org.joda.time.LocalDate;
 
 import javax.persistence.Entity;

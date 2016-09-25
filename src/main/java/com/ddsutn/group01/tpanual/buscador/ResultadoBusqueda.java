@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual.repositories;
+package com.ddsutn.group01.tpanual.buscador;
 
 import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;

@@ -1,7 +1,6 @@
 package com.ddsutn.group01.tpanual.roles;
 
-import com.ddsutn.group01.tpanual.repositories.Buscador;
-import com.ddsutn.group01.tpanual.roles.Terminal;
+import com.ddsutn.group01.tpanual.buscador.Buscador;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

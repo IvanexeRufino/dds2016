@@ -1,8 +1,8 @@
 package com.ddsutn.group01.tpanual.procesos;
 
 import com.ddsutn.group01.tpanual.procesos.Filtradores.PorComuna;
-import com.ddsutn.group01.tpanual.repositories.Buscador;
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import com.ddsutn.group01.tpanual.buscador.Buscador;
+import com.ddsutn.group01.tpanual.actions.Action;
 import com.ddsutn.group01.tpanual.roles.Terminal;
 import org.junit.Assert;
 import org.junit.Before;

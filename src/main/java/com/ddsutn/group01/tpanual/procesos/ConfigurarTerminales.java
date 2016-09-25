@@ -2,7 +2,7 @@ package com.ddsutn.group01.tpanual.procesos;
 
 import com.ddsutn.group01.tpanual.procesos.Filtradores.FiltradorDeTerminales;
 import com.ddsutn.group01.tpanual.roles.Terminal;
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import com.ddsutn.group01.tpanual.actions.Action;
 
 import java.util.List;
 

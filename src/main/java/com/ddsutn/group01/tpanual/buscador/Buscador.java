@@ -1,6 +1,7 @@
-package com.ddsutn.group01.tpanual.repositories;
+package com.ddsutn.group01.tpanual.buscador;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
+import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import javax.persistence.EntityManager;
@@ -23,4 +24,5 @@ public class Buscador {
 
         return lista;
     }
+
 }

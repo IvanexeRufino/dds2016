@@ -1,7 +1,7 @@
-package com.ddsutn.group01.tpanual.repositories;
+package com.ddsutn.group01.tpanual.actions;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.roles.Terminal;
 import org.junit.Before;
 import org.junit.Test;

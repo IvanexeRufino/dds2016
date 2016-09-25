@@ -1,9 +1,10 @@
-package com.ddsutn.group01.tpanual.repositories;
+package com.ddsutn.group01.tpanual.buscador;
 
+import com.ddsutn.group01.tpanual.actions.Action;
+import com.ddsutn.group01.tpanual.actions.ActionWithMetrics;
 import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.roles.Terminal;
-import com.ddsutn.group01.tpanual.tools.metrics.ActionWithMetrics;
 import com.ddsutn.group01.tpanual.tools.metrics.Metrics;
 import org.junit.Assert;
 import org.junit.Before;
@@ -52,5 +53,4 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
         Assert.assertEquals(resultadoBusqueda.getSearchText(), "116");
         Assert.assertEquals(persistedMetricSource.getResultados(), 1);
     }
-
 }

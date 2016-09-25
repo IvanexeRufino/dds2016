@@ -1,10 +1,9 @@
-package com.ddsutn.group01.tpanual.tools.reporters;
+package com.ddsutn.group01.tpanual.actions;
 
-import java.util.HashMap;
+import com.ddsutn.group01.tpanual.tools.reporters.Reporter;
 
 import javax.persistence.Transient;
-
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import java.util.HashMap;
 
 public class ActionWithTerminalReport extends Action {
 

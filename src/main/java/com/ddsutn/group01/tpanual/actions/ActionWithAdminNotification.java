@@ -1,10 +1,10 @@
-package com.ddsutn.group01.tpanual.repositories.actions;
+package com.ddsutn.group01.tpanual.actions;
+
+import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
-
-import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 
 @Entity
 public class ActionWithAdminNotification extends Action {

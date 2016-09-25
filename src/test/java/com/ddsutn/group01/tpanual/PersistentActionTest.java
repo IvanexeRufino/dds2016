@@ -1,6 +1,6 @@
 package com.ddsutn.group01.tpanual;
 
-import com.ddsutn.group01.tpanual.repositories.actions.ActionWithAdminNotification;
+import com.ddsutn.group01.tpanual.actions.ActionWithAdminNotification;
 import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 import org.junit.Assert;
 import org.junit.Test;

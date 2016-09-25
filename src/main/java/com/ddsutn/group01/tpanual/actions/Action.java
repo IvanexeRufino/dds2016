@@ -1,4 +1,4 @@
-package com.ddsutn.group01.tpanual.repositories.actions;
+package com.ddsutn.group01.tpanual.actions;
 
 import com.ddsutn.group01.tpanual.PersistentRecord;
 

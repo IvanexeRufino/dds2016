@@ -2,8 +2,8 @@ package com.ddsutn.group01.tpanual.roles;
 
 import com.ddsutn.group01.tpanual.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
-import com.ddsutn.group01.tpanual.repositories.Buscador;
-import com.ddsutn.group01.tpanual.repositories.actions.Action;
+import com.ddsutn.group01.tpanual.buscador.Buscador;
+import com.ddsutn.group01.tpanual.actions.Action;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
