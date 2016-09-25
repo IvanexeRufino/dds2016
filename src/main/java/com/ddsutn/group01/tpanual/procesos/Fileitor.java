@@ -38,7 +38,7 @@ public class Fileitor {
         String pclaves = aline[1];
 
         PointOfInterest poiBuscado = PoiRepository.getInstance()
-            .getOrigenLocal().getAll().stream()
+            .getAllLocal().stream()
             .filter(poi -> poi.getName().equals(nlocal))
             .findFirst().get();
 

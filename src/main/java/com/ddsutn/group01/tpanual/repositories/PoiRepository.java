@@ -6,8 +6,11 @@ import com.ddsutn.group01.tpanual.origins.Origin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PoiRepository {
+
     private static PoiRepository instance = null;
     private List<Origin> origins;
     private LocalOrigin localOrigin;
@@ -16,7 +19,7 @@ public class PoiRepository {
         localOrigin = new LocalOrigin();
         origins = new ArrayList<>();
     }
-    
+
     public static PoiRepository getInstance() {
         if (instance == null) {
             instance = new PoiRepository();
@@ -24,16 +27,8 @@ public class PoiRepository {
 
         return instance;
     }
-    
-    public LocalOrigin getOrigenLocal() {
-        return localOrigin;
-    }
 
-    public List<Origin> getOrigenes() {
-        return origins;
-    }
-    
-    public void addOrigin(Origin origin) {
+    public void addExternalOrigin(Origin origin) {
         origins.add(origin);
     }
 
@@ -48,5 +43,26 @@ public class PoiRepository {
     public void remove(int indice) {
         localOrigin.remove(indice);
     }
-    
+
+    public List<PointOfInterest> getAllLocal() {
+        return localOrigin.getAll();
+    }
+
+    public List<PointOfInterest> findLocally(String searchText) {
+        return localOrigin.find(searchText);
+    }
+
+    public List<PointOfInterest> findAll(String searchText) {
+        List<PointOfInterest> localResults = findLocally(searchText);
+        List<PointOfInterest> externalResults = origins.stream()
+            .map(origin -> origin.find(searchText))
+            .flatMap(List::stream)
+            .collect(Collectors.toList());
+
+        List<PointOfInterest> allResults = new ArrayList<>();
+        Stream.of(localResults, externalResults).forEach(allResults::addAll);
+
+        return allResults;
+    }
+
 }

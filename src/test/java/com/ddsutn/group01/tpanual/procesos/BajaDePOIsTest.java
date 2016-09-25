@@ -29,11 +29,11 @@ public class BajaDePOIsTest extends AbstractPersistenceTest implements WithGloba
         BajaDePOIs proceso = new BajaDePOIs(dataSource);
 
         int idsToBeDeleted = InterpreterJSON.getListaDePOIs(dataSource.bajaDePOIs()).size();
-        int remainingIds = repo.getOrigenLocal().getAll().size() - idsToBeDeleted;
+        int remainingIds = repo.getAllLocal().size() - idsToBeDeleted;
 
         int deletedIds = proceso.ejecutar();
 
         Assert.assertEquals(deletedIds, idsToBeDeleted);
-        Assert.assertEquals(remainingIds, repo.getOrigenLocal().getAll().size());
+        Assert.assertEquals(remainingIds, repo.getAllLocal().size());
     }
 }
