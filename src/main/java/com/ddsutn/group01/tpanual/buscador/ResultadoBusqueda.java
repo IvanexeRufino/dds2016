@@ -5,7 +5,7 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
@@ -14,8 +14,7 @@ public class ResultadoBusqueda extends PersistentRecord {
     @Column(length = 50)
     private String searchText;
 
-    //no esta persistido POI
-    @Transient
+    @ManyToMany
     private List<PointOfInterest> resultados;
 
     @SuppressWarnings("unused")
