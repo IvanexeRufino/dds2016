@@ -7,19 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PoisCache {
-    private static PoisCache instance;
-    private HashMap<String, List<PointOfInterest>> busquedas;
+    private static HashMap<String, List<PointOfInterest>> busquedas;
 
     public PoisCache() {
         busquedas = new HashMap<>();
-    }
-
-    public static PoisCache getInstance() {
-        if (instance == null) {
-            instance = new PoisCache();
-        }
-
-        return instance;
     }
 
     public List<PointOfInterest> get(String searchText) {
