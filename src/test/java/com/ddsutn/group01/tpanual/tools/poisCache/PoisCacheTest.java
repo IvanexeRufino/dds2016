@@ -2,7 +2,6 @@ package com.ddsutn.group01.tpanual.tools.poisCache;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -11,12 +10,7 @@ import java.util.List;
 
 public class PoisCacheTest {
 
-    private PoisCache cache;
-
-    @Before
-    public void init() {
-        cache = PoisCache.getInstance();
-    }
+    private PoisCache cache = new PoisCache();
 
     @Test
     public void get() throws Exception {

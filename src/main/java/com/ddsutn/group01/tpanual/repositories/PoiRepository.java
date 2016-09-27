@@ -20,6 +20,7 @@ public class PoiRepository {
     public PoiRepository() {
         localOrigin = new LocalOrigin();
         externalOrigins = new ArrayList<>();
+        cache = new PoisCache();
     }
 
     public static PoiRepository getInstance() {
