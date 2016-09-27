@@ -3,6 +3,7 @@ package com.ddsutn.group01.tpanual.adapters.Banco;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
+import com.ddsutn.group01.tpanual.tools.poisCache.PoisCache;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -65,4 +66,5 @@ public class BancoAdapterTest {
         unaLista.add(JSONerror);
         BancoAdapter.adapt(unaLista);
     }
+
 }

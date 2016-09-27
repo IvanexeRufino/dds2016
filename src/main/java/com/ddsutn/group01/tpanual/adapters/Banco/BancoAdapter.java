@@ -3,9 +3,9 @@ package com.ddsutn.group01.tpanual.adapters.Banco;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
+
 import org.uqbar.geodds.Point;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +13,7 @@ public class BancoAdapter {
     static Servicio servicio;
     static BancoDTO unBanco;
 
-    static public List<PointOfInterest> adapt(ArrayList<String> unaLista) {
+    static public List<PointOfInterest> adapt(List<String> unaLista) {
         return unaLista.stream()
                        .map(string->MapperDeBancos.mappear(string))
                        .map(DTO->modelarBanco(DTO))

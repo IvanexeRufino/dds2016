@@ -3,7 +3,6 @@ package com.ddsutn.group01.tpanual.repositories;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.origins.LocalOrigin;
 import com.ddsutn.group01.tpanual.origins.Origin;
-import com.ddsutn.group01.tpanual.tools.poisCache.PoisCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +14,10 @@ public class PoiRepository {
     private static PoiRepository instance = null;
     private List<Origin> externalOrigins;
     private LocalOrigin localOrigin;
-    private PoisCache cache;
 
     public PoiRepository() {
         localOrigin = new LocalOrigin();
         externalOrigins = new ArrayList<>();
-        cache = new PoisCache();
     }
 
     public static PoiRepository getInstance() {
@@ -56,18 +53,10 @@ public class PoiRepository {
     }
     
     private List<PointOfInterest> findExternalOrigin(String searchText) {
-        List<PointOfInterest> cachedResult = cache.get(searchText);
-        List<PointOfInterest> externalResults;
-        if (cachedResult.isEmpty()) {
-        		externalResults = externalOrigins.stream()
+        List<PointOfInterest> externalResults = externalOrigins.stream()
                 .map(origin -> origin.find(searchText))
                 .flatMap(List::stream)
-                .collect(Collectors.toList());
-        cache.put(searchText, externalResults);
-    	        } else {
-    	            externalResults = cachedResult;
-    	        }		
-    			
+                .collect(Collectors.toList());			
     	return externalResults;
     }
 

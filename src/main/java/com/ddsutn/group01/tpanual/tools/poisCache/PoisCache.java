@@ -1,27 +1,15 @@
 package com.ddsutn.group01.tpanual.tools.poisCache;
-
-import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import redis.clients.jedis.Jedis;
 import java.util.List;
 
 public class PoisCache {
-    private static HashMap<String, List<PointOfInterest>> busquedas;
+    private Jedis jedis = new Jedis("localhost");
 
-    public PoisCache() {
-        busquedas = new HashMap<>();
+    public List<String> get(String searchText) {
+    	return jedis.lrange(searchText, 0, 10);
     }
 
-    public List<PointOfInterest> get(String searchText) {
-        if (busquedas.containsKey(searchText)) {
-            return busquedas.get(searchText);
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
-    public void put(String key, List<PointOfInterest> results) {
-        busquedas.put(key, results);
+    public void put(String key, List<String> results) {
+    	results.stream().forEach(string->jedis.lpush(key, string));
     }
 }
