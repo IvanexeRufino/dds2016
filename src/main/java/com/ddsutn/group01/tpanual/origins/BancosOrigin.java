@@ -11,9 +11,9 @@ class BancosOrigin implements Origin {
     private DataSourceBanco dataSource;
     private PoisCache cache;
 
-    BancosOrigin(DataSourceBanco dataSource) {
+    BancosOrigin(DataSourceBanco dataSource, PoisCache cache) {
         this.dataSource = dataSource;
-        this.cache = new PoisCache();
+        this.cache = cache;
     }
 
     @Override
