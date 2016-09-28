@@ -19,6 +19,8 @@ public class CentroDTO {
         this.telefono = telefono;
         this.servicios = servicios;
     }
+    
+    public CentroDTO() {}
 
     public int getNroDeComuna() {
         return nroDeComuna;

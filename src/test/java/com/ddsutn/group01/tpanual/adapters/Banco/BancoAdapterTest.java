@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BancoAdapterTest {
@@ -18,12 +17,8 @@ public class BancoAdapterTest {
 
     @Before
     public void init() {
-        ArrayList<String> unaLista = new ArrayList<>();
-        String JSON1 = "{\"banco\":\"Banco de la Plaza\",\"x\":-35,\"y\":72,\"sucursal\":\"Caballito\",\"gerente\":\"Fabian\",\"servicios\":[\"depositos\",\"extracciones\"]}";
-        String JSON2 = "{\"x\":-36,\"y\":73,\"servicios\":[\"depositos\",\"extracciones\"],\"banco\":\"Banco de la Plaza\",\"sucursal\":\"Avellaneda\",\"gerente\":\"Juancito\"}";
-        unaLista.add(JSON1);
-        unaLista.add(JSON2);
-        listaReal = BancoAdapter.adapt(unaLista);
+        String JSON1 = "[{\"banco\":\"Banco de la Plaza\",\"x\":-35,\"y\":72,\"sucursal\":\"Caballito\",\"gerente\":\"Fabian\",\"servicios\":[\"depositos\",\"extracciones\"]} , {\"x\":-36,\"y\":73,\"servicios\":[\"depositos\",\"extracciones\"],\"banco\":\"Banco de la Plaza\",\"sucursal\":\"Avellaneda\",\"gerente\":\"Juancito\"} ]";
+        listaReal = BancoAdapter.adapt(JSON1);
     }
 
     @Test
@@ -60,10 +55,8 @@ public class BancoAdapterTest {
 
     @Test (expected = RuntimeException.class)
     public void adaptarLanzaExcepcionSiEstaMalFormadoElString() {
-        ArrayList<String> unaLista = new ArrayList<>();
         String JSONerror = "hola como te va";
-        unaLista.add(JSONerror);
-        BancoAdapter.adapt(unaLista);
+        BancoAdapter.adapt(JSONerror);
     }
 
 }

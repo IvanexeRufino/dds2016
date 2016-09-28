@@ -11,11 +11,10 @@ import java.util.stream.Collectors;
 public class BancoAdapter {
     static Servicio servicio;
 
-    static public List<PointOfInterest> adapt(List<String> unaLista) {
-        return unaLista.stream()
-            .map(MapperDeBancos::mappear)
-            .map(BancoAdapter::modelarBanco)
-            .collect(Collectors.toList());
+    static public List<PointOfInterest> adapt(String unaLista) {
+        return Mapper.mappearBanco(unaLista).stream()
+        			 .map(BancoAdapter::modelarBanco)
+        			 .collect(Collectors.toList());
     }
 
     static public PointOfInterest modelarBanco(BancoDTO unBanco) {
