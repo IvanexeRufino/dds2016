@@ -4,12 +4,14 @@ import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.db.PointConverter;
 import com.ddsutn.group01.tpanual.db.StringListConverter;
 import org.joda.time.DateTime;
+import org.mongodb.morphia.annotations.Property;
 import org.uqbar.geodds.Point;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@org.mongodb.morphia.annotations.Embedded
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class PointOfInterest extends PersistentRecord {
@@ -62,6 +64,6 @@ public abstract class PointOfInterest extends PersistentRecord {
     }
 
     // TODO: FIX ME
-	public void actualizarPalabrasClaves(String pclaves) {
-	}
+    public void actualizarPalabrasClaves(String pclaves) {
+    }
 }

@@ -5,12 +5,13 @@ import org.uqbar.geodds.Point;
 
 import javax.persistence.Entity;
 
+@org.mongodb.morphia.annotations.Embedded
 @Entity
 public class ParadaColectivo extends PointOfInterest {
     public ParadaColectivo(String name, Point point) {
         super(name, point);
     }
-    
+
     @Override
     public Boolean estaDisponible(DateTime unHorario) {
         return true;

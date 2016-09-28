@@ -15,6 +15,7 @@ class BancosOrigin implements Origin {
         this.dataSource = dataSource;
     }
 
+
     @Override
     public List<PointOfInterest> find(String searchText) {
         List<String> result = cache.get(searchText);

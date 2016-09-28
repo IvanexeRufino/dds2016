@@ -2,23 +2,22 @@ package com.ddsutn.group01.tpanual.buscador;
 
 import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
 public class ResultadoBusqueda extends PersistentRecord {
 
-    @Column(length = 50)
+    @Id
     private String searchText;
 
-    @ManyToMany
     private List<PointOfInterest> resultados;
 
     @SuppressWarnings("unused")
-    private ResultadoBusqueda() {}
+    private ResultadoBusqueda() {
+    }
 
     public ResultadoBusqueda(String searchText, List<PointOfInterest> results) {
         this.searchText = searchText;
