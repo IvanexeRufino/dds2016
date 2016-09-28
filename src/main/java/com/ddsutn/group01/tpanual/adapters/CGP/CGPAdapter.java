@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CGPAdapter {
-    static public List<PointOfInterest> adapt(ArrayList<CentroDTO> listaCentroDTO) {
-        return listaCentroDTO.stream().map(centro->modelarCGP(centro))
+    static public List<PointOfInterest> adapt(List<CentroDTO> result) {
+        return result.stream().map(centro->modelarCGP(centro))
                               .collect(Collectors.toList());
     }
 

@@ -1,18 +1,28 @@
 package com.ddsutn.group01.tpanual.tools.poisCache;
 
-import redis.clients.jedis.Jedis;
+import java.util.HashMap;
 
-import java.util.List;
+import redis.clients.jedis.Jedis;
 
 public class PoisCache {
     private Jedis jedis = new Jedis("localhost");
 
-    public List<String> get(String searchText) {
-        return jedis.lrange(searchText, 0, 10);
+    public String get(String searchText, HashMap<String,String> map) {
+    	if (this.cacheado(map.toString(),searchText)) {
+    		return jedis.hget(map.toString(), searchText);
+    	}
+    	else {
+    		return "";
+    	}
+    }
+    
+    public Boolean cacheado(String map,String searchText) {
+    	return jedis.hexists(map, searchText);
     }
 
-    public void put(String key, List<String> results) {
-        results.forEach(string -> jedis.lpush(key, string));
-        jedis.expire(key, 60);
+    public void put(String searchText, String results, HashMap<String, String> map) {
+        jedis.hset(map.toString(), searchText, results);
+        jedis.expire(map.toString(), 60);
     }
+    
 }
