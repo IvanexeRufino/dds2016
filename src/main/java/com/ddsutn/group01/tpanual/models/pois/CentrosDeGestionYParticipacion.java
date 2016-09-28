@@ -9,6 +9,7 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@org.mongodb.morphia.annotations.Embedded
 @Entity
 @Table(name = "centros_de_gestion_y_participacion")
 public class CentrosDeGestionYParticipacion extends PoiConServicios {

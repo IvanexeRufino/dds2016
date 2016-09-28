@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 
+@org.mongodb.morphia.annotations.Embedded
 @Entity
 public class SucursalBanco extends PoiConServicios {
 

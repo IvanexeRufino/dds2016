@@ -7,6 +7,7 @@ import org.uqbar.geodds.Point;
 
 import javax.persistence.*;
 
+@org.mongodb.morphia.annotations.Embedded
 @Entity
 public class LocalComercial extends PointOfInterest {
     @Column
