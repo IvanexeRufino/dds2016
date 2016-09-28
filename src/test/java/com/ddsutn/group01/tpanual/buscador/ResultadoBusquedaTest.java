@@ -3,7 +3,13 @@ package com.ddsutn.group01.tpanual.buscador;
 import com.ddsutn.group01.tpanual.actions.Action;
 import com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics;
 import com.ddsutn.group01.tpanual.db.BigDecimalConverter;
+import com.ddsutn.group01.tpanual.db.Polygon;
+import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
+import com.ddsutn.group01.tpanual.models.Rubro;
+import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
+import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
 import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
+import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.roles.Terminal;
 import com.ddsutn.group01.tpanual.tools.metrics.SearchMetrics;
@@ -25,7 +31,7 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
 
     private Datastore datastore;
     private Terminal terminal;
-
+    
     @Before
     public void setUp() {
         Buscador buscador = new Buscador();
@@ -55,6 +61,48 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
 
         Assert.assertEquals(resultadoBusqueda.getSearchText(), "114");
     }
+ 
+//    @Test 
+//    public void busquedaTestGuardaResultadosDeLaBusquedaLocal() throws InterruptedException {
+//    	Point point = new Point(4, 5);
+//        HorariosDeAtencion horarios = Mockito.mock(HorariosDeAtencion.class);
+//        Rubro rubro = Rubro.kiosco;
+//
+//        LocalComercial local = new LocalComercial("rico", point, rubro, horarios);
+//        local.agregarPalabraClave("comida");
+//        
+//        PoiRepository.getInstance().add(local);
+//        terminal.find("comida");
+//
+//        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+//
+//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "comida");
+//    }
+//    @Test
+//    public void busquedaTestGuardaResultadosDeLaBusquedaCGP() throws InterruptedException {
+//    	  Polygon mockedPolygon = Mockito.mock(Polygon.class);
+//        CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("cgp", mockedPolygon);
+//        
+//        PoiRepository.getInstance().add(cgp);
+//        terminal.find("cgp");
+//
+//        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+//
+//        Assert.assertEquals(resultadoBusqueda.getSearchText(),"cgp");
+//    } 
+//    @Test 
+//    public void busquedaTestGuardaResultadosDeLaBusquedaBanco() throws InterruptedException {
+//    	Point point = new Point(4, 5);
+//        SucursalBanco sucur = new SucursalBanco("santander",point);
+//        sucur.agregarPalabraClave("atm");
+//        
+//        PoiRepository.getInstance().add(sucur);
+//        terminal.find("atm");
+//
+//        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+//
+//        Assert.assertEquals(resultadoBusqueda.getSearchText(),"atm");
+//    } 
 
     @Test
     public void busquedaMasMetricsParaIntegrar() {
