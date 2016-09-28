@@ -51,13 +51,12 @@ public class PoiRepository {
     public List<PointOfInterest> findLocally(String searchText) {
         return localOrigin.find(searchText);
     }
-    
+
     private List<PointOfInterest> findExternalOrigin(String searchText) {
-        List<PointOfInterest> externalResults = externalOrigins.stream()
-                .map(origin -> origin.find(searchText))
-                .flatMap(List::stream)
-                .collect(Collectors.toList());			
-    	return externalResults;
+        return externalOrigins.stream()
+            .map(origin -> origin.find(searchText))
+            .flatMap(List::stream)
+            .collect(Collectors.toList());
     }
 
     public List<PointOfInterest> findAll(String searchText) {

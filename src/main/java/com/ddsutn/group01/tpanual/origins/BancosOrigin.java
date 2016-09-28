@@ -9,20 +9,21 @@ import java.util.List;
 
 class BancosOrigin implements Origin {
     private DataSourceBanco dataSource;
-    private PoisCache cache;
+    private PoisCache cache = new PoisCache();
 
-    BancosOrigin(DataSourceBanco dataSource, PoisCache cache) {
+    BancosOrigin(DataSourceBanco dataSource) {
         this.dataSource = dataSource;
-        this.cache = cache;
     }
 
     @Override
     public List<PointOfInterest> find(String searchText) {
-    	List<String> result = cache.get(searchText);
-    	if(result.isEmpty()) {
+        List<String> result = cache.get(searchText);
+
+        if (result.isEmpty()) {
             result = dataSource.search(searchText);
             cache.put(searchText, result);
-    	}
-    	return BancoAdapter.adapt(result);
+        }
+
+        return BancoAdapter.adapt(result);
     }
 }

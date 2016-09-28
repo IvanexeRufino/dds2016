@@ -15,7 +15,7 @@ public class BancosOriginTest {
     public void setUp() throws Exception {
         DataSourceBancoMock externalSource = new DataSourceBancoMock();
         PoisCache cache = Mockito.mock(PoisCache.class);
-        origin = new BancosOrigin(externalSource, cache);
+        origin = new BancosOrigin(externalSource);
     }
 
     @Test
