@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 @org.mongodb.morphia.annotations.Embedded
 @Entity
 public class ParadaColectivo extends PointOfInterest {
+
+    public ParadaColectivo() {}
+
     public ParadaColectivo(String name, Point point) {
         super(name, point);
     }

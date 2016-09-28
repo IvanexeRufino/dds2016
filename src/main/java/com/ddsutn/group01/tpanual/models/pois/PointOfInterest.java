@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@org.mongodb.morphia.annotations.Embedded
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class PointOfInterest extends PersistentRecord {
@@ -24,6 +23,8 @@ public abstract class PointOfInterest extends PersistentRecord {
     @Column
     @Convert(converter = StringListConverter.class)
     protected List<String> palabrasClaves;
+
+    public PointOfInterest() {}
 
     public PointOfInterest(String name, Point point) {
         this.name = name;

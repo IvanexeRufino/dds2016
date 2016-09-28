@@ -1,5 +1,6 @@
 package com.ddsutn.group01.tpanual.buscador;
 
+import com.ddsutn.group01.tpanual.db.BigDecimalConverter;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.mongodb.MongoClient;
@@ -15,6 +16,7 @@ public class Buscador {
 
         final Morphia morphia = new Morphia();
         morphia.getMapper().getOptions().setMapSubPackages(true);
+        morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
         morphia.mapPackage("com.ddsutn.group01.tpanual.buscador");
         morphia.mapPackage("com.ddsutn.group01.tpanual.models.pois");
         final Datastore datastore = morphia.createDatastore(new MongoClient(), "pois");

@@ -2,6 +2,7 @@ package com.ddsutn.group01.tpanual.buscador;
 
 import com.ddsutn.group01.tpanual.actions.Action;
 import com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics;
+import com.ddsutn.group01.tpanual.db.BigDecimalConverter;
 import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.roles.Terminal;
@@ -14,11 +15,13 @@ import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultadoBusquedaTest {
+public class ResultadoBusquedaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
     private Datastore datastore;
     private Terminal terminal;
@@ -29,6 +32,7 @@ public class ResultadoBusquedaTest {
         terminal = new Terminal("abasto", 1, buscador);
 
         final Morphia morphia = new Morphia();
+        morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
         morphia.mapPackage("com.ddsutn.group01.tpanual.buscador");
         morphia.mapPackage("com.ddsutn.group01.tpanual.models.pois");
         datastore = morphia.createDatastore(new MongoClient(), "pois");
@@ -37,7 +41,7 @@ public class ResultadoBusquedaTest {
 
     @After
     public void terminate() {
-//        datastore.delete(datastore.createQuery(ResultadoBusqueda.class));
+        datastore.delete(datastore.createQuery(ResultadoBusqueda.class));
     }
 
     @Test
@@ -62,10 +66,11 @@ public class ResultadoBusquedaTest {
         acciones.add(metrica);
         terminal.setActions(acciones);
         terminal.find("116");
-////        ResultadoBusqueda resultadoBusqueda = (ResultadoBusqueda) entityManager().createQuery("from ResultadoBusqueda").getSingleResult();
-////        SearchMetrics persistedMetricSource = (SearchMetrics) entityManager().createQuery("from SearchMetrics").getSingleResult();
-//
-//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "116");
-//        Assert.assertEquals(persistedMetricSource.getResultados(), 1);
+
+        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+        SearchMetrics persistedMetricSource = (SearchMetrics) entityManager().createQuery("from SearchMetrics").getSingleResult();
+
+        Assert.assertEquals(resultadoBusqueda.getSearchText(), "116");
+        Assert.assertEquals(persistedMetricSource.getResultados(), 1);
     }
 }
