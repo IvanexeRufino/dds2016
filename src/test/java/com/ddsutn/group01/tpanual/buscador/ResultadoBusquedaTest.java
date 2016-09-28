@@ -18,6 +18,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.uqbar.geodds.Point;
@@ -31,6 +32,7 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
 
     private Datastore datastore;
     private Terminal terminal;
+    HorariosDeAtencion horarios;
     
     @Before
     public void setUp() {
@@ -45,43 +47,46 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
         datastore.ensureIndexes();
     }
 
-    @After
-    public void terminate() {
-        datastore.delete(datastore.createQuery(ResultadoBusqueda.class));
-    }
+//    @After
+//    public void terminate() {
+//        datastore.delete(datastore.createQuery(ResultadoBusqueda.class));
+//    }
 
-    @Test
-    public void busquedaTestGuardaResultadosDeLaBusqueda() throws InterruptedException {
-        Point point = new Point(4, 5);
-        ParadaColectivo parada = new ParadaColectivo("114", point);
-        PoiRepository.getInstance().add(parada);
-        terminal.find("114");
-
-        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
-
-        Assert.assertEquals(resultadoBusqueda.getSearchText(), "114");
-    }
- 
-//    @Test 
-//    public void busquedaTestGuardaResultadosDeLaBusquedaLocal() throws InterruptedException {
-//    	Point point = new Point(4, 5);
-//        HorariosDeAtencion horarios = Mockito.mock(HorariosDeAtencion.class);
-//        Rubro rubro = Rubro.kiosco;
-//
-//        LocalComercial local = new LocalComercial("rico", point, rubro, horarios);
-//        local.agregarPalabraClave("comida");
-//        
-//        PoiRepository.getInstance().add(local);
-//        terminal.find("comida");
+//    @Test
+//    public void busquedaTestGuardaResultadosDeLaBusqueda() throws InterruptedException {
+//        Point point = new Point(4, 5);
+//        ParadaColectivo parada = new ParadaColectivo("114", point);
+//        PoiRepository.getInstance().add(parada);
+//        terminal.find("114");
 //
 //        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
 //
-//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "comida");
+//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "114");
 //    }
+ 
+    @Test 
+    public void busquedaTestGuardaResultadosDeLaBusquedaLocal() throws InterruptedException {
+    	Point point = new Point(4, 5);
+        Rubro rubro = Rubro.kiosco;
+
+        LocalComercial local = new LocalComercial("elkioskito", point, rubro, horarios);
+        local.agregarPalabraClave("comida");
+        
+        PoiRepository.getInstance().add(local);
+        terminal.find("comida");
+
+        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+
+        Assert.assertEquals(resultadoBusqueda.getSearchText(), "comida");
+    }
 //    @Test
 //    public void busquedaTestGuardaResultadosDeLaBusquedaCGP() throws InterruptedException {
-//    	  Polygon mockedPolygon = Mockito.mock(Polygon.class);
-//        CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("cgp", mockedPolygon);
+//    	List<Point> lista = new ArrayList <Point>();
+//    	Point point = new Point(4, 5);
+//    	lista.add(point);
+//    	
+//    	Polygon poli = new Polygon(lista);
+//        CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("cgp", poli);
 //        
 //        PoiRepository.getInstance().add(cgp);
 //        terminal.find("cgp");
@@ -101,24 +106,24 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
 //
 //        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
 //
-//        Assert.assertEquals(resultadoBusqueda.getSearchText(),"atm");
+//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "atm");
 //    } 
 
-    @Test
-    public void busquedaMasMetricsParaIntegrar() {
-        Point point = new Point(4, 5);
-        ParadaColectivo parada = new ParadaColectivo("116", point);
-        PoiRepository.getInstance().add(parada);
-        ActionWithSearchMetrics metrica = new ActionWithSearchMetrics();
-        List<Action> acciones = new ArrayList<>();
-        acciones.add(metrica);
-        terminal.setActions(acciones);
-        terminal.find("116");
-
-        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
-        SearchMetrics persistedMetricSource = (SearchMetrics) entityManager().createQuery("from SearchMetrics").getSingleResult();
-
-        Assert.assertEquals(resultadoBusqueda.getSearchText(), "116");
-        Assert.assertEquals(persistedMetricSource.getResultados(), 1);
-    }
+//    @Test
+//    public void busquedaMasMetricsParaIntegrar() {
+//        Point point = new Point(4, 5);
+//        ParadaColectivo parada = new ParadaColectivo("116", point);
+//        PoiRepository.getInstance().add(parada);
+//        ActionWithSearchMetrics metrica = new ActionWithSearchMetrics();
+//        List<Action> acciones = new ArrayList<>();
+//        acciones.add(metrica);
+//        terminal.setActions(acciones);
+//        terminal.find("116");
+//
+//        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+//        SearchMetrics persistedMetricSource = (SearchMetrics) entityManager().createQuery("from SearchMetrics").getSingleResult();
+//
+//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "116");
+//        Assert.assertEquals(persistedMetricSource.getResultados(), 1);
+//    }
 }
