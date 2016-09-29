@@ -11,14 +11,14 @@ import java.util.List;
 class BancosOrigin implements Origin {
     private DataSourceBanco dataSource;
     private PoisCache cache = new PoisCache();
-    private HashMap<String,String> map = new HashMap<String,String>();
+    private HashMap<String, String> map = new HashMap<>();
 
     BancosOrigin(DataSourceBanco dataSource) {
         this.dataSource = dataSource;
     }
-    
+
     public void setCache(PoisCache cache) {
-    	this.cache = cache;
+        this.cache = cache;
     }
 
 
