@@ -22,9 +22,9 @@ public class PolygonConverter implements AttributeConverter<Polygon, String> {
 
     @Override
     public Polygon convertToEntityAttribute(String polygonString) {
-        List<String> pointsString = new ArrayList<>(Arrays.asList(polygonString.replace(SEPARATOR,", ")));
+        List<String> pointsString = new ArrayList<>(Arrays.asList(polygonString.replace(SEPARATOR, ", ")));
         pointsString.stream().map(point -> point.split(ITEM_SEPARATOR));
-        List<Point> points =  pointsString.stream().map(point -> {
+        List<Point> points = pointsString.stream().map(point -> {
             String[] coordinates = point.split(ITEM_SEPARATOR);
             return new Point(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
         }).collect(Collectors.toList());

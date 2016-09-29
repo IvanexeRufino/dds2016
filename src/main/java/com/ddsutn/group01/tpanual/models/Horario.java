@@ -10,6 +10,8 @@ public class Horario {
     private LocalTime horaDeApertura;
     private LocalTime horaDeCierre;
 
+    public Horario() {}
+
     public Horario(DayOfWeek dia, LocalTime horaDeApertura, LocalTime horaDeCierre) {
         this.dia = dia;
         this.horaDeApertura = horaDeApertura;

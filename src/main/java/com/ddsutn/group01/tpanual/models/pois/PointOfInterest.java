@@ -4,7 +4,6 @@ import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.db.PointConverter;
 import com.ddsutn.group01.tpanual.db.StringListConverter;
 import org.joda.time.DateTime;
-import org.mongodb.morphia.annotations.Property;
 import org.uqbar.geodds.Point;
 
 import javax.persistence.*;
@@ -17,6 +16,7 @@ public abstract class PointOfInterest extends PersistentRecord {
     @Column
     protected String name;
 
+    @Column
     @Convert(converter = PointConverter.class)
     protected Point point;
 
@@ -24,7 +24,8 @@ public abstract class PointOfInterest extends PersistentRecord {
     @Convert(converter = StringListConverter.class)
     protected List<String> palabrasClaves;
 
-    public PointOfInterest() {}
+    public PointOfInterest() {
+    }
 
     public PointOfInterest(String name, Point point) {
         this.name = name;

@@ -1,6 +1,8 @@
 package com.ddsutn.group01.tpanual.buscador;
 
 import com.ddsutn.group01.tpanual.db.BigDecimalConverter;
+import com.ddsutn.group01.tpanual.db.JodaDateTimeConverter;
+import com.ddsutn.group01.tpanual.db.JodaLocalTimeConverter;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.mongodb.MongoClient;
@@ -15,8 +17,9 @@ public class Buscador {
         List<PointOfInterest> results = PoiRepository.getInstance().findAll(searchText);
 
         final Morphia morphia = new Morphia();
-        morphia.getMapper().getOptions().setMapSubPackages(true);
         morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaDateTimeConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaLocalTimeConverter.class);
         morphia.mapPackage("com.ddsutn.group01.tpanual.buscador");
         morphia.mapPackage("com.ddsutn.group01.tpanual.models.pois");
         final Datastore datastore = morphia.createDatastore(new MongoClient(), "pois");

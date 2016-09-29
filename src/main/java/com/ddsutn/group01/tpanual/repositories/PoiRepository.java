@@ -52,7 +52,7 @@ public class PoiRepository {
         return localOrigin.find(searchText);
     }
 
-    private List<PointOfInterest> findExternalOrigin(String searchText) {
+    private List<PointOfInterest> findExternally(String searchText) {
         return externalOrigins.stream()
             .map(origin -> origin.find(searchText))
             .flatMap(List::stream)
@@ -61,7 +61,8 @@ public class PoiRepository {
 
     public List<PointOfInterest> findAll(String searchText) {
         List<PointOfInterest> localResults = findLocally(searchText);
-        List<PointOfInterest> externalResults = this.findExternalOrigin(searchText);
+        List<PointOfInterest> externalResults = this.findExternally(searchText);
+
         List<PointOfInterest> allResults = new ArrayList<>();
         Stream.of(localResults, externalResults).forEach(allResults::addAll);
 

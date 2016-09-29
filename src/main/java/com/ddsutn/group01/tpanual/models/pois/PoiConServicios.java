@@ -14,6 +14,9 @@ public abstract class PoiConServicios extends PointOfInterest {
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Servicio> servicios;
 
+    public PoiConServicios() {
+    }
+
     public PoiConServicios(String name, Point point) {
         super(name, point);
         servicios = new ArrayList<>();
@@ -21,6 +24,10 @@ public abstract class PoiConServicios extends PointOfInterest {
 
     public List<Servicio> getServicios() {
         return servicios;
+    }
+
+    public void setServicios(List<Servicio> unosServicios) {
+        servicios = unosServicios;
     }
 
     @Override
@@ -43,9 +50,5 @@ public abstract class PoiConServicios extends PointOfInterest {
 
     public void agregarUnServicio(Servicio servicio) {
         servicios.add(servicio);
-    }
-
-    public void setServicios(List<Servicio> unosServicios) {
-        servicios = unosServicios;
     }
 }

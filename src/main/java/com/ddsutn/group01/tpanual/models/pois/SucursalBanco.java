@@ -14,6 +14,8 @@ import java.util.Arrays;
 @Entity
 public class SucursalBanco extends PoiConServicios {
 
+    public SucursalBanco() {}
+
     public SucursalBanco(String name, Point point) {
         super(name, point);
         agregarUnServicio(servicioDeAtencionAlCliente());

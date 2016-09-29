@@ -3,6 +3,8 @@ package com.ddsutn.group01.tpanual.buscador;
 import com.ddsutn.group01.tpanual.actions.Action;
 import com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics;
 import com.ddsutn.group01.tpanual.db.BigDecimalConverter;
+import com.ddsutn.group01.tpanual.db.JodaDateTimeConverter;
+import com.ddsutn.group01.tpanual.db.JodaLocalTimeConverter;
 import com.ddsutn.group01.tpanual.db.Polygon;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Rubro;
@@ -18,7 +20,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.uqbar.geodds.Point;
@@ -30,10 +31,10 @@ import java.util.List;
 
 public class ResultadoBusquedaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
+    HorariosDeAtencion horarios;
     private Datastore datastore;
     private Terminal terminal;
-    HorariosDeAtencion horarios;
-    
+
     @Before
     public void setUp() {
         Buscador buscador = new Buscador();
@@ -41,37 +42,39 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
 
         final Morphia morphia = new Morphia();
         morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaDateTimeConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaLocalTimeConverter.class);
         morphia.mapPackage("com.ddsutn.group01.tpanual.buscador");
         morphia.mapPackage("com.ddsutn.group01.tpanual.models.pois");
         datastore = morphia.createDatastore(new MongoClient(), "pois");
         datastore.ensureIndexes();
     }
 
-//    @After
-//    public void terminate() {
-//        datastore.delete(datastore.createQuery(ResultadoBusqueda.class));
-//    }
+    @After
+    public void terminate() {
+        datastore.delete(datastore.createQuery(ResultadoBusqueda.class));
+    }
 
-//    @Test
-//    public void busquedaTestGuardaResultadosDeLaBusqueda() throws InterruptedException {
-//        Point point = new Point(4, 5);
-//        ParadaColectivo parada = new ParadaColectivo("114", point);
-//        PoiRepository.getInstance().add(parada);
-//        terminal.find("114");
-//
-//        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
-//
-//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "114");
-//    }
- 
-    @Test 
+    @Test
+    public void busquedaTestGuardaResultadosDeLaBusqueda() throws InterruptedException {
+        Point point = new Point(4, 5);
+        ParadaColectivo parada = new ParadaColectivo("114", point);
+        PoiRepository.getInstance().add(parada);
+        terminal.find("114");
+
+        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+
+        Assert.assertEquals(resultadoBusqueda.getSearchText(), "114");
+    }
+
+    @Test
     public void busquedaTestGuardaResultadosDeLaBusquedaLocal() throws InterruptedException {
-    	Point point = new Point(4, 5);
+        Point point = new Point(4, 5);
         Rubro rubro = Rubro.kiosco;
 
         LocalComercial local = new LocalComercial("elkioskito", point, rubro, horarios);
         local.agregarPalabraClave("comida");
-        
+
         PoiRepository.getInstance().add(local);
         terminal.find("comida");
 
@@ -79,51 +82,53 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
 
         Assert.assertEquals(resultadoBusqueda.getSearchText(), "comida");
     }
-//    @Test
-//    public void busquedaTestGuardaResultadosDeLaBusquedaCGP() throws InterruptedException {
-//    	List<Point> lista = new ArrayList <Point>();
-//    	Point point = new Point(4, 5);
-//    	lista.add(point);
-//    	
-//    	Polygon poli = new Polygon(lista);
-//        CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("cgp", poli);
-//        
-//        PoiRepository.getInstance().add(cgp);
-//        terminal.find("cgp");
-//
-//        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
-//
-//        Assert.assertEquals(resultadoBusqueda.getSearchText(),"cgp");
-//    } 
-//    @Test 
-//    public void busquedaTestGuardaResultadosDeLaBusquedaBanco() throws InterruptedException {
-//    	Point point = new Point(4, 5);
-//        SucursalBanco sucur = new SucursalBanco("santander",point);
-//        sucur.agregarPalabraClave("atm");
-//        
-//        PoiRepository.getInstance().add(sucur);
-//        terminal.find("atm");
-//
-//        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
-//
-//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "atm");
-//    } 
 
-//    @Test
-//    public void busquedaMasMetricsParaIntegrar() {
-//        Point point = new Point(4, 5);
-//        ParadaColectivo parada = new ParadaColectivo("116", point);
-//        PoiRepository.getInstance().add(parada);
-//        ActionWithSearchMetrics metrica = new ActionWithSearchMetrics();
-//        List<Action> acciones = new ArrayList<>();
-//        acciones.add(metrica);
-//        terminal.setActions(acciones);
-//        terminal.find("116");
-//
-//        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
-//        SearchMetrics persistedMetricSource = (SearchMetrics) entityManager().createQuery("from SearchMetrics").getSingleResult();
-//
-//        Assert.assertEquals(resultadoBusqueda.getSearchText(), "116");
-//        Assert.assertEquals(persistedMetricSource.getResultados(), 1);
-//    }
+    @Test
+    public void busquedaTestGuardaResultadosDeLaBusquedaCGP() throws InterruptedException {
+        List<Point> lista = new ArrayList<>();
+        Point point = new Point(4, 5);
+        lista.add(point);
+
+        Polygon poli = new Polygon(lista);
+        CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("cgp", poli);
+
+        PoiRepository.getInstance().add(cgp);
+        terminal.find("cgp");
+
+        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+
+        Assert.assertEquals(resultadoBusqueda.getSearchText(), "cgp");
+    }
+
+    @Test
+    public void busquedaTestGuardaResultadosDeLaBusquedaBanco() throws InterruptedException {
+        Point point = new Point(4, 5);
+        SucursalBanco banco = new SucursalBanco("santander", point);
+        banco.agregarPalabraClave("atm");
+
+        PoiRepository.getInstance().add(banco);
+        terminal.find("atm");
+
+        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+
+        Assert.assertEquals("atm", resultadoBusqueda.getSearchText());
+    }
+
+    @Test
+    public void busquedaMasMetricsParaIntegrar() {
+        Point point = new Point(4, 5);
+        ParadaColectivo parada = new ParadaColectivo("116", point);
+        PoiRepository.getInstance().add(parada);
+        ActionWithSearchMetrics metrica = new ActionWithSearchMetrics();
+        List<Action> acciones = new ArrayList<>();
+        acciones.add(metrica);
+        terminal.setActions(acciones);
+        terminal.find("116");
+
+        ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
+        SearchMetrics persistedMetricSource = (SearchMetrics) entityManager().createQuery("from SearchMetrics").getSingleResult();
+
+        Assert.assertEquals(resultadoBusqueda.getSearchText(), "116");
+        Assert.assertEquals(persistedMetricSource.getResultados(), 1);
+    }
 }

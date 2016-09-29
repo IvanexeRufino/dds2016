@@ -17,7 +17,7 @@ public class LocalComercial extends PointOfInterest {
     @ManyToOne(cascade = { CascadeType.PERSIST })
     @JoinColumn(name="horarios_de_atencion_id")
     private HorariosDeAtencion horarioDeAtencion;
-    
+
     public LocalComercial () {}
 
     public LocalComercial(String name, Point point, Rubro rubro, HorariosDeAtencion horarioDeAtencion) {
@@ -40,7 +40,7 @@ public class LocalComercial extends PointOfInterest {
     }
 
     public Boolean cumpleCondicion(String unaPalabra) {
-        return rubro.getNombre().equals(unaPalabra);
+        return rubro.getNombre().contains(unaPalabra);
     }
 
     @Override
