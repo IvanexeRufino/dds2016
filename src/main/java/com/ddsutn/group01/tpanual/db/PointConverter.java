@@ -9,12 +9,21 @@ public class PointConverter implements AttributeConverter<Point, String> {
 
     @Override
     public String convertToDatabaseColumn(Point point) {
+        if (point == null) {
+            return null;
+        }
+
         return point.latitude() + SEPARATOR + point.longitude();
     }
 
     @Override
     public Point convertToEntityAttribute(String pointString) {
+        if (pointString == null) {
+            return null;
+        }
+
         String[] coordinates = pointString.split(SEPARATOR);
+
         return new Point(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
     }
 }

@@ -85,12 +85,10 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
 
     @Test
     public void busquedaTestGuardaResultadosDeLaBusquedaCGP() throws InterruptedException {
-        List<Point> lista = new ArrayList<>();
-        Point point = new Point(4, 5);
-        lista.add(point);
-
-        Polygon poli = new Polygon(lista);
-        CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("cgp", poli);
+        List<Point> pointsList = new ArrayList<>();
+        pointsList.add(new Point(4, 5));
+        Polygon polygon = new Polygon(pointsList);
+        CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion("cgp", polygon);
 
         PoiRepository.getInstance().add(cgp);
         terminal.find("cgp");

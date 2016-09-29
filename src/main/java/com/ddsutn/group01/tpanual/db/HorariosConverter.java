@@ -16,6 +16,9 @@ public class HorariosConverter implements AttributeConverter<List, String> {
 
     @Override
     public String convertToDatabaseColumn(List list) {
+        if (list == null) {
+            return null;
+        }
 
         List<Horario> horarios = (List<Horario>) list;
         List<String> result = horarios.stream().map(horario -> {
@@ -34,6 +37,10 @@ public class HorariosConverter implements AttributeConverter<List, String> {
 
     @Override
     public List convertToEntityAttribute(String string) {
+        if (string == null) {
+            return null;
+        }
+
         List<String> horarios = new ArrayList<> (Arrays.asList(string.split(SEPARATOR)));
 
         return horarios.stream().map(horario -> {
