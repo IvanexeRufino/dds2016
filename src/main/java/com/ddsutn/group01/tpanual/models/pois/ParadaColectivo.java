@@ -1,11 +1,12 @@
 package com.ddsutn.group01.tpanual.models.pois;
 
 import org.joda.time.DateTime;
+import org.mongodb.morphia.annotations.Embedded;
 import org.uqbar.geodds.Point;
 
 import javax.persistence.Entity;
 
-@org.mongodb.morphia.annotations.Embedded
+@Embedded
 @Entity
 public class ParadaColectivo extends PointOfInterest {
 

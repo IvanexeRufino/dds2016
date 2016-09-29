@@ -4,13 +4,14 @@ import com.ddsutn.group01.tpanual.models.Horario;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Servicio;
 import org.joda.time.LocalTime;
+import org.mongodb.morphia.annotations.Embedded;
 import org.uqbar.geodds.Point;
 
 import javax.persistence.Entity;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 
-@org.mongodb.morphia.annotations.Embedded
+@Embedded
 @Entity
 public class SucursalBanco extends PoiConServicios {
 

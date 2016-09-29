@@ -3,11 +3,12 @@ package com.ddsutn.group01.tpanual.models.pois;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
 import com.ddsutn.group01.tpanual.models.Rubro;
 import org.joda.time.DateTime;
+import org.mongodb.morphia.annotations.Embedded;
 import org.uqbar.geodds.Point;
 
 import javax.persistence.*;
 
-@org.mongodb.morphia.annotations.Embedded
+@Embedded
 @Entity
 public class LocalComercial extends PointOfInterest {
     @Column
