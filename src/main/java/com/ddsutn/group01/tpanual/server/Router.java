@@ -1,6 +1,9 @@
 package com.ddsutn.group01.tpanual.server;
 
-import com.ddsutn.group01.tpanual.server.controllers.LoginController;
+import com.ddsutn.group01.tpanual.server.controllers.AdminController;
+import com.ddsutn.group01.tpanual.server.controllers.RootController;
+import com.ddsutn.group01.tpanual.server.controllers.SignInController;
+import com.ddsutn.group01.tpanual.server.controllers.TerminalController;
 import com.ddsutn.group01.tpanual.server.utils.HandlebarsTemplateEngineBuilder;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -11,12 +14,14 @@ class Router {
         HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
             .create()
             .withDefaultHelpers()
-//            .withHelper("isTrue", BooleanHelper.isTrue)
             .build();
 
         Spark.staticFiles.location("/public");
 
-        Spark.get("/", LoginController::login, engine);
+        Spark.get("/", RootController::main, engine);
+        Spark.get("/sign_in", SignInController::login, engine);
+        Spark.get("/admin", AdminController::index, engine);
+        Spark.get("/terminal", TerminalController::index, engine);
     }
 
 }
