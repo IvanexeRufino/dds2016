@@ -1,4 +1,23 @@
-{{#partial "content"}}
-  <h1>Terminal Profile</h1>
+{{#partial "styles"}}
+  <link rel="stylesheet" href="search.css">
 {{/partial}}
+
+{{#partial "content"}}
+  <div class="row search">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="text-center">Buscador de POIs</h1>
+      <form method="POST">
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="Lugar, Servicio, barrio, etc">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+{{/partial}}
+
 {{>layout_terminal.hbs}}

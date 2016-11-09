@@ -19,7 +19,8 @@ class Router {
         Spark.staticFiles.location("/public");
 
         Spark.get("/", RootController::main, engine);
-        Spark.get("/sign_in", SignInController::login, engine);
+        Spark.get("/sign_in", SignInController::index, engine);
+        Spark.post("/sign_in", SignInController::signIn, engine);
         Spark.get("/admin", AdminController::index, engine);
         Spark.get("/terminal", TerminalController::index, engine);
     }
