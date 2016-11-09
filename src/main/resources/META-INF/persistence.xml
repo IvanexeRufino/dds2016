@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>com.ddsutn.group01.tpanual.actions.Action</class>
+        <class>com.ddsutn.group01.tpanual.actions.ActionWithAdminNotification</class>
+        <class>com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.SearchMetrics</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.Report</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.Reporter</class>
+        <class>com.ddsutn.group01.tpanual.tools.metrics.reporters.TerminalReport</class>
+        <class>com.ddsutn.group01.tpanual.models.pois.ParadaColectivo</class>
+        <class>com.ddsutn.group01.tpanual.models.pois.LocalComercial</class>
+        <class>com.ddsutn.group01.tpanual.models.HorariosDeAtencion</class>
+        <class>com.ddsutn.group01.tpanual.models.Servicio</class>
+        <class>com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion</class>
+        <class>com.ddsutn.group01.tpanual.models.pois.SucursalBanco</class>
+        <class>com.ddsutn.group01.tpanual.roles.Terminal</class>
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class"/>
+
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/pois" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="mysql" />
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
+        </properties>
+    </persistence-unit>
+</persistence>
