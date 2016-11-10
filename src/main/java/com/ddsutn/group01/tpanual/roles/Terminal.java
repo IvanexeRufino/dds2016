@@ -64,6 +64,10 @@ public class Terminal extends User{
         actions.remove(action);
     }
 
+    public String queSos() {
+    	return "terminal";
+    }
+    
     public List<PointOfInterest> find(String searchText) {
         actions.forEach(Action::precondition);
         List<PointOfInterest> resultados = buscador.find(searchText);

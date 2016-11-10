@@ -9,7 +9,7 @@ import com.ddsutn.group01.tpanual.db.PersistentRecord;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class User extends PersistentRecord{
+public abstract class User extends PersistentRecord{
 	@Column(length = 50)
 	private String username;
 	@Column(length = 50)
@@ -26,4 +26,7 @@ public class User extends PersistentRecord{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+    public abstract String queSos();
+
 }	
