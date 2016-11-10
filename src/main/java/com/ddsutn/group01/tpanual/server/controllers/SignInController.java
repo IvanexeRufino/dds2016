@@ -28,7 +28,7 @@ public class SignInController {
             return null;
         }
 
-        request.session().attribute(SessionHelper.SESSION_NAME, username);
+        SessionHelper.saveSession(username, request.session());
         response.redirect("/");
 
         return null;

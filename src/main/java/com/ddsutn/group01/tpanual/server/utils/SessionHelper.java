@@ -6,7 +6,7 @@ import spark.Session;
 
 public class SessionHelper {
 
-    public static final String SESSION_NAME = "username";
+    private static final String SESSION_NAME = "username";
 
     public static boolean loggedIn(Session session) {
         String name = session.attribute(SESSION_NAME);
@@ -20,8 +20,13 @@ public class SessionHelper {
         return userRepo.authenticate(username, password);
     }
 
-    public static User findUser(String username) {
+    public static void saveSession(String username, Session session) {
+        session.attribute(SessionHelper.SESSION_NAME, username);
+    }
+
+    public static User findUser(Session session) {
         UserRepository userRepo = new UserRepository();
+        String username = session.attribute(SESSION_NAME);
 
         return userRepo.find(username);
     }
