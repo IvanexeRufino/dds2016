@@ -9,6 +9,8 @@ import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import com.ddsutn.group01.tpanual.roles.User;
 
+import javax.persistence.Query;
+
 public class UserRepository implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
     public User authenticate(String username, String password) {
 
@@ -21,5 +23,12 @@ public class UserRepository implements WithGlobalEntityManager, EntityManagerOps
         }
 
         return null;
+    }
+
+    public User find(String username) {
+        Query query = createQuery("FROM User WHERE username = :username");
+        query.setParameter("username", username);
+
+        return (User) query.getSingleResult();
     }
 }

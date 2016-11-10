@@ -1,15 +1,10 @@
 package com.ddsutn.group01.tpanual.server.controllers;
 
-import com.ddsutn.group01.tpanual.repositories.UserRepository;
-import com.ddsutn.group01.tpanual.roles.Admin;
-import com.ddsutn.group01.tpanual.roles.Terminal;
 import com.ddsutn.group01.tpanual.roles.User;
 import com.ddsutn.group01.tpanual.server.utils.SessionHelper;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
-import static spark.Spark.halt;
 
 public class SignInController {
 
@@ -23,22 +18,18 @@ public class SignInController {
 
         if (username == null || password == null) {
             response.redirect("/sign_in");
+            return null;
         }
 
-        UserRepository userRepo = new UserRepository();
-        User user = userRepo.authenticate(username, password);
+        User user = SessionHelper.authenticate(username, password);
 
         if (user == null) {
             response.redirect("/sign_in");
+            return null;
         }
 
         request.session().attribute(SessionHelper.SESSION_NAME, username);
-
-        if (user.isAdmin()) {
-            response.redirect("/admin");
-        } else {
-            response.redirect("/terminal");
-        }
+        response.redirect("/");
 
         return null;
     }
