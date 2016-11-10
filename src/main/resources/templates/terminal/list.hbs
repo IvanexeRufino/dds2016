@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Nombre</th>
+    <th>Palabras claves</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each pois}}
+    <tr>
+      <th>{{id}}</th>
+      <td>{{name}}</td>
+      <td>{{palabrasClaves}}</td>
+      <td>
+        <a href="#">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </a>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>

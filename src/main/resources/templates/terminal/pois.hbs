@@ -1,0 +1,33 @@
+{{#partial "styles"}}
+  <link rel="stylesheet" href="/search.css">
+{{/partial}}
+
+{{#partial "content"}}
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      {{>terminal/search.hbs}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      {{#with pois}}
+        <div class="panel panel-default">
+          <div class="header panel-body">
+            Resultados de búsqueda para: <strong>{{query}}</strong>
+          </div>
+
+            {{>terminal/list.hbs}}
+          </div>
+        </div>
+      {{else}}
+        <div class="alert alert-danger empty-state">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span>
+          No hemos encontrado ningún Punto de Interés para tu búsqueda.
+        </div>
+      {{/with}}
+  </div>
+{{/partial}}
+
+{{>layout_terminal.hbs}}

@@ -1,7 +1,12 @@
-.search {
-  padding-top: 220px;
+form {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-form {
-  margin-top: 20px;
+.header {
+  font-size: 16px;
+}
+
+.empty-state {
+  font-size: 16px;
 }
