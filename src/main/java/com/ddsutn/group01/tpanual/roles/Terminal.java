@@ -2,6 +2,7 @@ package com.ddsutn.group01.tpanual.roles;
 
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.actions.Action;
 
 import javax.persistence.Column;
@@ -15,18 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Terminal extends User{
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Integer id;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+public class Terminal extends PersistentRecord{
     
     @Column
     private int comuna;
@@ -41,7 +31,7 @@ public class Terminal extends User{
     private Buscador buscador;
 
     @SuppressWarnings("unused")
-    private Terminal() {}
+	public Terminal() {}
 
     public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;

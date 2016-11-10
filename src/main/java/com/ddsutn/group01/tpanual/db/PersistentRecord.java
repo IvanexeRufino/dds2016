@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 import com.ddsutn.group01.tpanual.roles.User;
 
 @MappedSuperclass
-public class PersistentRecord extends User{
+public class PersistentRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
