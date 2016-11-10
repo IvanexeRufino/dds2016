@@ -11,8 +11,12 @@ import com.ddsutn.group01.tpanual.roles.Terminal;
 public class Bootstrap extends AbstractPersistenceTest implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 	
 	public void init(){
-		Terminal proyecto = new Terminal();
-		entityManager().persist(proyecto);
+		withTransaction(() ->{
+			Terminal proyecto = new Terminal();
+			proyecto.setUsername("hola");
+			proyecto.setPassword("hola");
+			persist(proyecto);
+		});
 	}
 
 }
