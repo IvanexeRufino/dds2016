@@ -6,9 +6,6 @@ import com.ddsutn.group01.tpanual.actions.Action;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import java.util.ArrayList;
@@ -16,17 +13,6 @@ import java.util.List;
 
 @Entity
 public class Terminal extends User{
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Integer id;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
     
     @Column
     private int comuna;
@@ -41,7 +27,7 @@ public class Terminal extends User{
     private Buscador buscador;
 
     @SuppressWarnings("unused")
-    private Terminal() {}
+	public Terminal() {}
 
     public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;
@@ -78,6 +64,10 @@ public class Terminal extends User{
         actions.remove(action);
     }
 
+    public String queSos() {
+    	return "terminal";
+    }
+    
     public List<PointOfInterest> find(String searchText) {
         actions.forEach(Action::precondition);
         List<PointOfInterest> resultados = buscador.find(searchText);
