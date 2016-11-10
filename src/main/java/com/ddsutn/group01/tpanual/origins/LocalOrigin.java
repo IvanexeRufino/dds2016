@@ -33,4 +33,8 @@ public class LocalOrigin implements Origin {
     public List<PointOfInterest> find(String searchText) {
         return dao.findAll().stream().filter(poi -> poi.palabraEsta(searchText)).collect(Collectors.toList());
     }
+
+    public PointOfInterest findOne(int id) {
+        return dao.findOne(id);
+    }
 }

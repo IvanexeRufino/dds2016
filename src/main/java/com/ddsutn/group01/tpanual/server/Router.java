@@ -24,6 +24,7 @@ class Router {
         Spark.get("/admin", AdminController::index, engine);
         Spark.get("/terminal", TerminalController::index, engine);
         Spark.get("/terminal/pois", TerminalController::pois, engine);
+        Spark.get("/terminal/poi/:id", TerminalController::poi, engine);
     }
 
 }

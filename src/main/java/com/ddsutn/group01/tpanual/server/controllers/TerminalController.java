@@ -36,4 +36,11 @@ public class TerminalController {
         return new ModelAndView(context, "terminal/pois.hbs");
     }
 
+    public static ModelAndView poi(Request request, Response response) {
+        int id = Integer.parseInt(request.params(":id"));
+        PointOfInterest poi = PoiRepository.getInstance().findOne(id);
+
+        return new ModelAndView(poi, "terminal/poi.hbs");
+    }
+
 }

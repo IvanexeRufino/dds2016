@@ -1,0 +1,47 @@
+{{#partial "nested-styles"}}
+  <link rel="stylesheet" href="/poi.css">
+{{/partial}}
+
+{{#partial "content"}}
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Detalles Punto de Interés</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8 col-lg-8">
+              <table class="table">
+                <tbody>
+                <tr>
+                  <td>Nombre:</td>
+                  <td>{{name}}</td>
+                </tr>
+                <tr>
+                  <td>Palabras Claves:</td>
+                  <td>
+                    {{join palabrasClaves ", "}}
+                  </td>
+                </tr>
+                {{#with point}}
+                  <tr>
+                    <td>Coordenadas:</td>
+                    <td>{{point}}</td>
+                  </tr>
+                {{/with}}
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-4 col-lg-4" align="center">
+              <img src="http://placehold.it/300x300" class="img-responsive">
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-default pull-right" onclick="window.history.back();">Volver</button>
+    </div>
+  </div>
+{{/partial}}
+
+{{>layout_terminal.hbs}}

@@ -1,4 +1,10 @@
-{{#partial "body"}}
+{{#partial "styles"}}
+  <link rel="stylesheet" href="/terminal.css">
+  {{#block "nested-styles"}}
+  {{/block}}
+{{/partial}}
+
+{{#partial "navbar"}}
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -26,10 +32,6 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    {{#block "content"}}
-    {{/block}}
-  </div>
 {{/partial}}
 
 {{>layout_base.hbs}}

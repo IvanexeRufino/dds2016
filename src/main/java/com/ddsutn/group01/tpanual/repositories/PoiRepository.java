@@ -69,4 +69,8 @@ public class PoiRepository {
         return allResults;
     }
 
+    public PointOfInterest findOne(int id) {
+        return localOrigin.findOne(id);
+    }
+
 }
