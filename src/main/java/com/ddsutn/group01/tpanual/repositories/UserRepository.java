@@ -1,12 +1,21 @@
 package com.ddsutn.group01.tpanual.repositories;
 
-public class UserRepository {
-    public static Object authenticate(String userName, String password) {
-        // Buscar de manera polimorfica entre terminales y admins el userName y comprar
-        // si la password coincide, de ser así devuelvo el usuario
+import java.util.List;
 
-        if (userName.equals("user") && password.equals("password")) {
-            return new Object();
+import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
+
+import com.ddsutn.group01.tpanual.roles.User;
+
+public class UserRepository implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
+    public User authenticate(String userName, String password) {
+    	
+    	List<User> usuarios = (List<User>)createQuery("FROM User").getResultList();
+    	usuarios.stream().filter(terminal->terminal.getUsername().equals("user") && terminal.getPassword().equals("password"));
+
+        if (usuarios.size() == 1) {
+            return usuarios.get(0);
         }
 
         return null;

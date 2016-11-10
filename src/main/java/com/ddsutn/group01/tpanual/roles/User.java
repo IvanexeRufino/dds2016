@@ -1,10 +1,15 @@
 package com.ddsutn.group01.tpanual.roles;
 
 import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-@MappedSuperclass
-public class User {
+import com.ddsutn.group01.tpanual.db.PersistentRecord;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class User extends PersistentRecord{
 	@Column(length = 50)
 	private String username;
 	@Column(length = 50)

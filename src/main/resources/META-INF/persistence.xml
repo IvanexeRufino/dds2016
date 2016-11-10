@@ -20,6 +20,8 @@
         <class>com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion</class>
         <class>com.ddsutn.group01.tpanual.models.pois.SucursalBanco</class>
         <class>com.ddsutn.group01.tpanual.roles.Terminal</class>
+        <class>com.ddsutn.group01.tpanual.roles.User</class>
+        <class>com.ddsutn.group01.tpanual.roles.Admin</class>
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
 

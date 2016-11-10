@@ -1,6 +1,7 @@
 package com.ddsutn.group01.tpanual.server.controllers;
 
 import com.ddsutn.group01.tpanual.repositories.UserRepository;
+import com.ddsutn.group01.tpanual.roles.User;
 import com.ddsutn.group01.tpanual.server.utils.SessionHelper;
 import spark.ModelAndView;
 import spark.Request;
@@ -22,7 +23,9 @@ public class SignInController {
             response.redirect("/sign_in");
         }
 
-        Object user = UserRepository.authenticate(username, password);
+        UserRepository repo = new UserRepository();
+        
+        User user =repo.authenticate(username, password);
 
         if (user != null) {
             request.session().attribute(SessionHelper.SESSION_NAME, username);
