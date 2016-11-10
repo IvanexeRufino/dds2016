@@ -18,6 +18,8 @@ public class CentrosDeGestionYParticipacion extends PoiConServicios {
     @Convert(converter = PolygonConverter.class)
     private Polygon zonaDelimitada;
 
+    public CentrosDeGestionYParticipacion() {}
+
     public CentrosDeGestionYParticipacion(String name, Polygon zonaDelimitada) {
         super(name, null);
         this.zonaDelimitada = zonaDelimitada;

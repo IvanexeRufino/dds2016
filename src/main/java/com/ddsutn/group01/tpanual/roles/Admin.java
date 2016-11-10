@@ -4,9 +4,10 @@ import javax.persistence.Entity;
 
 @Entity
 public class Admin extends User {
-	
-    public String queSos() {
-    	return "admin";
+
+    @Override
+    public boolean isAdmin() {
+        return true;
     }
-	
+
 }

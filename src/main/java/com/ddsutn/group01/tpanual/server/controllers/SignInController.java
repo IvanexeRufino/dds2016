@@ -25,19 +25,19 @@ public class SignInController {
             response.redirect("/sign_in");
         }
 
-        UserRepository repo = new UserRepository();
-        
-        User user =repo.authenticate(username, password);
+        UserRepository userRepo = new UserRepository();
+        User user = userRepo.authenticate(username, password);
 
         if (user == null) {
-            halt(500);
+            response.redirect("/sign_in");
         }
-        if (user.queSos() == "terminal") {
-            request.session().attribute(SessionHelper.SESSION_NAME, username);
-            response.redirect("/terminal");
+
+        request.session().attribute(SessionHelper.SESSION_NAME, username);
+
+        if (user.isAdmin()) {
+            response.redirect("/admin");
         } else {
-        		request.session().attribute(SessionHelper.SESSION_NAME, username);
-                response.redirect("/admin");
+            response.redirect("/terminal");
         }
 
         return null;
