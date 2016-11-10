@@ -1,10 +1,22 @@
 package com.ddsutn.group01.tpanual.roles;
 
-public class Admin extends User {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	public Admin(){
-		super();
-	}
-	
+@Entity
+public class Admin extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 	
 }

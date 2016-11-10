@@ -1,19 +1,33 @@
 package com.ddsutn.group01.tpanual.roles;
 
-import com.ddsutn.group01.tpanual.db.PersistentRecord;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.actions.Action;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Terminal extends PersistentRecord {
+public class Terminal extends User{
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     @Column
     private int comuna;
 
