@@ -38,23 +38,31 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	Point coordenadas = new Point(Double.parseDouble(request.queryParams("lat")),Double.parseDouble(request.queryParams("long")));
     	switch(request.queryParams("tipo")){
     	case "CGP":
+    		CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion(request.queryParams("nombre"),new Polygon());
+    		cgp.agregarPalabraClave(request.queryParams("PalabraClave"));
     		withTransaction(() ->{
-    			PoiRepository.getInstance().add(new CentrosDeGestionYParticipacion(request.queryParams("nombre"),new Polygon()));
+    			PoiRepository.getInstance().add(cgp);
     		});
     		break;
     	case "Banco":
+    		SucursalBanco banco = new SucursalBanco(request.queryParams("nombre"),coordenadas);
+    		banco.agregarPalabraClave(request.queryParams("PalabraClave"));
     		withTransaction(() ->{
-    			PoiRepository.getInstance().add(new SucursalBanco(request.queryParams("nombre"),coordenadas));
+    			PoiRepository.getInstance().add(banco);
     		});
     		break;
     	case "Local":
+    		LocalComercial local = new LocalComercial(request.queryParams("nombre"),coordenadas);
+    		local.agregarPalabraClave(request.queryParams("PalabraClave"));
     		withTransaction(() ->{
-    			PoiRepository.getInstance().add(new LocalComercial(request.queryParams("nombre"),coordenadas));
+    			PoiRepository.getInstance().add(local);
     		});
     		break;
     	case "ParadaColectivo":
+    		ParadaColectivo colectivo = new ParadaColectivo(request.queryParams("nombre"),coordenadas);
+    		colectivo.agregarPalabraClave(request.queryParams("PalabraClave"));
     		withTransaction(() ->{
-    			PoiRepository.getInstance().add(new ParadaColectivo(request.queryParams("nombre"),coordenadas));
+    			PoiRepository.getInstance().add(colectivo);
     		});
     		break;
     	}
