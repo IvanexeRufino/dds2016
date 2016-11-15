@@ -1,0 +1,59 @@
+{{#partial "contenido"}}
+<h1>Consultas </h1>
+	
+<div class="jumbotron">
+	<form action="/admin/consultas/" method="GET">
+		<div class="row">
+		
+		<div class="form-group col-xs-3">
+	
+			<label> Terminal </label>
+			<select class="form-control " name="id">
+				<option value=>Todas</option>
+				{{#each terminales}}
+				<option value={{id}}>{{nombre}}</option>
+				{{/each}}
+			</select> 
+		</div>
+		<div class="form-group col-xs-3">
+			<label> Desde: </label>
+			<input type="date" class="form-control"  name="desde">
+		</div>
+		<div class="form-group col-xs-3">
+			<label> Hasta: </label>
+			<input type="date" class="form-control" name="hasta">
+		</div>
+		<div class="form-group col-xs-3">
+			<label> Cantidad Resultados: </label>
+			<input type="number" class="form-control" name="cantidad">
+		</div>
+
+		</div>
+		<button class="btn btn-outline-success" type="submit"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
+	</form>
+</div>	
+<table class="table table-stripped">
+		<thead>
+			<tr>
+        		<th>Terminal</th>
+        		<th>Fecha</th>
+        		<th>Frase Buscada</th>
+      		</tr>
+		</thead>
+	 	{{#each busquedas}}
+			<tbody>
+			<tr>
+				<td> {{nombreTerminal}} </td>
+				<td> {{fecha}} </td>
+				<td> {{fraseBuscada}} </td>
+				<td>
+					<a href="/admin/consultas/resultados?id={{id}}&idTerminal={{idTerminal}}">Ver Resultados</a>
+				
+				</td>
+			</tr>
+		{{/each}}
+		</tbody>
+</table>
+{{/partial}}
+
+{{>layoutAdmin.hbs}}
