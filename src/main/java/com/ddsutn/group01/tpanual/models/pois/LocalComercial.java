@@ -20,6 +20,10 @@ public class LocalComercial extends PointOfInterest {
     private HorariosDeAtencion horarioDeAtencion;
 
     public LocalComercial () {}
+    
+    public LocalComercial(String name, Point point) {
+    	super(name, point);
+    }
 
     public LocalComercial(String name, Point point, Rubro rubro, HorariosDeAtencion horarioDeAtencion) {
         super(name, point);
