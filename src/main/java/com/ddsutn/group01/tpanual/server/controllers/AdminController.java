@@ -89,7 +89,7 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	String query2 = request.queryParams("tipo");
     	Map<String, List<PointOfInterest>> pois = new HashMap<>();
     	List<PointOfInterest> filtrados = new ArrayList<>();
-    	if(query1 == null && query2 == null) {
+    	if(query1 == null && query2 == null || query1.isEmpty() && query2.isEmpty()) {
         	filtrados = PoiRepository.getInstance().findAll("");
     	}
     	else {
@@ -113,11 +113,11 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     }
     
     public ModelAndView eliminar(Request request, Response response) {
-    	Integer id = Integer.parseInt(request.queryParams("id"));
+        int id = Integer.parseInt(request.params(":id"));
     	withTransaction(() ->{
     		PoiRepository.getInstance().remove(id);
     	});
-    	response.redirect("/admin/POIS");
+    	response.redirect("/admin");
     	return null;
     }
     

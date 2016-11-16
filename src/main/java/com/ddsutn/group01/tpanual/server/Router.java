@@ -44,7 +44,7 @@ class Router {
         Spark.post("/sign_in", SignInController::signIn, engine);
         Spark.get("/admin", AdminController::index, engine);
         Spark.get("/admin/POIS", AdminController::listar, engine);
-        Spark.get("/admin/POIS/eliminar:id", adminController::eliminar, engine);
+        Spark.get("/admin/POIS/:id", adminController::eliminar, engine);
         Spark.get("/admin/consultas/filtrar", AdminController::filtrar,engine);
         Spark.get("/admin/consultas/historial", AdminController::historial,engine);
         Spark.get("/terminal", TerminalController::index, engine);
