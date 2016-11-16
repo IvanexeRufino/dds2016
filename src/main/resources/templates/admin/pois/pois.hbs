@@ -22,8 +22,6 @@
 
 		</div>
 		<button class="btn btn-outline-success" type="submit"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
-	
-	<label><i> - Resultados: 0</i> </label>
 	</form>
 </div>	
 <table class="table table-stripped">
@@ -40,7 +38,7 @@
 				<td> {{id}} </td>
 				<td> {{name}} </td>
 				<td>{{join palabrasClaves ", "}}</td>
-				<td> <a href="/admin/POIS/modificar{{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+				<td> <a href="/admin/POIS/modificar/{{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
 				</td>
 				<td> 
 					<a href="/admin/POIS/{{id}}"><span class="glyphicon glyphicon-trash"></span></a>

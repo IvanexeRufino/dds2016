@@ -45,6 +45,8 @@ class Router {
         Spark.get("/admin", AdminController::index, engine);
         Spark.get("/admin/POIS", AdminController::listar, engine);
         Spark.get("/admin/POIS/:id", adminController::eliminar, engine);
+        Spark.get("/admin/POIS/modificar/:id", AdminController::modificarPoi, engine);
+        Spark.post("/admin/POIS/modificar/:id", adminController::guardarModificacion, engine);
         
         Spark.get("/admin/terminales/Agregar", AdminController::nueva, engine);
         Spark.post("/admin/terminales/Agregar", adminController::agregarTerminal, engine);

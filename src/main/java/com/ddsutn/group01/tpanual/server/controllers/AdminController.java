@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
@@ -42,29 +44,36 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
         return new ModelAndView(null, "admin/consultas/historial.hbs");
     }
     
+    public static ModelAndView modificarPoi(Request request, Response response) {
+    	int id = Integer.parseInt(request.params(":id"));
+    	Map<String, PointOfInterest> pois = new HashMap<>();
+    	PointOfInterest poi = PoiRepository.getInstance().findOne(id);
+    	pois.put("poi", poi);
+        return new ModelAndView(pois, "admin/pois/modificar.hbs");
+    }
+    
+    public ModelAndView guardarModificacion(Request request, Response response) {
+    	int id = Integer.parseInt(request.params(":id"));
+    	PointOfInterest poi = PoiRepository.getInstance().findOne(id);
+    	poi.setName(request.queryParams("nombre"));
+    	Point nuevoPunto = new Point(Double.parseDouble(request.queryParams("latitude")),Double.parseDouble(request.queryParams("longitude")));
+    	poi.setPoint(nuevoPunto);
+    	withTransaction(() ->{
+    		PoiRepository.getInstance().edit(poi);
+    	});
+    	response.redirect("/admin");
+        return null;
+    }
+    
     public static ModelAndView listar(Request request, Response response) {
     	String query1 = request.queryParams("nombre");
-    	String query2 = request.queryParams("tipo");
     	Map<String, List<PointOfInterest>> pois = new HashMap<>();
     	List<PointOfInterest> filtrados = new ArrayList<>();
-    	if(query1 == null && query2 == null || query1.isEmpty() && query2.isEmpty()) {
+    	if(query1 == null) {
         	filtrados = PoiRepository.getInstance().findAll("");
     	}
     	else {
-    		if(query1.isEmpty()) {
-    			
-        	filtrados = PoiRepository.getInstance().findAll(query2);
-    		}
-    		else {
-    			if(query2.isEmpty()) {
-    				filtrados = PoiRepository.getInstance().findAll(query1);
-    			}
-    			else {
-    				List<PointOfInterest> filtradosPorNombre = PoiRepository.getInstance().findAll(query1);
-    		        List<PointOfInterest> filtradosPortipo = PoiRepository.getInstance().findAll(query2);
-    		        Stream.of(filtradosPorNombre, filtradosPortipo).forEach(filtrados::addAll);
-    			}
-    		}
+    		filtrados = PoiRepository.getInstance().findAll(query1);
     	}
     	pois.put("filtrados", filtrados);
         return new ModelAndView(pois, "admin/pois/pois.hbs");
@@ -91,19 +100,15 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	terminal.setPassword(request.queryParams("pass"));
     	if(request.queryParams("mail") != null) {
     		terminal.addAction(new ActionWithAdminNotification(null));
-    		terminal.setMail(1);
     	}
     	if(request.queryParams("report") != null) {
     		terminal.addAction(new ActionWithReport());
-    		terminal.setRepo(1);
     	}
     	if(request.queryParams("search Metrics") != null) {
     		terminal.addAction(new ActionWithSearchMetrics());
-    		terminal.setSm(1);
     	}
     	if(request.queryParams("terminal Report") != null) {
     		terminal.addAction(new ActionWithTerminalReport());
-    		terminal.setRt(1);
     	}
     	withTransaction(() ->{
     		UserRepository.getInstance().add(terminal);

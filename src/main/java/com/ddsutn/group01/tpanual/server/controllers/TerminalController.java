@@ -1,5 +1,6 @@
 package com.ddsutn.group01.tpanual.server.controllers;
 
+import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import spark.ModelAndView;
@@ -11,11 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 public class TerminalController {
+	
+	private Buscador buscador;
 
     public static ModelAndView index(Request request, Response response) {
         Map<String, String> user = new HashMap<>();
         user.put("name", "Matías");
-
+        
         return new ModelAndView(user, "terminal/index.hbs");
     }
 
@@ -26,6 +29,7 @@ public class TerminalController {
             return new ModelAndView(null, "terminal/pois.hbs");
         }
 
+        
         List<PointOfInterest> pois = PoiRepository.getInstance().findAll(query);
         Map<String, Object> context = new HashMap<>();
         context.put("query", query);

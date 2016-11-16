@@ -33,7 +33,15 @@ public abstract class PointOfInterest extends PersistentRecord {
         palabrasClaves = new ArrayList<>();
     }
 
-    public Point getPoint() {
+    public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPoint(Point point) {
+		this.point = point;
+	}
+
+	public Point getPoint() {
         return point;
     }
 
