@@ -29,6 +29,10 @@ public class UserRepository implements WithGlobalEntityManager, EntityManagerOps
         persist(usuario);
     }
     
+    public void update(User usuario) {
+        merge(usuario);
+    }
+    
     public void remove(int id) {
     	remove(find(Terminal.class, id));
     }

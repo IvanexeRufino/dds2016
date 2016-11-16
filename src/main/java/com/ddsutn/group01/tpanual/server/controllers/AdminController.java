@@ -149,4 +149,18 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	response.redirect("/admin");
     	return null;
     }
+    
+    public ModelAndView modificarTerminal(Request request, Response response) {
+    	int id = Integer.parseInt(request.params(":id"));
+    	Terminal terminal = UserRepository.getInstance().get(id);
+    	terminal.setUsername(request.queryParams("nombre"));
+    	terminal.setNombreDeTerminal(request.queryParams("nombre"));
+    	terminal.setComuna(Integer.parseInt(request.queryParams("comuna")));
+    	terminal.setPassword(request.queryParams("pass"));
+    	withTransaction(() ->{
+    		UserRepository.getInstance().update(terminal);
+    	});
+    	response.redirect("/admin");
+    	return null;
+    }
 }
