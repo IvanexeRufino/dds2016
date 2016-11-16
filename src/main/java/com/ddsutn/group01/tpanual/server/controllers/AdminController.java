@@ -36,12 +36,12 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     
     public static ModelAndView filtrar(Request request, Response response) {
 
-        return new ModelAndView(null, "admin/consultas/consultar.hbs");
+        return new ModelAndView(null, "admin/consultas/filtrar.hbs");
     }
     
     public static ModelAndView historial(Request request, Response response) {
 
-        return new ModelAndView(null, "admin/consultas/consultar.hbs");
+        return new ModelAndView(null, "admin/consultas/historial.hbs");
     }
     
     public ModelAndView agregarPoi(Request request, Response response) {
