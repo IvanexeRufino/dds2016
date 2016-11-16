@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -108,8 +109,18 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     }
     
     public static ModelAndView listarTerminales(Request request, Response response) {
+    	String query = request.queryParams("comuna");
+    	List<Terminal> terminales;
     	Map<String, List<Terminal>> model = new HashMap<>();
-    	List<Terminal> terminales = UserRepository.getInstance().getAll();
+    	if(query == null || query.isEmpty()) {
+	    	terminales = UserRepository.getInstance().getAll();
+    	}
+    	else {
+        	int comuna = Integer.parseInt(query);
+    		terminales = UserRepository.getInstance().getAll().stream()
+    									.filter(terminal->terminal.getComuna() == comuna)
+    									.collect(Collectors.toList());
+    	}
     	model.put("terminales", terminales);
     	return new ModelAndView(model, "admin/terminales/terminales.hbs");
     }
