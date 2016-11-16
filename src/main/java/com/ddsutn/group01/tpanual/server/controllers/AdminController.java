@@ -4,9 +4,11 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 
@@ -83,18 +85,40 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     }
     
     public static ModelAndView listar(Request request, Response response) {
+    	String query1 = request.queryParams("nombre");
+    	String query2 = request.queryParams("tipo");
     	Map<String, List<PointOfInterest>> pois = new HashMap<>();
-    	List<PointOfInterest> filtrados;
-    	if(request.queryParams("nombre")!=null)
-    	{
-    	String query = request.queryParams("nombre");
-    	filtrados = PoiRepository.getInstance().findAll(query);
+    	List<PointOfInterest> filtrados = new ArrayList<>();
+    	if(query1 == null && query2 == null) {
+        	filtrados = PoiRepository.getInstance().findAll("");
     	}
     	else {
-    	filtrados = PoiRepository.getInstance().findAll("");
+    		if(query1.isEmpty()) {
+    			
+        	filtrados = PoiRepository.getInstance().findAll(query2);
+    		}
+    		else {
+    			if(query2.isEmpty()) {
+    				filtrados = PoiRepository.getInstance().findAll(query1);
+    			}
+    			else {
+    				List<PointOfInterest> filtradosPorNombre = PoiRepository.getInstance().findAll(query1);
+    		        List<PointOfInterest> filtradosPortipo = PoiRepository.getInstance().findAll(query2);
+    		        Stream.of(filtradosPorNombre, filtradosPortipo).forEach(filtrados::addAll);
+    			}
+    		}
     	}
     	pois.put("filtrados", filtrados);
         return new ModelAndView(pois, "admin/pois/pois.hbs");
+    }
+    
+    public ModelAndView eliminar(Request request, Response response) {
+    	Integer id = Integer.parseInt(request.queryParams("id"));
+    	withTransaction(() ->{
+    		PoiRepository.getInstance().remove(id);
+    	});
+    	response.redirect("/admin/POIS");
+    	return null;
     }
     
 }
