@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 public class Terminal extends User{
-
+	
     @Column
     private int comuna;
 
@@ -35,9 +35,10 @@ public class Terminal extends User{
         this.nombreDeTerminal = nombreDeTerminal;
         this.buscador = unBuscador;
         this.actions = new ArrayList<>();
+        
     }
 
-    public int getComuna() {
+	public int getComuna() {
         return comuna;
     }
 

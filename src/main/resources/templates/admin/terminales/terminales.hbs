@@ -26,10 +26,10 @@
 			<tr>
 				<td> {{nombreDeTerminal}} </td>
 				<td> {{comuna}} </td>
-				<td> <a href="/admin/terminales/modificar?id={{nombreDeTerminal}}"><span class="glyphicon glyphicon-pencil"></span></a>
+				<td> <a href="/admin/terminales/modificar/{{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
 				</td>
 				<td> 
-					<a href="/admin/terminales/eliminar?id={{nombreDeTerminal}}"><span class="glyphicon glyphicon-trash"></span></a>
+					<a href="/admin/terminales/{{id}}"><span class="glyphicon glyphicon-trash"></span></a>
 				</td>
 			
 			</tr>
@@ -39,9 +39,3 @@
 {{/partial}}
 
 {{>layout_admin.hbs}}
-
- <script>
- $('#detallesTerminal').on('hidden.bs.modal', function () {
-   $(this).removeData('bs.modal');
- });
- </script>

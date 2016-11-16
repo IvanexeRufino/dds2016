@@ -9,10 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
-
-import javax.persistence.EntityManager;
-
-import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
@@ -21,12 +17,7 @@ import com.ddsutn.group01.tpanual.actions.ActionWithReport;
 import com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics;
 import com.ddsutn.group01.tpanual.actions.ActionWithTerminalReport;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
-import com.ddsutn.group01.tpanual.db.Polygon;
-import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
-import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
-import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
-import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.UserRepository;
 import com.ddsutn.group01.tpanual.roles.Terminal;
@@ -106,7 +97,7 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	if(request.queryParams("search Metrics") != null) {
     		terminal.addAction(new ActionWithSearchMetrics());
     	}
-    	if(request.queryParams("Terminal Report") != null) {
+    	if(request.queryParams("terminal Report") != null) {
     		terminal.addAction(new ActionWithTerminalReport());
     	}
     	withTransaction(() ->{
@@ -121,5 +112,21 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	List<Terminal> terminales = UserRepository.getInstance().getAll();
     	model.put("terminales", terminales);
     	return new ModelAndView(model, "admin/terminales/terminales.hbs");
+    }
+    
+    public static ModelAndView terminal(Request request, Response response) {
+    	Map<String, Terminal> model = new HashMap<>();
+    	Terminal terminal = UserRepository.getInstance().get(Integer.parseInt(request.params(":id")));
+    	model.put("terminal", terminal);
+    	return new ModelAndView(model, "admin/terminales/modificar.hbs");
+    }
+    
+    public ModelAndView eliminarTerminal(Request request, Response response) {
+    	int id = Integer.parseInt(request.params(":id"));
+    	withTransaction(() ->{
+    		UserRepository.getInstance().remove(id);;
+    	});
+    	response.redirect("/admin");
+    	return null;
     }
 }

@@ -29,6 +29,14 @@ public class UserRepository implements WithGlobalEntityManager, EntityManagerOps
         persist(usuario);
     }
     
+    public void remove(int id) {
+    	remove(find(Terminal.class, id));
+    }
+    
+    public Terminal get(int id) {
+    	return find(Terminal.class, id);
+    }
+    
     public List<Terminal> getAll() {
     	return (List<Terminal>) createQuery("from Terminal").getResultList();
     }

@@ -1,0 +1,62 @@
+{{#partial "content"}}
+
+{{#with terminal}}
+<form action="/admin/terminales/modificar/{{id}}" method="POST" class="form-horizontal">
+	<div class="panel panel-default">
+		<div class="panel-heading" alin>
+			<span class="glyphicon glyphicon-globe">
+			</span>   {{nombre}} </div>
+
+		<div class="panel-body">
+
+				<div class="form-group">
+					<label for="nombre" class="control-label col-sm-2"> Nombre: </label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" value={{nombreDeTerminal}} name="nombre">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="direccion" class="control-label col-sm-2"> Comuna: </label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" value={{comuna}} name="comuna">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="contraseña" class="control-label col-sm-2"> Contrase&ntilde;a: </label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" value={{password}} name="pass">
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="acciones" class="control-label col-sm-2"> Acciones </label>
+					<div class="checkbox-inline ">
+					  <label class="control-label col-sm-4"><input type="checkbox" name="mail" value="true">Mail</label>
+					</div>
+					<div class="checkbox-inline">
+					  <label class="control-label col-sm-10"><input type="checkbox" value="true" name="report">Report</label>
+					</div>
+					<div class="checkbox-inline">
+					  <label class="control-label col-sm-16"><input type="checkbox" value="true" name="searchMetrics">Search Metrics</label>
+					</div>
+					<div class="checkbox-inline">
+					  <label class="control-label col-sm-22"><input type="checkbox" value="true" name="terminalReport">Terminal Report</label>
+					</div>
+				</div>
+		
+				</div>
+				<div class="panel-footer text-right">
+					<button class="btn btn-default" type="submit">Modificar</button>
+					<a href="/admin" button class="btn btn-default">Cancelar</button>
+				</div>
+
+			</div>
+		</div>
+	</form>
+{{/with}}
+{{/partial}}
+
+{{>layout_admin.hbs}}
