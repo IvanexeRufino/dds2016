@@ -1,0 +1,55 @@
+{{#partial "content"}}
+<h1>Buscar: </h1>
+	
+<div class="jumbotron">
+	<form action="/admin/POIS" method="GET">
+		<div class="row">
+		<div class="form-group col-xs-4">
+			<label> Nombre </label>
+			<input type="text" class="form-control" value="" placeholder="Nombre" name="nombre">
+		</div>
+		
+		<div class="form-group col-xs-4">
+			<label> Tipo </label>
+			<select class="form-control " name="tipo">
+				<option value=nada> </option>
+				<option value=Banco>Banco</option>
+				<option value=CGP>CGP</option>
+				<option value=Local>Local</option>
+				<option value=ParadaColectivo>Parada Colectivo</option>
+			</select> 
+		</div>
+
+		</div>
+		<button class="btn btn-outline-success" type="submit"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
+	
+	<label><i> - Resultados: 0</i> </label>
+	</form>
+</div>	
+<table class="table table-stripped">
+		<thead>
+			<tr>
+			 	<th>#</th>
+        		<th>Nombre</th>
+        		<th>Palabras claves</th>
+      		</tr>
+		</thead>
+	 	{{#each filtrados}}
+			<tbody>
+			<tr>
+				<td> {{id}} </td>
+				<td> {{name}} </td>
+				<td>{{join palabrasClaves ", "}}</td>
+				<td> <a href="/admin/POIS/modificar?id={{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+				</td>
+				<td> 
+					<a href="/admin/POIS/eliminar?id={{id}}"><span class="glyphicon glyphicon-trash"></span></a>
+				</td>
+			
+			</tr>
+		{{/each}}
+		</tbody>
+</table>
+{{/partial}}
+
+{{>layout_admin.hbs}}

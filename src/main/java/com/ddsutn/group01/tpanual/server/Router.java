@@ -43,6 +43,7 @@ class Router {
         Spark.get("/sign_in", SignInController::index, engine);
         Spark.post("/sign_in", SignInController::signIn, engine);
         Spark.get("/admin", AdminController::index, engine);
+        Spark.get("/admin/POIS", AdminController::listar, engine);
         Spark.get("/admin/POIS/Agregar", AdminController::newPoi, engine);
         Spark.post("/admin/POIS/Agregar", adminController::agregarPoi, engine);
         Spark.get("/terminal", TerminalController::index, engine);
