@@ -26,9 +26,66 @@ public class Terminal extends User{
 
     @Transient
     private Buscador buscador;
+    
+    private int mail;
+    private int repo;
+    private int sm;
+    private int rt;
+    
+    
 
-    @SuppressWarnings("unused")
+    public int getMail() {
+		return mail;
+	}
+
+
+
+	public void setMail(int mail) {
+		this.mail = mail;
+	}
+
+
+
+	public int getRepo() {
+		return repo;
+	}
+
+
+
+	public void setRepo(int repo) {
+		this.repo = repo;
+	}
+
+
+
+	public int getSm() {
+		return sm;
+	}
+
+
+
+	public void setSm(int sm) {
+		this.sm = sm;
+	}
+
+
+
+	public int getRt() {
+		return rt;
+	}
+
+
+
+	public void setRt(int rt) {
+		this.rt = rt;
+	}
+
+
+
+	@SuppressWarnings("unused")
 	public Terminal() {}
+    
+    
 
     public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;

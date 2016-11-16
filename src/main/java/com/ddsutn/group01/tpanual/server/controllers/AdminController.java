@@ -91,15 +91,19 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	terminal.setPassword(request.queryParams("pass"));
     	if(request.queryParams("mail") != null) {
     		terminal.addAction(new ActionWithAdminNotification(null));
+    		terminal.setMail(1);
     	}
     	if(request.queryParams("report") != null) {
     		terminal.addAction(new ActionWithReport());
+    		terminal.setRepo(1);
     	}
     	if(request.queryParams("search Metrics") != null) {
     		terminal.addAction(new ActionWithSearchMetrics());
+    		terminal.setSm(1);
     	}
     	if(request.queryParams("terminal Report") != null) {
     		terminal.addAction(new ActionWithTerminalReport());
+    		terminal.setRt(1);
     	}
     	withTransaction(() ->{
     		UserRepository.getInstance().add(terminal);
