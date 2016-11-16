@@ -115,4 +115,11 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	response.redirect("/admin");
     	return null;
     }
+    
+    public static ModelAndView listarTerminales(Request request, Response response) {
+    	Map<String, List<Terminal>> model = new HashMap<>();
+    	List<Terminal> terminales = UserRepository.getInstance().getAll();
+    	model.put("terminales", terminales);
+    	return new ModelAndView(model, "admin/terminales/terminales.hbs");
+    }
 }

@@ -1,5 +1,6 @@
 package com.ddsutn.group01.tpanual.server;
 
+import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.db.Polygon;
 import com.ddsutn.group01.tpanual.models.Horario;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
@@ -9,6 +10,7 @@ import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
 import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
+import com.ddsutn.group01.tpanual.repositories.UserRepository;
 import com.ddsutn.group01.tpanual.roles.Admin;
 import com.ddsutn.group01.tpanual.roles.Terminal;
 import org.joda.time.LocalTime;
@@ -29,16 +31,15 @@ public class Bootstrap extends AbstractPersistenceTest implements WithGlobalEnti
     public void init() {
         withTransaction(() -> {
             EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-
-            Terminal proyecto = new Terminal();
+            Terminal proyecto = new Terminal("terminalAbasto",5,new Buscador());
             proyecto.setUsername("terminal");
             proyecto.setPassword("terminal");
-            entityManager.persist(proyecto);
+            UserRepository.getInstance().add(proyecto);
 
             Admin pro = new Admin();
             pro.setUsername("admin");
             pro.setPassword("admin");
-            entityManager.persist(pro);
+            UserRepository.getInstance().add(pro);
 
             HorariosDeAtencion horariosDeAtencion = new HorariosDeAtencion();
             horariosDeAtencion.agregarHorario(new Horario(DayOfWeek.THURSDAY, new LocalTime(10, 0), new LocalTime(19, 0)));

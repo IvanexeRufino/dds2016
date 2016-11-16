@@ -25,8 +25,12 @@ public class UserRepository implements WithGlobalEntityManager, EntityManagerOps
         return instance;
     }
     
-    public void add(Terminal terminal) {
-        persist(terminal);
+    public void add(User usuario) {
+        persist(usuario);
+    }
+    
+    public List<Terminal> getAll() {
+    	return (List<Terminal>) createQuery("from Terminal").getResultList();
     }
 	
     public User authenticate(String username, String password) {

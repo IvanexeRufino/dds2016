@@ -1,0 +1,47 @@
+{{#partial "content"}}
+<h1><u>Terminales</u></h1>
+	
+<div class="jumbotron">
+	<form action="/admin/terminales/" method="GET">
+		<div class="row">
+		<div class="form-group col-xs-4">
+			<label> <i>Comuna</i> </label>
+			<input type="text" class="form-control" placeholder="[TODAS]" name="comuna">
+		</div>
+
+		</div>
+		<button class="btn btn-outline-success" type="submit"><span class="glyphicon glyphicon-search"></span>  Buscar</button>
+	
+	</form>
+</div>	
+<table class="table table-stripped">
+		<thead>
+			<tr>
+        		<th>Nombre</th>
+        		<th>Comuna</th>
+      		</tr>
+		</thead>
+	 	{{#each terminales}}
+			<tbody>
+			<tr>
+				<td> {{nombreDeTerminal}} </td>
+				<td> {{comuna}} </td>
+				<td> <a href="/admin/terminales/modificar?id={{nombreDeTerminal}}"><span class="glyphicon glyphicon-pencil"></span></a>
+				</td>
+				<td> 
+					<a href="/admin/terminales/eliminar?id={{nombreDeTerminal}}"><span class="glyphicon glyphicon-trash"></span></a>
+				</td>
+			
+			</tr>
+		{{/each}}
+		</tbody>
+</table>
+{{/partial}}
+
+{{>layout_admin.hbs}}
+
+ <script>
+ $('#detallesTerminal').on('hidden.bs.modal', function () {
+   $(this).removeData('bs.modal');
+ });
+ </script>
