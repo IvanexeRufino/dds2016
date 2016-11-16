@@ -4,6 +4,7 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.actions.Action;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ public class Terminal extends User{
     @Column(length = 25)
     private String nombreDeTerminal;
 
-    @OneToMany
+    @OneToMany(cascade= CascadeType.ALL)
     private List<Action> actions;
 
     @Transient

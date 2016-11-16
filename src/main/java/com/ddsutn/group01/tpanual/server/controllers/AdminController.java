@@ -16,6 +16,11 @@ import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
+import com.ddsutn.group01.tpanual.actions.ActionWithAdminNotification;
+import com.ddsutn.group01.tpanual.actions.ActionWithReport;
+import com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics;
+import com.ddsutn.group01.tpanual.actions.ActionWithTerminalReport;
+import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.db.Polygon;
 import com.ddsutn.group01.tpanual.models.pois.CentrosDeGestionYParticipacion;
 import com.ddsutn.group01.tpanual.models.pois.LocalComercial;
@@ -23,6 +28,8 @@ import com.ddsutn.group01.tpanual.models.pois.ParadaColectivo;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.models.pois.SucursalBanco;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
+import com.ddsutn.group01.tpanual.repositories.UserRepository;
+import com.ddsutn.group01.tpanual.roles.Terminal;
 
 public class AdminController implements WithGlobalEntityManager, TransactionalOps{
 
@@ -33,11 +40,6 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
         return new ModelAndView(user, "admin/index.hbs");
     }
     
-    public static ModelAndView newPoi(Request request, Response response) {
-
-        return new ModelAndView(null, "admin/pois/poiNuevo.hbs");
-    }
-    
     public static ModelAndView filtrar(Request request, Response response) {
 
         return new ModelAndView(null, "admin/consultas/filtrar.hbs");
@@ -46,42 +48,6 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     public static ModelAndView historial(Request request, Response response) {
 
         return new ModelAndView(null, "admin/consultas/historial.hbs");
-    }
-    
-    public ModelAndView agregarPoi(Request request, Response response) {
-    	Point coordenadas = new Point(Double.parseDouble(request.queryParams("lat")),Double.parseDouble(request.queryParams("long")));
-    	switch(request.queryParams("tipo")){
-    	case "0":
-    		SucursalBanco banco = new SucursalBanco(request.queryParams("nombre"),coordenadas);
-    		banco.agregarPalabraClave(request.queryParams("PalabraClave"));
-    		withTransaction(() ->{
-    			PoiRepository.getInstance().add(banco);
-    		});
-    		break;
-    	case "1":
-    		CentrosDeGestionYParticipacion cgp = new CentrosDeGestionYParticipacion(request.queryParams("nombre"),new Polygon());
-    		cgp.agregarPalabraClave(request.queryParams("PalabraClave"));
-    		withTransaction(() ->{
-    			PoiRepository.getInstance().add(cgp);
-    		});
-    		break;
-    	case "2":
-    		LocalComercial local = new LocalComercial(request.queryParams("nombre"),coordenadas);
-    		local.agregarPalabraClave(request.queryParams("PalabraClave"));
-    		withTransaction(() ->{
-    			PoiRepository.getInstance().add(local);
-    		});
-    		break;
-    	case "3":
-    		ParadaColectivo colectivo = new ParadaColectivo(request.queryParams("nombre"),coordenadas);
-    		colectivo.agregarPalabraClave(request.queryParams("PalabraClave"));
-    		withTransaction(() ->{
-    			PoiRepository.getInstance().add(colectivo);
-    		});
-    		break;
-    	}
-    	response.redirect("/admin");
-    	return null;
     }
     
     public static ModelAndView listar(Request request, Response response) {
@@ -121,4 +87,32 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	return null;
     }
     
+    public static ModelAndView nueva(Request request, Response response) {
+    	
+    	return new ModelAndView(null, "admin/terminales/nueva.hbs");
+    }
+    
+    public ModelAndView agregarTerminal(Request request, Response response) {
+    	Buscador buscador = new Buscador();
+    	Terminal terminal = new Terminal(request.queryParams("nombre"),Integer.parseInt(request.queryParams("comuna")),buscador);
+    	terminal.setUsername(request.queryParams("nombre"));
+    	terminal.setPassword(request.queryParams("pass"));
+    	if(request.queryParams("mail") != null) {
+    		terminal.addAction(new ActionWithAdminNotification(null));
+    	}
+    	if(request.queryParams("report") != null) {
+    		terminal.addAction(new ActionWithReport());
+    	}
+    	if(request.queryParams("search Metrics") != null) {
+    		terminal.addAction(new ActionWithSearchMetrics());
+    	}
+    	if(request.queryParams("Terminal Report") != null) {
+    		terminal.addAction(new ActionWithTerminalReport());
+    	}
+    	withTransaction(() ->{
+    		UserRepository.getInstance().add(terminal);
+    	});
+    	response.redirect("/admin");
+    	return null;
+    }
 }
