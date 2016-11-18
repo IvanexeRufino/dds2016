@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -20,10 +22,12 @@ import com.ddsutn.group01.tpanual.actions.ActionWithReport;
 import com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics;
 import com.ddsutn.group01.tpanual.actions.ActionWithTerminalReport;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
+import com.ddsutn.group01.tpanual.buscador.ResultadoBusqueda;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.UserRepository;
 import com.ddsutn.group01.tpanual.roles.Terminal;
+import com.mongodb.MongoClient;
 
 public class AdminController implements WithGlobalEntityManager, TransactionalOps{
 
@@ -35,12 +39,38 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     }
     
     public static ModelAndView filtrar(Request request, Response response) {
-
+//    	String desde = request.queryParams("desde");
+//    	String hasta = request.queryParams("hasta");
+//    	String cantidad = request.queryParams("cantidad");
+//    	String terminal= request.queryParams("terminal");
+//    	final Morphia morphia = new Morphia();
+//    	Datastore datastore;
+//    	datastore = morphia.createDatastore(new MongoClient(), "pois");
+//    	datastore.ensureIndexes();
+//    	
+//    	if (desde.isEmpty() && hasta.isEmpty() && cantidad.isEmpty() && terminal.isEmpty()){
+//        	List<PointOfInterest> pois = datastore.find(ResultadoBusqueda.class).get().getResultados();
+//          Map<String, Object> context = new HashMap<>();
+//          ResultadoBusqueda query = datastore.find(ResultadoBusqueda.class).get();
+//          context.put("query", query.getSearchText());
+//          context.put("pois", pois);
+//    	}    	
+    	
         return new ModelAndView(null, "admin/consultas/filtrar.hbs");
     }
     
     public static ModelAndView historial(Request request, Response response) {
-
+//    	Poder entrar a una búsqueda y visualizar los POIs devueltos en dicha consulta.
+//    	final Morphia morphia = new Morphia();
+//    	Datastore datastore;
+//    	datastore = morphia.createDatastore(new MongoClient(), "pois");
+//      datastore.ensureIndexes();
+//    	
+//    	List<PointOfInterest> pois = datastore.find(ResultadoBusqueda.class).get().getResultados();
+//        Map<String, Object> context = new HashMap<>();
+//        ResultadoBusqueda query = datastore.find(ResultadoBusqueda.class).get();
+//        context.put("query", query.getSearchText());
+//        context.put("pois", pois);
         return new ModelAndView(null, "admin/consultas/historial.hbs");
     }
     
