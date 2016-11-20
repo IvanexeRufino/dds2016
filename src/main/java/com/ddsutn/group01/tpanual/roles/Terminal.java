@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Terminal extends User{
@@ -26,19 +27,59 @@ public class Terminal extends User{
 
     @Transient
     private Buscador buscador;
+    
+    private CheckBox mail;
+    
+    private CheckBox report;
+    
+    private CheckBox metrics;
+    
+    private CheckBox terminal;
+    
+	public CheckBox getMail() {
+		return mail;
+	}
 
+	public void setMail(CheckBox mail) {
+		this.mail = mail;
+	}
+
+	public CheckBox getReport() {
+		return report;
+	}
+
+	public void setReport(CheckBox report) {
+		this.report = report;
+	}
+
+	public CheckBox getMetrics() {
+		return metrics;
+	}
+
+	public void setMetrics(CheckBox metrics) {
+		this.metrics = metrics;
+	}
+
+	public CheckBox getTerminal() {
+		return terminal;
+	}
+
+	public void setTerminal(CheckBox terminal) {
+		this.terminal = terminal;
+	}
 
 	@SuppressWarnings("unused")
 	public Terminal() {}
-    
-    
 
     public Terminal(String nombreDeTerminal, Integer unaComuna, Buscador unBuscador) {
         this.comuna = unaComuna;
         this.nombreDeTerminal = nombreDeTerminal;
         this.buscador = unBuscador;
         this.actions = new ArrayList<>();
-        
+        this.mail = new CheckBox();
+        this.report = new CheckBox();
+        this.metrics = new CheckBox();
+        this.terminal = new CheckBox();
     }
 
 	public void setComuna(int comuna) {
@@ -84,4 +125,5 @@ public class Terminal extends User{
 
         return resultados;
     }
+    
 }

@@ -17,12 +17,15 @@ public class ActionWithAdminNotification extends Action {
     @Transient
     private Mailer mailer;
 
-    public ActionWithAdminNotification(Mailer mailer) {
-        this.mailer = mailer;
+    public ActionWithAdminNotification() {
     }
 
     public long getTime(){
     	return time;
+    }
+    
+    public void setMailer (Mailer unMailer) {
+    	this.mailer = unMailer;
     }
 
     public void setSecondsBeforeNotify(int secondsBeforeNotify) {

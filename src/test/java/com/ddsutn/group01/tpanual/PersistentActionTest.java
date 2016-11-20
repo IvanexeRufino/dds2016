@@ -13,7 +13,8 @@ public class PersistentActionTest extends AbstractPersistenceTest implements Wit
 
     @Test
     public void test() {
-        ActionWithAdminNotification notification = new ActionWithAdminNotification(Mockito.mock(Mailer.class));
+        ActionWithAdminNotification notification = new ActionWithAdminNotification();
+        notification.setMailer(Mockito.mock(Mailer.class));
         notification.setSecondsBeforeNotify(10);
         entityManager().persist(notification);
         ActionWithAdminNotification persistedNotification = entityManager().find(ActionWithAdminNotification.class, notification.getId());

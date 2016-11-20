@@ -11,8 +11,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
 import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -22,12 +20,12 @@ import com.ddsutn.group01.tpanual.actions.ActionWithReport;
 import com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics;
 import com.ddsutn.group01.tpanual.actions.ActionWithTerminalReport;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
-import com.ddsutn.group01.tpanual.buscador.ResultadoBusqueda;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.UserRepository;
+import com.ddsutn.group01.tpanual.roles.CheckBox;
 import com.ddsutn.group01.tpanual.roles.Terminal;
-import com.mongodb.MongoClient;
+import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 
 public class AdminController implements WithGlobalEntityManager, TransactionalOps{
 
@@ -129,16 +127,20 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	terminal.setUsername(request.queryParams("nombre"));
     	terminal.setPassword(request.queryParams("pass"));
     	if(request.queryParams("mail") != null) {
-    		terminal.addAction(new ActionWithAdminNotification(null));
+    		terminal.addAction(new ActionWithAdminNotification());
+    		terminal.getMail().setState(true);
     	}
     	if(request.queryParams("report") != null) {
     		terminal.addAction(new ActionWithReport());
+    		terminal.getReport().setState(true);
     	}
     	if(request.queryParams("search Metrics") != null) {
     		terminal.addAction(new ActionWithSearchMetrics());
+    		terminal.getMetrics().setState(true);
     	}
     	if(request.queryParams("terminal Report") != null) {
     		terminal.addAction(new ActionWithTerminalReport());
+    		terminal.getTerminal().setState(true);
     	}
     	withTransaction(() ->{
     		UserRepository.getInstance().add(terminal);
@@ -187,6 +189,54 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	terminal.setNombreDeTerminal(request.queryParams("nombre"));
     	terminal.setComuna(Integer.parseInt(request.queryParams("comuna")));
     	terminal.setPassword(request.queryParams("pass"));
+    	if(request.queryParams("mail") != null) {
+    		if(!terminal.getMail().getState()){
+	    		terminal.addAction(new ActionWithAdminNotification());
+	    		terminal.getMail().setState(true);
+    		}
+    	} else {
+    		if(terminal.getMail().getState()){
+    			ActionWithAdminNotification admAct =  (ActionWithAdminNotification) terminal.getAcciones().get(terminal.getMail().getPosicion());
+    			terminal.removeAction(admAct);
+    			terminal.getMail().setState(false);
+    		}
+    	}
+    	if(request.queryParams("report") != null) {
+    		if(!terminal.getReport().getState()){
+	    		terminal.addAction(new ActionWithReport());
+	    		terminal.getReport().setState(true);
+    		}
+    	} else {
+    		if(terminal.getMail().getState()){
+    			ActionWithReport admAct =  (ActionWithReport) terminal.getAcciones().get(terminal.getReport().getPosicion());
+    			terminal.removeAction(admAct);
+    			terminal.getReport().setState(false);
+    		}
+    	}
+    	if(request.queryParams("metrics") != null) {
+    		if(!terminal.getMetrics().getState()){
+	    		terminal.addAction(new ActionWithSearchMetrics());
+	    		terminal.getMetrics().setState(true);
+    		}
+    	} else {
+    		if(terminal.getMail().getState()){
+    			ActionWithSearchMetrics admAct =  (ActionWithSearchMetrics) terminal.getAcciones().get(terminal.getMetrics().getPosicion());
+    			terminal.removeAction(admAct);
+    			terminal.getMetrics().setState(false);
+    		}
+    	}
+    	if(request.queryParams("terminal") != null) {
+    		if(!terminal.getTerminal().getState()){
+	    		terminal.addAction(new ActionWithTerminalReport());
+	    		terminal.getTerminal().setState(true);
+    		}
+    	} else {
+    		if(terminal.getTerminal().getState()){
+    			ActionWithTerminalReport admAct =  (ActionWithTerminalReport) terminal.getAcciones().get(terminal.getTerminal().getPosicion());
+    			terminal.removeAction(admAct);
+    			terminal.getTerminal().setState(false);
+    		}
+    	}
     	withTransaction(() ->{
     		UserRepository.getInstance().update(terminal);
     	});

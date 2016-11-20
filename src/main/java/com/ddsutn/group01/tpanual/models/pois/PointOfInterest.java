@@ -24,6 +24,14 @@ public abstract class PointOfInterest extends PersistentRecord {
     @Convert(converter = StringListConverter.class)
     protected List<String> palabrasClaves;
 
+    public Double getLatitude() {
+    	return point.latitude();
+    }
+    
+    public Double getLongitude() {
+    	return point.longitude();
+    }
+    
     public PointOfInterest() {
     }
 

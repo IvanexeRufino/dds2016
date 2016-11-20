@@ -34,16 +34,16 @@
 				<div class="form-group">
 					<label for="acciones" class="control-label col-sm-2"> Acciones </label>
 					<div class="checkbox-inline ">
-					  <label class="control-label col-sm-4"><input type="checkbox" name="mail" value="true">Mail</label>
+					  <label class="control-label col-sm-4"><input type="checkbox" name="mail" value="true"{{#if mail}} checked {{/if}}>Mail</label>
 					</div>
 					<div class="checkbox-inline">
-					  <label class="control-label col-sm-10"><input type="checkbox" value="true" name="report">Report</label>
+					  <label class="control-label col-sm-10"><input type="checkbox" value="true" name="report" {{#if report}} checked {{/if}}>Report</label>
 					</div>
 					<div class="checkbox-inline">
-					  <label class="control-label col-sm-16"><input type="checkbox" value="true" name="searchMetrics">Search Metrics</label>
+					  <label class="control-label col-sm-16"><input type="checkbox" value="true" name="searchMetrics" {{#if metrics}} checked {{/if}}>Search Metrics</label>
 					</div>
 					<div class="checkbox-inline">
-					  <label class="control-label col-sm-22"><input type="checkbox" value="true" name="terminalReport">Terminal Report</label>
+					  <label class="control-label col-sm-22"><input type="checkbox" value="true" name="terminalReport" {{#if terminal}} checked {{/if}}>Terminal Report</label>
 					</div>
 				</div>
 		
