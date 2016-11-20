@@ -68,6 +68,19 @@ public class PoiRepository {
 
         return allResults;
     }
+    
+    public List<PointOfInterest> findTypeOfPOI(String table) {
+    	List<PointOfInterest> localResults = localOrigin.findTable(table);
+    	List<PointOfInterest> externalResults = externalOrigins.stream()
+        .map(origin -> origin.findType(table))
+        .flatMap(List::stream)
+        .collect(Collectors.toList());
+    	
+    	List<PointOfInterest> allResults = new ArrayList<>();
+        Stream.of(localResults, externalResults).forEach(allResults::addAll);
+
+        return allResults;
+    }
 
     public PointOfInterest findOne(int id) {
         return localOrigin.findOne(id);

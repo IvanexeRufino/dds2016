@@ -30,6 +30,10 @@ class PoiDAO {
     List<PointOfInterest> findAll() {
         return (List<PointOfInterest>) entityManager.createQuery("from PointOfInterest").getResultList();
     }
+    
+    List<PointOfInterest> findTable(String table) {
+    	return (List<PointOfInterest>) entityManager.createQuery("from "+table).getResultList();
+    }
 
     PointOfInterest findOne(int id) {
         return entityManager.find(PointOfInterest.class, id);

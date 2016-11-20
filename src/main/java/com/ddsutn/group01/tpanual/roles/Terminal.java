@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 public class Terminal extends User{
@@ -28,43 +27,43 @@ public class Terminal extends User{
     @Transient
     private Buscador buscador;
     
-    private CheckBox mail;
+    private Boolean mail;
     
-    private CheckBox report;
+    private Boolean report;
     
-    private CheckBox metrics;
+    private Boolean metrics;
     
-    private CheckBox terminal;
+    private Boolean terminal;
     
-	public CheckBox getMail() {
+	public Boolean getMail() {
 		return mail;
 	}
 
-	public void setMail(CheckBox mail) {
+	public void setMail(Boolean mail) {
 		this.mail = mail;
 	}
 
-	public CheckBox getReport() {
+	public Boolean getReport() {
 		return report;
 	}
 
-	public void setReport(CheckBox report) {
+	public void setReport(Boolean report) {
 		this.report = report;
 	}
 
-	public CheckBox getMetrics() {
+	public Boolean getMetrics() {
 		return metrics;
 	}
 
-	public void setMetrics(CheckBox metrics) {
+	public void setMetrics(Boolean metrics) {
 		this.metrics = metrics;
 	}
 
-	public CheckBox getTerminal() {
+	public Boolean getTerminal() {
 		return terminal;
 	}
 
-	public void setTerminal(CheckBox terminal) {
+	public void setTerminal(Boolean terminal) {
 		this.terminal = terminal;
 	}
 
@@ -76,10 +75,10 @@ public class Terminal extends User{
         this.nombreDeTerminal = nombreDeTerminal;
         this.buscador = unBuscador;
         this.actions = new ArrayList<>();
-        this.mail = new CheckBox();
-        this.report = new CheckBox();
-        this.metrics = new CheckBox();
-        this.terminal = new CheckBox();
+        this.mail = false;
+        this.report = false;
+        this.metrics = false;
+        this.terminal = false;
     }
 
 	public void setComuna(int comuna) {

@@ -33,8 +33,18 @@ public class LocalOrigin implements Origin {
     public List<PointOfInterest> find(String searchText) {
         return dao.findAll().stream().filter(poi -> poi.palabraEsta(searchText)).collect(Collectors.toList());
     }
+    
+    public List<PointOfInterest> findTable(String table) {
+        return dao.findTable(table);
+    }
 
     public PointOfInterest findOne(int id) {
         return dao.findOne(id);
     }
+
+	@Override
+	public List<PointOfInterest> findType(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

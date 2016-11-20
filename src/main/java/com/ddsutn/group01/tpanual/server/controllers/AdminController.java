@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -23,9 +22,7 @@ import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.UserRepository;
-import com.ddsutn.group01.tpanual.roles.CheckBox;
 import com.ddsutn.group01.tpanual.roles.Terminal;
-import com.ddsutn.group01.tpanual.tools.mailers.Mailer;
 
 public class AdminController implements WithGlobalEntityManager, TransactionalOps{
 
@@ -95,14 +92,20 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     
     public static ModelAndView listar(Request request, Response response) {
     	String query1 = request.queryParams("nombre");
+    	String query2 = request.queryParams("tipo");
     	Map<String, List<PointOfInterest>> pois = new HashMap<>();
     	List<PointOfInterest> filtrados = new ArrayList<>();
-    	if(query1 == null) {
+    	if(query2 == null && query1 == null) {
         	filtrados = PoiRepository.getInstance().findAll("");
-    	}
-    	else {
+    	} else if(query2 == null && query1 != null) {
     		filtrados = PoiRepository.getInstance().findAll(query1);
-    	}
+    		} else if(query2!= null && query1 == null) {
+    			filtrados = PoiRepository.getInstance().findTypeOfPOI(query2);
+    		} else {
+    			List<PointOfInterest> filtradosPorTipo = PoiRepository.getInstance().findTypeOfPOI(query2);
+    			List<PointOfInterest> filtradosPorNombre = filtrados = PoiRepository.getInstance().findAll(query1);
+    			filtrados = filtradosPorTipo.stream().filter(filtradosPorNombre::contains).collect(Collectors.toList());
+    		}
     	pois.put("filtrados", filtrados);
         return new ModelAndView(pois, "admin/pois/pois.hbs");
     }
@@ -128,19 +131,19 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	terminal.setPassword(request.queryParams("pass"));
     	if(request.queryParams("mail") != null) {
     		terminal.addAction(new ActionWithAdminNotification());
-    		terminal.getMail().setState(true);
+    		terminal.setMail(true);
     	}
     	if(request.queryParams("report") != null) {
     		terminal.addAction(new ActionWithReport());
-    		terminal.getReport().setState(true);
+    		terminal.setReport(true);
     	}
     	if(request.queryParams("search Metrics") != null) {
     		terminal.addAction(new ActionWithSearchMetrics());
-    		terminal.getMetrics().setState(true);
+    		terminal.setMetrics(true);
     	}
     	if(request.queryParams("terminal Report") != null) {
     		terminal.addAction(new ActionWithTerminalReport());
-    		terminal.getTerminal().setState(true);
+    		terminal.setTerminal(true);
     	}
     	withTransaction(() ->{
     		UserRepository.getInstance().add(terminal);
@@ -190,51 +193,51 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	terminal.setComuna(Integer.parseInt(request.queryParams("comuna")));
     	terminal.setPassword(request.queryParams("pass"));
     	if(request.queryParams("mail") != null) {
-    		if(!terminal.getMail().getState()){
+    		if(!terminal.getMail()){
 	    		terminal.addAction(new ActionWithAdminNotification());
-	    		terminal.getMail().setState(true);
+	    		terminal.setMail(true);
     		}
     	} else {
-    		if(terminal.getMail().getState()){
-    			ActionWithAdminNotification admAct =  (ActionWithAdminNotification) terminal.getAcciones().get(terminal.getMail().getPosicion());
+    		if(terminal.getMail()){
+    			ActionWithAdminNotification admAct =  (ActionWithAdminNotification) terminal.getAcciones().get(0);
     			terminal.removeAction(admAct);
-    			terminal.getMail().setState(false);
+    			terminal.setMail(false);
     		}
     	}
     	if(request.queryParams("report") != null) {
-    		if(!terminal.getReport().getState()){
+    		if(!terminal.getReport()){
 	    		terminal.addAction(new ActionWithReport());
-	    		terminal.getReport().setState(true);
+	    		terminal.setReport(true);
     		}
     	} else {
-    		if(terminal.getMail().getState()){
-    			ActionWithReport admAct =  (ActionWithReport) terminal.getAcciones().get(terminal.getReport().getPosicion());
+    		if(terminal.getReport()){
+    			ActionWithReport admAct =  (ActionWithReport) terminal.getAcciones().get(0);
     			terminal.removeAction(admAct);
-    			terminal.getReport().setState(false);
+    			terminal.setReport(false);
     		}
     	}
     	if(request.queryParams("metrics") != null) {
-    		if(!terminal.getMetrics().getState()){
+    		if(!terminal.getMetrics()){
 	    		terminal.addAction(new ActionWithSearchMetrics());
-	    		terminal.getMetrics().setState(true);
+	    		terminal.setMetrics(true);
     		}
     	} else {
-    		if(terminal.getMail().getState()){
-    			ActionWithSearchMetrics admAct =  (ActionWithSearchMetrics) terminal.getAcciones().get(terminal.getMetrics().getPosicion());
+    		if(terminal.getMetrics()){
+    			ActionWithSearchMetrics admAct =  (ActionWithSearchMetrics) terminal.getAcciones().get(0);
     			terminal.removeAction(admAct);
-    			terminal.getMetrics().setState(false);
+    			terminal.setMetrics(false);
     		}
     	}
     	if(request.queryParams("terminal") != null) {
-    		if(!terminal.getTerminal().getState()){
+    		if(!terminal.getTerminal()){
 	    		terminal.addAction(new ActionWithTerminalReport());
-	    		terminal.getTerminal().setState(true);
+	    		terminal.setTerminal(true);
     		}
     	} else {
-    		if(terminal.getTerminal().getState()){
-    			ActionWithTerminalReport admAct =  (ActionWithTerminalReport) terminal.getAcciones().get(terminal.getTerminal().getPosicion());
+    		if(terminal.getTerminal()){
+    			ActionWithTerminalReport admAct =  (ActionWithTerminalReport) terminal.getAcciones().get(0);
     			terminal.removeAction(admAct);
-    			terminal.getTerminal().setState(false);
+    			terminal.setTerminal(false);
     		}
     	}
     	withTransaction(() ->{

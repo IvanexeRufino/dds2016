@@ -31,4 +31,10 @@ class BancosOrigin implements Origin {
         }
         return BancoAdapter.adapt(result);
     }
+
+	@Override
+	public List<PointOfInterest> findType(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface Origin {
     List<PointOfInterest> find(String searchText);
+    
+    List<PointOfInterest> findType(String type);
 }

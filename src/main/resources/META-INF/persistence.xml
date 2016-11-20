@@ -22,7 +22,6 @@
         <class>com.ddsutn.group01.tpanual.roles.Terminal</class>
         <class>com.ddsutn.group01.tpanual.roles.Admin</class>
         <class>com.ddsutn.group01.tpanual.roles.User</class>
-        <class>com.ddsutn.group01.tpanual.roles.CheckBox</class>
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
 

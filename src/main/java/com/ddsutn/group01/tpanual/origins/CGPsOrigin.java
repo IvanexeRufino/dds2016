@@ -37,4 +37,10 @@ class CGPsOrigin implements Origin {
             return CGPAdapter.adapt(Mapper.mappearCGP(resultCacheado));
         }
     }
+
+	@Override
+	public List<PointOfInterest> findType(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
