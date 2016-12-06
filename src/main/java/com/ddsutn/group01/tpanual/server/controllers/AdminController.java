@@ -79,6 +79,25 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
         return new ModelAndView(context, "admin/consultas/historial.hbs");
     }
     
+    public static ModelAndView resultados(Request request, Response response) {
+//    	Poder entrar a una búsqueda y visualizar los POIs devueltos en dicha consulta.
+        final Morphia morphia = new Morphia();
+        morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaDateTimeConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaLocalTimeConverter.class);
+        morphia.mapPackage("com.ddsutn.group01.tpanual.buscador");
+        morphia.mapPackage("com.ddsutn.group01.tpanual.models.pois");
+        final Datastore datastore = morphia.createDatastore(new MongoClient(), "pois");
+        datastore.ensureIndexes();
+    	
+        
+        Map<String, Object> context = new HashMap<>();
+        ResultadoBusqueda resultado = datastore.find(ResultadoBusqueda.class).filter("searchText", request.params(":searchText")).filter("username", request.params(":username")).get();
+        context.put("resultados", resultado.getResultados());
+        
+        return new ModelAndView(context, "admin/consultas/resultados.hbs");
+    }
+    
     public static ModelAndView modificarPoi(Request request, Response response) {
     	int id = Integer.parseInt(request.params(":id"));
     	Map<String, PointOfInterest> pois = new HashMap<>();

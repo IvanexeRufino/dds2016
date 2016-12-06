@@ -58,6 +58,7 @@ class Router {
         Spark.get("/admin/terminales/:id", adminController::eliminarTerminal,engine);
         
         Spark.get("/admin/consultas/historial", AdminController::historial,engine);
+        Spark.get("/admin/consultas/resultados/:searchText:username", AdminController::resultados,engine);
         
         
         Spark.get("/terminal/pois", terminalController::pois, engine);

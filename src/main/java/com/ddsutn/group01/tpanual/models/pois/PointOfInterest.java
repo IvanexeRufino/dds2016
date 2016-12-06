@@ -6,9 +6,10 @@ import com.ddsutn.group01.tpanual.db.StringListConverter;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

@@ -1,6 +1,7 @@
 package com.ddsutn.group01.tpanual.server;
 
 import com.ddsutn.group01.tpanual.buscador.Buscador;
+import com.ddsutn.group01.tpanual.buscador.ResultadoBusqueda;
 import com.ddsutn.group01.tpanual.db.Polygon;
 import com.ddsutn.group01.tpanual.models.Horario;
 import com.ddsutn.group01.tpanual.models.HorariosDeAtencion;
@@ -40,7 +41,7 @@ public class Bootstrap extends AbstractPersistenceTest implements WithGlobalEnti
             pro.setUsername("admin");
             pro.setPassword("admin");
             UserRepository.getInstance().add(pro);
-
+            
             HorariosDeAtencion horariosDeAtencion = new HorariosDeAtencion();
             horariosDeAtencion.agregarHorario(new Horario(DayOfWeek.THURSDAY, new LocalTime(10, 0), new LocalTime(19, 0)));
             horariosDeAtencion.agregarHorario(new Horario(DayOfWeek.FRIDAY, new LocalTime(9, 0), new LocalTime(18, 0)));
