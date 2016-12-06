@@ -12,7 +12,7 @@ public class RootController {
         User user = SessionHelper.findUser(request.session());
 
         if (user.isAdmin()) {
-            response.redirect("/admin:");
+            response.redirect("/admin");
         } else {
             response.redirect("/terminal/"+user.getId().toString());
         }
