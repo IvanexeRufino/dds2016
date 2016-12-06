@@ -92,6 +92,10 @@ public class Terminal extends User{
     public Buscador getBuscador() {
         return buscador;
     }
+    
+    public void setBuscador(Buscador buscador) {
+        this.buscador = buscador;
+    }
 
     public List<Action> getAcciones() {
         return actions;

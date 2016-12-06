@@ -31,7 +31,7 @@ public class Bootstrap extends AbstractPersistenceTest implements WithGlobalEnti
     public void init() {
         withTransaction(() -> {
             EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-            Terminal proyecto = new Terminal("terminalAbasto",5,new Buscador());
+            Terminal proyecto = new Terminal("terminalAbasto",5,new Buscador("terminal"));
             proyecto.setUsername("terminal");
             proyecto.setPassword("terminal");
             UserRepository.getInstance().add(proyecto);

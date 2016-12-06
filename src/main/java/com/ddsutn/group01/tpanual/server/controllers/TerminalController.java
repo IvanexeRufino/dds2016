@@ -17,30 +17,28 @@ import java.util.stream.Collectors;
 
 public class TerminalController {
 	
-	private Buscador buscador;
+	private Terminal terminal;
 
-    public static ModelAndView index(Request request, Response response) {
+    public ModelAndView index(Request request, Response response) {
+    	int id = Integer.parseInt(request.params(":id"));
+    	terminal = UserRepository.getInstance().get(id);
+    	terminal.setBuscador(new Buscador(terminal.getUsername()));
         Map<String, String> user = new HashMap<>();
-        user.put("name", "Matías");
+        user.put("name", terminal.getUsername());
         
         return new ModelAndView(user, "terminal/index.hbs");
     }
 
-    public static ModelAndView pois(Request request, Response response) {
+    public ModelAndView pois(Request request, Response response) {
         String query = request.queryParams("query");
-//      int id = request.queryParams("id");
 
         if (query.isEmpty()) {
             return new ModelAndView(null, "terminal/pois.hbs");
         }
-        
-//    	Terminal terminal= UserRepository.getInstance().getAll()
-//		.stream()
-//		.filter(terminal->terminal.getid() == id).findFirst();
 
 //		terminal.find(query);
 
-        List<PointOfInterest> pois = PoiRepository.getInstance().findAll(query);
+        List<PointOfInterest> pois = terminal.find(query);
         Map<String, Object> context = new HashMap<>();
         context.put("query", query);
         context.put("pois", pois);

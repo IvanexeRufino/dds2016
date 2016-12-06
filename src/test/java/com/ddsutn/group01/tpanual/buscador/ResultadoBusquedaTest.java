@@ -37,7 +37,7 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
 
     @Before
     public void setUp() {
-        Buscador buscador = new Buscador();
+        Buscador buscador = new Buscador("terminal");
         terminal = new Terminal("abasto", 1, buscador);
 
         final Morphia morphia = new Morphia();

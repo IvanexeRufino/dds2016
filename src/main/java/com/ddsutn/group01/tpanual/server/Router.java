@@ -38,6 +38,7 @@ class Router {
         });
         
         AdminController adminController = new AdminController();
+        TerminalController terminalController = new TerminalController();
 
         Spark.get("/", RootController::main, engine);
         Spark.get("/sign_in", SignInController::index, engine);
@@ -61,9 +62,9 @@ class Router {
         Spark.get("/admin/consultas/historial", AdminController::historial,engine);
         
         
-        Spark.get("/terminal/:id", TerminalController::index, engine);
-        Spark.get("/terminal/pois", TerminalController::pois, engine);
+        Spark.get("/terminal/pois", terminalController::pois, engine);
         Spark.get("/terminal/poi/:id", TerminalController::poi, engine);
+        Spark.get("/terminal/:id", terminalController::index, engine);
     }
 
 }

@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
 public class AccionesTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
     private Action mockedAction;
     private Terminal unaTerminal;
-    private Buscador buscador = new Buscador();
+    private Buscador buscador = new Buscador("terminal");
     private Datastore datastore;
 
     @Before

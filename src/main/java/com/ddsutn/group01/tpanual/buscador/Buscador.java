@@ -12,6 +12,12 @@ import org.mongodb.morphia.Morphia;
 import java.util.List;
 
 public class Buscador {
+	
+	private String terminalUsername;
+	
+	public Buscador(String username) {
+		this.terminalUsername = username;
+	}
 
     public List<PointOfInterest> find(String searchText) {
         List<PointOfInterest> results = PoiRepository.getInstance().findAll(searchText);
@@ -25,7 +31,7 @@ public class Buscador {
         final Datastore datastore = morphia.createDatastore(new MongoClient(), "pois");
         datastore.ensureIndexes();
 
-        datastore.save(new ResultadoBusqueda(searchText, results));
+        datastore.save(new ResultadoBusqueda(searchText, results, terminalUsername));
 
         return results;
     }

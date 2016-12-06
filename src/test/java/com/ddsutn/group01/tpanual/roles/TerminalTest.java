@@ -14,7 +14,7 @@ public class TerminalTest extends AbstractPersistenceTest implements WithGlobalE
 
     @Before
     public void setUp() {
-        buscador = new Buscador();
+        buscador = new Buscador("terminal");
         terminal = new Terminal("abasto", 1, buscador);
 
     }

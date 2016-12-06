@@ -24,7 +24,7 @@ public class ConfigurarTerminalesTest {
     public void init() {
         List<Terminal> terminales = new ArrayList<>();
         List<Action> acciones = new ArrayList<>();
-        Buscador buscador = new Buscador();
+        Buscador buscador = new Buscador("terminal");
         ComunaFilter filtrador = new ComunaFilter(1);
 
         pacheco = new Terminal("pacheco", 2, buscador);

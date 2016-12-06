@@ -125,7 +125,7 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     }
     
     public ModelAndView agregarTerminal(Request request, Response response) {
-    	Buscador buscador = new Buscador();
+    	Buscador buscador = new Buscador(request.queryParams("nombre"));
     	Terminal terminal = new Terminal(request.queryParams("nombre"),Integer.parseInt(request.queryParams("comuna")),buscador);
     	terminal.setUsername(request.queryParams("nombre"));
     	terminal.setPassword(request.queryParams("pass"));
