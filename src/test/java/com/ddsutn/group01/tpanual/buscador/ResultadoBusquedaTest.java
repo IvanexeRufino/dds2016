@@ -110,6 +110,7 @@ public class ResultadoBusquedaTest extends AbstractPersistenceTest implements Wi
         ResultadoBusqueda resultadoBusqueda = datastore.find(ResultadoBusqueda.class).get();
 
         Assert.assertEquals("atm", resultadoBusqueda.getSearchText());
+        Assert.assertEquals(1, resultadoBusqueda.getResultados().size());
     }
 
     @Test

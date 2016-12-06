@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.joda.time.DateTime;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
@@ -30,6 +31,7 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.UserRepository;
 import com.ddsutn.group01.tpanual.roles.Terminal;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 
 public class AdminController implements WithGlobalEntityManager, TransactionalOps{
@@ -89,10 +91,10 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
         morphia.mapPackage("com.ddsutn.group01.tpanual.models.pois");
         final Datastore datastore = morphia.createDatastore(new MongoClient(), "pois");
         datastore.ensureIndexes();
-    	
         
         Map<String, Object> context = new HashMap<>();
-        ResultadoBusqueda resultado = datastore.find(ResultadoBusqueda.class).filter("searchText", request.params(":searchText")).filter("username", request.params(":username")).get();
+        List<ResultadoBusqueda> resultados = datastore.find(ResultadoBusqueda.class).asList();
+        ResultadoBusqueda resultado = resultados.stream().filter(res->(res.getSearchText().equals(request.params(":searchText")) && res.getUsername().equals(request.params(":username")))).collect(Collectors.toList()).get(0);
         context.put("resultados", resultado.getResultados());
         
         return new ModelAndView(context, "admin/consultas/resultados.hbs");
