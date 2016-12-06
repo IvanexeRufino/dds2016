@@ -1,0 +1,25 @@
+{{#partial "content"}}
+<h1>Los resultados de la busqueda son: </h1>
+
+<table class="table table-stripped">
+		<thead>
+			<tr>
+			 	<th>#</th>
+        		<th>Nombre</th>
+        		<th>Palabras claves</th>
+      		</tr>
+		</thead>
+	 	{{#each resultados}}
+			<tbody>
+			<tr>
+				<td> {{id}} </td>
+				<td> {{name}} </td>
+				<td>{{join palabrasClaves ", "}}</td>
+			</tr>
+		{{/each}}
+		</tbody>
+</table>
+
+{{/partial}}
+
+{{>layout_admin.hbs}}
