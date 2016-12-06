@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.Query;
 import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -22,6 +23,9 @@ import com.ddsutn.group01.tpanual.actions.ActionWithSearchMetrics;
 import com.ddsutn.group01.tpanual.actions.ActionWithTerminalReport;
 import com.ddsutn.group01.tpanual.buscador.Buscador;
 import com.ddsutn.group01.tpanual.buscador.ResultadoBusqueda;
+import com.ddsutn.group01.tpanual.db.BigDecimalConverter;
+import com.ddsutn.group01.tpanual.db.JodaDateTimeConverter;
+import com.ddsutn.group01.tpanual.db.JodaLocalTimeConverter;
 import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.UserRepository;
@@ -60,15 +64,19 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     
     public static ModelAndView historial(Request request, Response response) {
 //    	Poder entrar a una búsqueda y visualizar los POIs devueltos en dicha consulta.
-    	final Morphia morphia = new Morphia();
-    	Datastore datastore;
-    	datastore = morphia.createDatastore(new MongoClient(), "pois");
+        final Morphia morphia = new Morphia();
+        morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaDateTimeConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaLocalTimeConverter.class);
+        morphia.mapPackage("com.ddsutn.group01.tpanual.buscador");
+        morphia.mapPackage("com.ddsutn.group01.tpanual.models.pois");
+        final Datastore datastore = morphia.createDatastore(new MongoClient(), "pois");
         datastore.ensureIndexes();
     	
         Map<String, Object> context = new HashMap<>();
-        List<ResultadoBusqueda> query = (List<ResultadoBusqueda>)datastore.find(ResultadoBusqueda.class);
+        Query<ResultadoBusqueda> query = datastore.find(ResultadoBusqueda.class);
         context.put("busquedas", query);
-        return new ModelAndView(null, "admin/consultas/historial.hbs");
+        return new ModelAndView(context, "admin/consultas/historial.hbs");
     }
     
     public static ModelAndView modificarPoi(Request request, Response response) {
