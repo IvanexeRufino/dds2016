@@ -1,0 +1,24 @@
+<table class="table table-stripped">
+		<thead>
+			<tr>
+			 	<th>#</th>
+        		<th>Nombre</th>
+        		<th>Palabras claves</th>
+      		</tr>
+		</thead>
+	 	{{#each filtrados}}
+			<tbody>
+			<tr>
+				<td> {{id}} </td>
+				<td> {{name}} </td>
+				<td>{{join palabrasClaves ", "}}</td>
+				<td> <a href="/admin/POIS/modificar/{{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+				</td>
+				<td> 
+					<a href="/admin/POIS/{{id}}"><span class="glyphicon glyphicon-trash"></span></a>
+				</td>
+			
+			</tr>
+		{{/each}}
+		</tbody>
+</table>
