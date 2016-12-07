@@ -57,6 +57,7 @@ class Router {
         Spark.post("/admin/terminales/modificar/:id", adminController::modificarTerminal,engine);
         Spark.get("/admin/terminales/:id", adminController::eliminarTerminal,engine);
         
+        Spark.get("/admin/consultas/filtrar", AdminController::filtrar,engine);
         Spark.get("/admin/consultas/historial", AdminController::historial,engine);
         Spark.get("/admin/consultas/resultados/:username/:searchText/:fecha", AdminController::resultados,engine);
         

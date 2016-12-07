@@ -44,24 +44,38 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     }
     
     public static ModelAndView filtrar(Request request, Response response) {
-//    	String desde = request.queryParams("desde");
-//    	String hasta = request.queryParams("hasta");
-//    	String cantidad = request.queryParams("cantidad");
-//    	String terminal= request.queryParams("terminal");
-//    	final Morphia morphia = new Morphia();
-//    	Datastore datastore;
-//    	datastore = morphia.createDatastore(new MongoClient(), "pois");
-//    	datastore.ensureIndexes();
-//    	
-//    	if (desde.isEmpty() && hasta.isEmpty() && cantidad.isEmpty() && terminal.isEmpty()){
-//        	List<PointOfInterest> pois = datastore.find(ResultadoBusqueda.class).get().getResultados();
-//          Map<String, Object> context = new HashMap<>();
-//          ResultadoBusqueda query = datastore.find(ResultadoBusqueda.class).get();
-//          context.put("query", query.getSearchText());
-//          context.put("pois", pois);
-//    	}    	
+    	String desde = request.queryParams("desde");
+    	String hasta = request.queryParams("hasta");
+    	String cantidad = request.queryParams("cantidad");
+    	String terminal= request.queryParams("terminal");
+        final Morphia morphia = new Morphia();
+        morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaDateTimeConverter.class);
+        morphia.getMapper().getConverters().addConverter(JodaLocalTimeConverter.class);
+        morphia.mapPackage("com.ddsutn.group01.tpanual.buscador");
+        morphia.mapPackage("com.ddsutn.group01.tpanual.models.pois");
+        final Datastore datastore = morphia.createDatastore(new MongoClient(), "pois");
+        datastore.ensureIndexes();
     	
-        return new ModelAndView(null, "admin/consultas/filtrar.hbs");
+		List<ResultadoBusqueda> busquedas = datastore.find(ResultadoBusqueda.class).asList();
+
+		if(!desde.isEmpty()) {
+		}
+		
+		if(!hasta.isEmpty()) {
+		}
+		if(!cantidad.isEmpty()) {
+			busquedas = busquedas.stream().filter(res->res.getResultados().size() == Integer.parseInt(cantidad)).collect(Collectors.toList());
+		}
+		if(!terminal.equals("Todas")) {
+			busquedas = busquedas.stream().filter(res->res.getUsername().equals(terminal)).collect(Collectors.toList());
+		}
+		
+        List<Terminal> terminales = UserRepository.getInstance().getAll();
+		Map<String, Object> context = new HashMap<>();
+        context.put("busquedas", busquedas);
+        context.put("terminales", terminales);
+        return new ModelAndView(context, "admin/consultas/filtrar.hbs");
     }
     
     public static ModelAndView historial(Request request, Response response) {
@@ -75,9 +89,11 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
         final Datastore datastore = morphia.createDatastore(new MongoClient(), "pois");
         datastore.ensureIndexes();
     	
+        List<Terminal> terminales = UserRepository.getInstance().getAll();
         Map<String, Object> context = new HashMap<>();
         Query<ResultadoBusqueda> query = datastore.find(ResultadoBusqueda.class);
         context.put("busquedas", query);
+        context.put("terminales", terminales);
         return new ModelAndView(context, "admin/consultas/historial.hbs");
     }
     
