@@ -30,20 +30,19 @@
 					</div>
 				</div>
 
-
 				<div class="form-group">
 					<label for="acciones" class="control-label col-sm-2"> Acciones </label>
 					<div class="checkbox-inline ">
-					  <label class="control-label col-sm-4"><input type="checkbox" name="mail" value="true"{{#if mail}} checked {{/if}}>Mail</label>
+					  <label class="control-label col-sm-4"><input type="checkbox" name="mail" value="true"{{#if mailState}} checked {{/if}}>Mail</label>
 					</div>
 					<div class="checkbox-inline">
-					  <label class="control-label col-sm-10"><input type="checkbox" value="true" name="report" {{#if report}} checked {{/if}}>Report</label>
+					  <label class="control-label col-sm-10"><input type="checkbox" value="true" name="report" {{#if reportState}} checked {{/if}}>Report</label>
 					</div>
 					<div class="checkbox-inline">
-					  <label class="control-label col-sm-16"><input type="checkbox" value="true" name="searchMetrics" {{#if metrics}} checked {{/if}}>Search Metrics</label>
+					  <label class="control-label col-sm-16"><input type="checkbox" value="true" name="searchMetrics" {{#if searchMetricsState}} checked {{/if}}>Search Metrics</label>
 					</div>
 					<div class="checkbox-inline">
-					  <label class="control-label col-sm-22"><input type="checkbox" value="true" name="terminalReport" {{#if terminal}} checked {{/if}}>Terminal Report</label>
+					  <label class="control-label col-sm-22"><input type="checkbox" value="true" name="terminalReport" {{#if terminalReportState}} checked {{/if}}>Terminal Report</label>
 					</div>
 				</div>
 		

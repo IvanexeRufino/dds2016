@@ -31,11 +31,12 @@ import com.ddsutn.group01.tpanual.models.pois.PointOfInterest;
 import com.ddsutn.group01.tpanual.repositories.PoiRepository;
 import com.ddsutn.group01.tpanual.repositories.UserRepository;
 import com.ddsutn.group01.tpanual.roles.Terminal;
-import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 
 public class AdminController implements WithGlobalEntityManager, TransactionalOps{
 
+	private static List<CheckBox> checkBoxList = new ArrayList<>();
+	
     public static ModelAndView index(Request request, Response response) {
         Map<String, String> user = new HashMap<>();
         user.put("name", "Admin - Matías");
@@ -184,19 +185,20 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	terminal.setPassword(request.queryParams("pass"));
     	if(request.queryParams("mail") != null) {
     		terminal.addAction(new ActionWithAdminNotification());
-    		terminal.setMail(true);
+        	checkBoxList.add(new CheckBox(terminal.getUsername(), "mail",true));
+//    		terminal.setMail(true);
     	}
     	if(request.queryParams("report") != null) {
     		terminal.addAction(new ActionWithReport());
-    		terminal.setReport(true);
+    		checkBoxList.add(new CheckBox(terminal.getUsername(), "report",true));
     	}
     	if(request.queryParams("search Metrics") != null) {
     		terminal.addAction(new ActionWithSearchMetrics());
-    		terminal.setMetrics(true);
+    		checkBoxList.add(new CheckBox(terminal.getUsername(), "search Metrics",true));
     	}
     	if(request.queryParams("terminal Report") != null) {
     		terminal.addAction(new ActionWithTerminalReport());
-    		terminal.setTerminal(true);
+    		checkBoxList.add(new CheckBox(terminal.getUsername(), "terminal Report",true));
     	}
     	withTransaction(() ->{
     		UserRepository.getInstance().add(terminal);
@@ -223,14 +225,22 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     }
     
     public static ModelAndView terminal(Request request, Response response) {
-    	Map<String, Terminal> model = new HashMap<>();
-    	Terminal terminal = UserRepository.getInstance().get(Integer.parseInt(request.params(":id")));
+    	Map<String, Object> model = new HashMap<>();
+    	int id = Integer.parseInt(request.params(":id"));
+    	Terminal terminal = UserRepository.getInstance().get(id);
+    	List<CheckBox> checksDeTerminal = checkBoxList.stream().filter(check->check.getUsername().equals(terminal.getUsername())).collect(Collectors.toList());
     	model.put("terminal", terminal);
+    	model.put("mailState", checksDeTerminal.stream().filter(check->check.getNombre().equals("mail")).findFirst().orElse(new CheckBox("","",false)).getState());
+    	model.put("reportState", checksDeTerminal.stream().filter(check->check.getNombre().equals("report")).findFirst().orElse(new CheckBox("","",false)).getState());
+    	model.put("searchMetricsState", checksDeTerminal.stream().filter(check->check.getNombre().equals("search Metrics")).findFirst().orElse(new CheckBox("","",false)).getState());
+    	model.put("terminalReportState", checksDeTerminal.stream().filter(check->check.getNombre().equals("terminal Report")).findFirst().orElse(new CheckBox("","",false)).getState());
+
     	return new ModelAndView(model, "admin/terminales/modificar.hbs");
     }
     
     public ModelAndView eliminarTerminal(Request request, Response response) {
     	int id = Integer.parseInt(request.params(":id"));
+    	checkBoxList.removeIf(check->check.getUsername().equals(UserRepository.getInstance().get(id).getUsername()));
     	withTransaction(() ->{
     		UserRepository.getInstance().remove(id);;
     	});
@@ -245,52 +255,61 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
     	terminal.setNombreDeTerminal(request.queryParams("nombre"));
     	terminal.setComuna(Integer.parseInt(request.queryParams("comuna")));
     	terminal.setPassword(request.queryParams("pass"));
+    	List<CheckBox> checksDeTerminal = checkBoxList.stream().filter(check->check.getUsername().equals(terminal.getUsername())).collect(Collectors.toList());
     	if(request.queryParams("mail") != null) {
-    		if(!terminal.getMail()){
+    		if(!checksDeTerminal.stream().filter(check->check.getNombre().equals("mail")).findFirst().orElse(new CheckBox("","",false)).getState()){
 	    		terminal.addAction(new ActionWithAdminNotification());
-	    		terminal.setMail(true);
+	    		checkBoxList.add(new CheckBox(terminal.getUsername(), "mail",true));
     		}
     	} else {
-    		if(terminal.getMail()){
-    			ActionWithAdminNotification admAct =  (ActionWithAdminNotification) terminal.getAcciones().get(0);
+    		if(checksDeTerminal.stream().filter(check->check.getNombre().equals("mail")).findFirst().orElse(new CheckBox("","",false)).getState()){
+    			CheckBox checkMail = checksDeTerminal.stream().filter(check->check.getNombre().equals("mail")).collect(Collectors.toList()).get(0);
+    			int index = checksDeTerminal.indexOf(checkMail);
+    			ActionWithAdminNotification admAct = (ActionWithAdminNotification) terminal.getAcciones().get(index);
     			terminal.removeAction(admAct);
-    			terminal.setMail(false);
+    			checkBoxList.remove(checkMail);
     		}
     	}
     	if(request.queryParams("report") != null) {
-    		if(!terminal.getReport()){
+    		if(!checksDeTerminal.stream().filter(check->check.getNombre().equals("report")).findFirst().orElse(new CheckBox("","",false)).getState()){
 	    		terminal.addAction(new ActionWithReport());
-	    		terminal.setReport(true);
+	    		checkBoxList.add(new CheckBox(terminal.getUsername(), "report",true));
     		}
     	} else {
-    		if(terminal.getReport()){
-    			ActionWithReport admAct =  (ActionWithReport) terminal.getAcciones().get(0);
+    		if(checksDeTerminal.stream().filter(check->check.getNombre().equals("report")).findFirst().orElse(new CheckBox("","",false)).getState()){
+    			CheckBox checkMail = checksDeTerminal.stream().filter(check->check.getNombre().equals("report")).collect(Collectors.toList()).get(0);
+    			int index = checksDeTerminal.indexOf(checkMail);
+    			ActionWithReport admAct = (ActionWithReport) terminal.getAcciones().get(index);
     			terminal.removeAction(admAct);
-    			terminal.setReport(false);
+    			checkBoxList.remove(checkMail);
     		}
     	}
-    	if(request.queryParams("metrics") != null) {
-    		if(!terminal.getMetrics()){
-	    		terminal.addAction(new ActionWithSearchMetrics());
-	    		terminal.setMetrics(true);
+    	if(request.queryParams("searchMetrics") != null) {
+    		if(!checksDeTerminal.stream().filter(check->check.getNombre().equals("search Metrics")).findFirst().orElse(new CheckBox("","",false)).getState()){
+	    		terminal.addAction(new ActionWithAdminNotification());
+	    		checkBoxList.add(new CheckBox(terminal.getUsername(), "search Metrics",true));
     		}
     	} else {
-    		if(terminal.getMetrics()){
-    			ActionWithSearchMetrics admAct =  (ActionWithSearchMetrics) terminal.getAcciones().get(0);
+    		if(checksDeTerminal.stream().filter(check->check.getNombre().equals("search Metrics")).findFirst().orElse(new CheckBox("","",false)).getState()){
+    			CheckBox checkMail = checksDeTerminal.stream().filter(check->check.getNombre().equals("search Metrics")).collect(Collectors.toList()).get(0);
+    			int index = checksDeTerminal.indexOf(checkMail);
+    			ActionWithSearchMetrics admAct = (ActionWithSearchMetrics) terminal.getAcciones().get(index);
     			terminal.removeAction(admAct);
-    			terminal.setMetrics(false);
+    			checkBoxList.remove(checkMail);
     		}
     	}
-    	if(request.queryParams("terminal") != null) {
-    		if(!terminal.getTerminal()){
-	    		terminal.addAction(new ActionWithTerminalReport());
-	    		terminal.setTerminal(true);
+    	if(request.queryParams("terminalReport") != null) {
+    		if(!checksDeTerminal.stream().filter(check->check.getNombre().equals("terminal Report")).findFirst().orElse(new CheckBox("","",false)).getState()){
+	    		terminal.addAction(new ActionWithAdminNotification());
+	    		checkBoxList.add(new CheckBox(terminal.getUsername(), "terminal Report",true));
     		}
     	} else {
-    		if(terminal.getTerminal()){
-    			ActionWithTerminalReport admAct =  (ActionWithTerminalReport) terminal.getAcciones().get(0);
+    		if(checksDeTerminal.stream().filter(check->check.getNombre().equals("terminal Report")).findFirst().orElse(new CheckBox("","",false)).getState()){
+    			CheckBox checkMail = checksDeTerminal.stream().filter(check->check.getNombre().equals("terminal Report")).collect(Collectors.toList()).get(0);
+    			int index = checksDeTerminal.indexOf(checkMail);
+    			ActionWithTerminalReport admAct = (ActionWithTerminalReport) terminal.getAcciones().get(index);
     			terminal.removeAction(admAct);
-    			terminal.setTerminal(false);
+    			checkBoxList.remove(checkMail);
     		}
     	}
     	withTransaction(() ->{

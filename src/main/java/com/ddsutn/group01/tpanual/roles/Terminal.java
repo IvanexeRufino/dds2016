@@ -26,46 +26,6 @@ public class Terminal extends User{
 
     @Transient
     private Buscador buscador;
-    
-    private Boolean mail;
-    
-    private Boolean report;
-    
-    private Boolean metrics;
-    
-    private Boolean terminal;
-    
-	public Boolean getMail() {
-		return mail;
-	}
-
-	public void setMail(Boolean mail) {
-		this.mail = mail;
-	}
-
-	public Boolean getReport() {
-		return report;
-	}
-
-	public void setReport(Boolean report) {
-		this.report = report;
-	}
-
-	public Boolean getMetrics() {
-		return metrics;
-	}
-
-	public void setMetrics(Boolean metrics) {
-		this.metrics = metrics;
-	}
-
-	public Boolean getTerminal() {
-		return terminal;
-	}
-
-	public void setTerminal(Boolean terminal) {
-		this.terminal = terminal;
-	}
 
 	@SuppressWarnings("unused")
 	public Terminal() {}
@@ -75,10 +35,6 @@ public class Terminal extends User{
         this.nombreDeTerminal = nombreDeTerminal;
         this.buscador = unBuscador;
         this.actions = new ArrayList<>();
-        this.mail = false;
-        this.report = false;
-        this.metrics = false;
-        this.terminal = false;
     }
 
 	public void setComuna(int comuna) {

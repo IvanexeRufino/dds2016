@@ -2,9 +2,10 @@ package com.ddsutn.group01.tpanual.actions;
 
 import com.ddsutn.group01.tpanual.tools.reporters.Reporter;
 
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.HashMap;
 
+@Entity
 public class ActionWithTerminalReport extends Action {
 
     //MISMO QUE EN REPORT
