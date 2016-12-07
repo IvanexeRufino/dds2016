@@ -60,13 +60,19 @@ public class AdminController implements WithGlobalEntityManager, TransactionalOp
 		List<ResultadoBusqueda> busquedas = datastore.find(ResultadoBusqueda.class).asList();
 
 		if(!desde.isEmpty()) {
+	    	DateTime desdeTime = DateTime.parse(request.queryParams("desde"));
+			busquedas = busquedas.stream().filter(res->res.getFecha().toDateTime().isAfter(desdeTime)).collect(Collectors.toList());
 		}
 		
 		if(!hasta.isEmpty()) {
+	    	DateTime hastaTime = DateTime.parse(request.queryParams("hasta"));
+			busquedas = busquedas.stream().filter(res->res.getFecha().toDateTime().isBefore(hastaTime)).collect(Collectors.toList());
 		}
+		
 		if(!cantidad.isEmpty()) {
 			busquedas = busquedas.stream().filter(res->res.getResultados().size() == Integer.parseInt(cantidad)).collect(Collectors.toList());
 		}
+		
 		if(!terminal.equals("Todas")) {
 			busquedas = busquedas.stream().filter(res->res.getUsername().equals(terminal)).collect(Collectors.toList());
 		}
